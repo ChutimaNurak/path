@@ -8,7 +8,7 @@
 	
 	<div class="line">
 		<strong>รหัสลูกค้า :</strong>
-		<input type="number" name="ID"  >
+		<input type="number" name="ID" value="{{$ID}}" readonly>
 	</div>
 	
 	<div class="line">

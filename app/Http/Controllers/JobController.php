@@ -26,10 +26,10 @@ class JobController extends Controller
     
     public function store(Request $request)
     {
-        $distance_sum = $request->input('Distance_Sum');
+  
 
         $model = new JobModel();
-        $model->insert($distance_sum);
+        $model->insert();
         return redirect('/job');
 
     }

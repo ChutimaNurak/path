@@ -12,20 +12,7 @@
                 </div>
                 <!-- /input-group -->
             </li>
-<!-- รอบงาน -->
-           <li>
-                <a href=""><i class="fa fa-dashboard fa-fw"></i>รอบงาน
-                    <span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('/') }}/job">ข้อมูลรอบงาน</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/') }}/job/create">เพิ่มข้อมูลรอบงาน</a>
-                    </li>
-                </ul>
-            </li>
+
 <!-- ลูกค้า -->
            <li>
                 <a href=" "><i class="#"></i>ลูกค้า
@@ -40,18 +27,17 @@
                     </li>
                 </ul>
             </li>
-<!-- ตำแหน่ง -->
-            <li>
-                <a href="#"><i class="#"></i>ข้อมูลที่อยู่ลูกค้า
+<!-- รอบงาน -->
+           <li>
+                <a href=""><i class="fa fa-dashboard fa-fw"></i>รอบงาน
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ url('/') }}/position">ข้อมูลที่อยู่ลูกค้า</a>
+                        <a href="{{ url('/') }}/job">ข้อมูลรอบงาน</a>
                     </li>
-                    
                     <li>
-                        <a href="{{ url('/') }}/position/create">เพิ่มข้อมูลที่อยู่ลูกค้า</a>
+                        <a href="{{ url('/') }}/job/create">เพิ่มข้อมูลรอบงาน</a>
                     </li>
                 </ul>
             </li>

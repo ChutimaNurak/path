@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CustomerModel;
+use App\PositionModel;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -42,7 +43,9 @@ class CustomerController extends Controller
     {
           $model = new CustomerModel();        
           $table_customer = $model->select_id($id);       
-          $data = ['table_customer' => $table_customer];      
+          $model_pos = new PositionModel();
+          $table_position = $model_pos->select_id_customer($id);
+          $data = ['table_customer' => $table_customer,'table_position' => $table_position];      
         return view('customer/show',$data); 
     }
 

@@ -18,9 +18,11 @@ class PositionController extends Controller
 
     }
 
-    public function create()
+    public function create(Request $request)
     {
-         return view('position/create');
+        $ID = $request->input('ID');
+        $data =['ID' => $ID];
+         return view('position/create',$data);
     }
 
     
@@ -38,7 +40,7 @@ class PositionController extends Controller
 
         $model = new PositionModel();
         $model->insert($ID,$House_number, $Village, $District, $City, $Province, $Zip_code, $Latitude, $Longitude);
-        return redirect('/position');
+        return redirect("/customer/{$ID}");
 
     }
 
@@ -74,14 +76,15 @@ class PositionController extends Controller
          $Longitude = $request->input('Longitude');
          $model = new PositionModel();        
          $model->update($ID, $House_number, $Village, $District, $City, $Province, $Zip_code, $Latitude, $Longitude, $id);
-        return redirect('/position'); 
+        return redirect("/customer/{$ID}"); 
     }
 
     
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
            $model = new PositionModel();        
            $model->delete($id);
-        return redirect('/position');
+           $ID = $request->input('ID');
+        return redirect("/customer/{$ID}");
     }
 }

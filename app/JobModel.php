@@ -21,9 +21,9 @@ class JobModel
 		return DB::select($sql, []);
 	}
 
-	function insert($distance_Sum){
+	function insert(){
 		//$sql = "insert into job (Distance_Sum) values (50)";
-		$sql = "insert into job (Distance_Sum) values ({$distance_Sum})";
+		$sql = "insert into job (Distance_Sum) values (0)";
 		DB::insert($sql, []);
 	}
 

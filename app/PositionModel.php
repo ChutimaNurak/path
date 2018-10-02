@@ -16,6 +16,11 @@ class PositionModel
 		return DB::select($sql, []);
 	}
 
+	function select_id_customer($id){
+		$sql = "select * from position where ID = {$id}";
+		return DB::select($sql, []);
+	}
+
 	function select_search($q){
 		$sql = "select * from position where Zip_code like '%{$q}%'";
 		return DB::select($sql, []);
