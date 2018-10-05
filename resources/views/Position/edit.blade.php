@@ -43,7 +43,7 @@
 			<input type="text" name="Longitude" value="{{ $row->Longitude }}"> 
 		</div>
 		<div class="line"> 
-			<button><a href="{{ url('/') }}/position">back</a></button>
+			<button><a href="{{ url('/') }}/customer/{{ $row->ID }}">back</a></button>
 			<button type="submit">Update</button> 
 		</div>
 	</form>

@@ -23,7 +23,7 @@
 			<input type="text" name="District" value="{{ $row->District }}"> 
 		</div>
 		<div class="line">
-			<button><a href="{{ url('/') }}/route">back</a></button>
+			<button  type="button"><a href="{{ url('/') }}/job/{{ $row->ID_Job }}">back</a></button>
 			<button type="submit">Update</button> 
 		</div>
 	</form>

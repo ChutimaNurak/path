@@ -8,7 +8,7 @@
 	
 	<div class="line">
 		<strong>รหัสรอบงาน :</strong>
-		<input type="number" name="ID_Job" placeholder="ระบุรหัสรอบงาน">
+		<input type="number" name="ID_Job" value="{$ID_Job}}" readonly>
 	</div>
 	
 	<div class="line">
