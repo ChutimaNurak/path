@@ -35,8 +35,8 @@
 			<form class="inline" action="{{ url('/') }}/customer/{{ $row->ID }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 
-			<button><a href="{{ url('/') }}/customer/{{ $row->ID }}/edit">edit</a></button>
-			<button><a href="{{ url('/') }}/customer/{{ $row->ID }}">Viwe</a></button>
+			<button type="button"><a href="{{ url('/') }}/customer/{{ $row->ID }}">Viwe</a></button>
+			<button type="button"><a href="{{ url('/') }}/customer/{{ $row->ID }}/edit">edit</a></button>
 			<button type="submit">Delete</button> 
 			</form>
 		</td>

@@ -1,11 +1,21 @@
 @extends('theme.default')
 @section('content')
-
+<style type="text/css">
+	table {
+		width:100%;
+	}
+	th {
+		text-align: center!important;
+	}
+	h3 {
+		text-align: center!important;
+	}
+</style>
 @forelse($table_customer as $row) 
 <h2>รหัสลูกค้า {{ $row->ID }} </h2> 
  
 	<div class="line"> 
-		<strong>ชื่อ - นามสกุล่ : </strong> 
+		<strong>ชื่อ - นามสกุล : </strong> 
 		<span>{{ $row->Name }}</span> 
 	</div> 
 	<div class="line"> 
@@ -16,12 +26,12 @@
 		<strong>อีเมลล์ : </strong> 
 		<span>{{ $row->Email }}</span> 
 	</div> 
-	
 	<div class="line"> 
 			<button><a href="{{ url('/') }}/position/create?ID={{ $row->ID }}"> เพิ่มข้อมูลที่อยู่ลูกค้า </a></button>
 			<button><a href="{{ url('/') }}/customer">back</a></button>
 	</div> 
 
+<h3>ข้อมูลที่อยู่ของ {{ $row->Name }} </h3>
 <table border=1>
 	<tr>
 		<th>รหัสตำแหน่ง</th>
@@ -38,9 +48,9 @@
 	</tr>
 	@foreach($table_position as $row)
 	<tr>
-		<td>{{ $row->ID_Position }} </td>
-		<td>{{ $row->ID }}</td>
-		<td>{{ $row->House_number }}</td>
+		<td style="text-align: center!important;">{{ $row->ID_Position }} </td>
+		<td style="text-align: center!important;">{{ $row->ID }}</td>
+		<td >{{ $row->House_number }}</td>
 		<td>{{ $row->Village }} </td>
 		<td>{{ $row->District }}</td>
 		<td>{{ $row->City }}</td>
@@ -48,13 +58,13 @@
 		<td>{{ $row->Zip_code }}</td>
 		<td>{{ $row->Latitude }}</td>
 		<td>{{ $row->Longitude }}</td>
-		<td>
+		<td style="text-align: center!important;">
 			<form class="inline" action="{{ url('/') }}/position/{{ $row->ID_Position }}?ID={{ $row->ID }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 
-			<button type="submit">Delete</button> 
 			<button type="button"><a href="{{ url('/') }}/position/{{ $row->ID_Position }}/edit">edit</a></button>
-			<button type="button"><a href="{{ url('/') }}/position/{{ $row->ID_Position }}">Viwe</a></button>
+			<button type="submit">Delete</button> 
+			
 			</form>
 		</td>
 	</tr>

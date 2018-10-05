@@ -52,7 +52,7 @@
 	</div>
 	
 	<div class="line">
-		<button><a href="{{ url('/') }}/position">back</a></button>
+		<button><a href="{{ url('/') }}/customer/{{$ID}}">back</a></button>
 		<button type="submit">Create</button>
 	</div>
 </form>

@@ -9,7 +9,7 @@
 	}
 </style>
 <br><h1>รายละเอียดข้อมูลที่อยู่ลูกค้า</h1>
-	<div class="line"> 
+	<div class="line" > 
 		<form class="inline" action="{{ url('/') }}/position" method="GET"> 
 			<input type="text" name="q" placeholder="ระบุรหัสไปรษณีย์" value="{{ $q }}"> 
 			<button type="submit">ค้นหา</button> 

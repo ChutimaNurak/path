@@ -33,7 +33,7 @@ class RouteController extends Controller
 
         $model = new RouteModel();
         $model->insert($ID_Job,$ID_Position,$Sequence,$District);
-        return redirect('/route');
+        return redirect("/job/{$ID_Job}");
 
     }
 

@@ -40,7 +40,7 @@
 		<span>{{ $row->Longitude }}</span> 
 	</div> 
 	<div class="line"> 
-			<button><a href="{{ url('/') }}/position">back</a></button>
+			<button><a href="{{ url('/') }}/customer/{{ $row->ID }}">back</a></button>
 	</div> 
 	@empty 
 	<div>This Position ID_Position does not exist</div>

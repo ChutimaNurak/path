@@ -16,6 +16,11 @@ class RouteModel
 		return DB::select($sql, []);
 	}
 
+	function select_id_route($id){
+		$sql = "select * from route where ID_Route = {$id}";
+		return DB::select($sql, []);
+	}
+
 	function select_search($q){
 		$sql = "select * from route where ID_Route like '%{$q}%'";
 		return DB::select($sql, []);

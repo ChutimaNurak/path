@@ -3,19 +3,24 @@
 <style type="text/css">
 	table {
 		width:100%;
+		text-align: center!important;
 	}
-	th {
+	th{
+		text-align: center!important;
+	}
+	h1{
 		text-align: center!important;
 	}
 </style>
-<br><h1>รายละเอียดข้อมูลรอบงาน</h1>
+<br>
+<h1>รายละเอียดข้อมูลรอบงาน</h1>
 	<div class="line"> 
 		<form class="inline" action="{{ url('/') }}/job" method="GET"> 
 			<input type="text" name="q" placeholder="ปี/เดือน/วัน และเวลา" value="{{ $q }}"> 
 			<button type="submit">ค้นหา</button> 
 		</form> 
 	</div>
-
+<br>
 <table border=1>
 	<tr>
 		<th>รหัสรอบงาน</th>
@@ -31,11 +36,11 @@
 		<td>
 			<form class="inline" action="{{ url('/') }}/job/{{ $row->ID_Job }}" method="POST"> 
 			{{ csrf_field() }} 
-			{{ method_field('DELETE') }} 
+			{{ method_field('DELETE') }} 						
+			<button type="button"><a href="{{ url('/') }}/job/{{ $row->ID_Job }}">Viwe</a></button>
+			<button type="button"><a href="{{ url('/') }}/job/{{ $row->ID_Job }}/edit">edit</a></button>
 			<button type="submit">Delete</button> 
-			<button><a href="{{ url('/') }}/job/{{ $row->ID_Job }}/edit">edit</a></button>
-			<button><a href="{{ url('/') }}/job/{{ $row->ID_Job }}">Viwe</a></button>
-			</form>
+		</form>
 	</tr>
 	</tr>
 	@endforeach

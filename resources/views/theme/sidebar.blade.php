@@ -27,53 +27,21 @@
                     </li>
                 </ul>
             </li>
-<!-- รอบงาน -->
-           <li>
-                <a href=""><i class="fa fa-dashboard fa-fw"></i>รอบงาน
+<!-- เส้นทาง -->
+            <li>
+                <a href="#"><i class="#"></i>รอบงาน
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ url('/') }}/job">ข้อมูลรอบงาน</a>
                     </li>
+                    
                     <li>
                         <a href="{{ url('/') }}/job/create">เพิ่มข้อมูลรอบงาน</a>
                     </li>
                 </ul>
             </li>
-<!-- เส้นทาง -->
-            <li>
-                <a href="#"><i class="#"></i>ข้อมูลเส้นทาง
-                    <span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('/') }}/route">ข้อมูลเส้นทาง</a>
-                    </li>
-                    
-                    <li>
-                        <a href="{{ url('/') }}/route/create">เพิ่มข้อมูลเส้นทาง</a>
-                    </li>
-                </ul>
-            </li>
-<!--คำนวณเส้นทาง-->
-            <li>
-                <a href="#"><i class="#"></i>คำนวณเส้นทาง</a>
-            </li>
-<!-- 
-            <li>
-                <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="blank.html">Blank Page</a>
-                    </li>
-
-                    <li>
-                        <a href="login.html">Login Page</a>
-                    </li>
-                </ul>
-            </li>
--->
         </ul>
     </div>
 </div>
