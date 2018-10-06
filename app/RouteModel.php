@@ -12,12 +12,12 @@ class RouteModel
 	}
 
 	function select_id($id){
-		$sql = "select * from route where 	ID_Route = {$id}";
+		$sql = "select * from route where ID_Route = {$id}";
 		return DB::select($sql, []);
 	}
 
-	function select_id_route($id){
-		$sql = "select * from route where ID_Route = {$id}";
+	function select_id_job($id){
+		$sql = "select * from route where ID_Job = {$id}";
 		return DB::select($sql, []);
 	}
 
@@ -26,9 +26,9 @@ class RouteModel
 		return DB::select($sql, []);
 	}
 
-	function insert($ID_Job,$ID_Position,$Sequence,$District){
+	function insert($id_job,$id_position,$sequence,$district){
 		$sql = "insert into route (ID_Job,ID_Position,Sequence,District) 
-				values ({$ID_Job},{$ID_Position},{$Sequence},{$District})";
+				values ({$id_job},{$id_position},{$sequence},{$district})";
 		DB::insert($sql, []);
 	}
 

@@ -8,7 +8,7 @@
 	
 	<div class="line">
 		<strong>รหัสรอบงาน :</strong>
-		<input type="number" name="ID_Job" value="{$ID_Job}}" readonly>
+		<input type="number" name="ID_Job" value="{{$ID_Job}}" readonly >
 	</div>
 	
 	<div class="line">
@@ -28,7 +28,7 @@
 	
 	
 	<div class="line">
-		<button><a href="{{ url('/') }}/route">back</a></button>
+		<button><a href="{{ url('/') }}/job/{{$ID_Job}}">back</a></button>
 		<button type="submit">Create</button>
 	</div>
 </form>

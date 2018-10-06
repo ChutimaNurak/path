@@ -25,11 +25,10 @@
 	</div> 
 	
 	<div class="line"> 
-			<button><a href="{{ url('/') }}/route/create?ID_Job={{ $row->ID_Job}}"> เพิ่มข้อมูลเส้นทาง </a></button>
+			<button><a href="{{ url('/') }}/route/create?ID_Job={{ $row->ID_Job }}"> เพิ่มข้อมูลเส้นทาง </a></button>
 			<button><a href="{{ url('/') }}/job">back</a></button>
 	</div> 
-<br>
-<h3>รายละเอียดข้อมูลรอบงานที่ {{ $row->ID_Job }} </h3>
+
 <br>
 	<table border=1>
 	<tr>

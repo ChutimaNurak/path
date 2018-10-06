@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\JobModel;
-use App\RouteMOdel;
+use App\RouteModel;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -40,8 +40,8 @@ class JobController extends Controller
     {
           $model = new JobModel();        
           $table_job = $model->select_id($id);  
-          $model_route = new RouteMOdel();     
-          $table_route = $model_route->select_id_route($id);
+          $model_route = new RouteModel();     
+          $table_route = $model_route->select_id_job($id);
           $data = ['table_job' => $table_job,'table_route' => $table_route];     
         return view('job/show',$data); 
     }

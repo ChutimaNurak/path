@@ -65,7 +65,7 @@ class RouteController extends Controller
 
          $model = new RouteModel();        
          $model->update($ID_Job, $ID_Position, $Sequence,$District, $id);
-        return redirect('/route'); 
+        return redirect("/job/{$ID_Job}"); 
     }
 
     
@@ -73,6 +73,6 @@ class RouteController extends Controller
     {
            $model = new RouteModel();        
            $model->delete($id);
-        return redirect('/route');
+        return redirect("/job/{$ID_Job}");
     }
 }
