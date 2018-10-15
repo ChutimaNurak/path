@@ -13,7 +13,11 @@
 		<div class="line"> 
 			<strong>รหัสตำแหน่ง : </strong> 
 			<input type="text" name="ID_Position" value="{{$row->ID_Position }}"> 
-		</div> 
+		</div>
+		<div class="line"> 
+			<strong>รหัสเส้นทาง : </strong> 
+			<input type="text" name="ID_Route" value="{{$row->ID_Route }}"> 
+		</div>  
 		<div class="line"> 
 			<strong>ลำดับที่ : </strong> 
 			<input type="text" name="Sequence" value="{{ $row->Sequence }}"> 

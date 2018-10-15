@@ -25,7 +25,7 @@
 	</div> 
 	
 	<div class="line"> 
-			<button><a href="{{ url('/') }}/route/create?ID_Job={{ $row->ID_Job }}"> เพิ่มข้อมูลเส้นทาง </a></button>
+			<button><a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}"> เพิ่มข้อมูลเส้นทาง </a></button>
 			<button><a href="{{ url('/') }}/job">back</a></button>
 	</div> 
 
@@ -37,7 +37,7 @@
 		<th>รหัสตำแหน่ง</th>
 		<th>ลำดับที่</th>
 		<th>ระยะทาง</th>
-		<th>action</th>
+		<th></th>
 	</tr>
 	@foreach($table_route as $row)
 	<tr>
@@ -47,10 +47,10 @@
 		<td>{{ $row->Sequence}} </td>
 		<td>{{ $row->District}} </td>
 		<td>
-			<form class="inline" action="{{ url('/') }}/route/{{ $row->ID_Job }}" method="POST"> 
+			<form class="inline" action="{{ url('/') }}/route/{{ $row->ID_Route }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 
-			<button><a href="{{ url('/') }}/route/{{ $row->ID_Job }}/edit">edit</a></button>
+			<button><a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit">edit</a></button>
 			<button type="submit">Delete</button> 
 			</form>
 	</tr>

@@ -40,5 +40,5 @@ class JobModel
 		$sql = "delete from job where ID_Job = {$id}";
 		DB::delete($sql, []);
 	}
-
+	
 }

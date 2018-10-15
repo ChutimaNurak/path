@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RouteModel;
+use App\JobModel;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -18,9 +19,11 @@ class RouteController extends Controller
 
     }
 
-    public function create()
+    public function create(Request $request)
     {
-         return view('route/create');
+        $ID_Job = $request->input('ID_Job');
+        $data = ['ID_Job' => $ID_Job];
+         return view('route/create',$data);
     }
 
     
@@ -30,9 +33,9 @@ class RouteController extends Controller
         $ID_Position = $request->input('ID_Position');
         $Sequence = $request->input('Sequence');
         $District = $request->input('District');
-
+        $ID_Route = $request->input('ID_Route');
         $model = new RouteModel();
-        $model->insert($ID_Job,$ID_Position,$Sequence,$District);
+        $model->insert($ID_Job,$ID_Position,$Sequence,$District,$ID_Route);
         return redirect("/job/{$ID_Job}");
 
     }
@@ -61,18 +64,23 @@ class RouteController extends Controller
          $ID_Job = $request->input('ID_Job');        
          $ID_Position = $request->input('ID_Position');        
          $Sequence = $request->input('Sequence');    
-         $District = $request->input('District');    
+         $District = $request->input('District');
+         $ID_Route = $request->input('ID_Route');    
 
          $model = new RouteModel();        
-         $model->update($ID_Job, $ID_Position, $Sequence,$District, $id);
+         $model->update($ID_Job, $ID_Position, $Sequence,$District, $ID_Route,$id);
         return redirect("/job/{$ID_Job}"); 
     }
 
     
     public function destroy($id)
     {
-           $model = new RouteModel();        
+            echo $id;
+           $model = new RouteModel(); 
+           $ID_Job = $model->select_jobId($id);
+            
            $model->delete($id);
-        return redirect("/job/{$ID_Job}");
+
+        return redirect("/job/".$ID_Job[0]->ID_Job);
     }
 }

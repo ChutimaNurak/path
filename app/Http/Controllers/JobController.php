@@ -42,7 +42,10 @@ class JobController extends Controller
           $table_job = $model->select_id($id);  
           $model_route = new RouteModel();     
           $table_route = $model_route->select_id_job($id);
-          $data = ['table_job' => $table_job,'table_route' => $table_route];     
+          $data = [
+          'table_job' => $table_job,
+          'table_route' => $table_route,
+           'ID_Job' => $id];     
         return view('job/show',$data); 
     }
 

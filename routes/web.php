@@ -19,3 +19,4 @@ Route::resource('/customer','CustomerController');
 Route::resource('/position','PositionController');
 Route::resource('/job','JobController');
 Route::resource('/route', 'RouteController');
+Route::get('/create?ID_Job={{id}}','RouteController@genRoute');

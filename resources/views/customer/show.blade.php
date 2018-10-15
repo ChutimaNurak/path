@@ -44,7 +44,7 @@
 		<th>รหัสไปรษณีย์</th>
 		<th>ละติจูด</th>
 		<th>ลองจิจูด</th>
-		<th>action</th>
+		<th></th>
 	</tr>
 	@foreach($table_position as $row)
 	<tr>
