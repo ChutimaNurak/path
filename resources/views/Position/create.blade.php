@@ -1,7 +1,6 @@
 @extends('theme.default')
 @section('content')
 
-
 <style>
 	/* Always set the map height explicitly to define the size of the div
 	* element that contains the map. */
@@ -76,16 +75,15 @@
 		<button type="submit">Create</button>
 	</div>
 </form>
-
+<div id="map"></div>
 <script>
 	var map;
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('map'), {
-		//เป็นการกำหนดค่า Latitude and Longitude ที่จะแสดงผลตรงกลาง Map
+		//กำหนดค่า Latitude and Longitude ที่จะแสดงผลตรงกลาง Map
 		center: {lat: 13.847860, lng: 100.604274},
 		zoom: 11
 		});
 	}
 </script>
-
 @endsection

@@ -16,7 +16,7 @@
 		<input type="number" name="ID_Position" placeholder="ระบุรหัสตำแหน่ง" >
 	</div>
 	<div class="line">
-		<strong>รหัสเส้น่ทาง : </strong>
+		<strong>รหัสเส้นทาง : </strong>
 		<input type="number" name="ID_Route" placeholder="ระบุรหัสเส้นทาง" >
 	</div>
 	<div class="line">

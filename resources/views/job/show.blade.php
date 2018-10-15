@@ -56,7 +56,8 @@
 	</tr>
 	@endforeach
 </table>
-
+<br>
+<button>คำนวนเส้นทาง</a></button>
 	@empty 
 	<div>This Customer id does not exist</div>
  @endforelse

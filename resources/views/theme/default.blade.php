@@ -46,7 +46,7 @@
         <!-- Custom Theme JavaScript -->
         <script src="{!! asset('theme/dist/js/sb-admin-2.js') !!}"></script>
         <!-- GoogleMaps Api -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&;callback=initMap" async defer></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&callback=initMap" async defer></script>
     </body>
 </html>
 
