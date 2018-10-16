@@ -1,89 +1,52 @@
 @extends('theme.default')
 @section('content')
+<!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่ -->
 <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #description {
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-      }
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+		height: 500px;
+		width: 600px;
+		}
+/* Optional: Makes the sample page fill the window. */
+html {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		}
+#floating-panel {
+		position: absolute;
+		top: 5px;
+		left: 30%;
+		margin-left: -180px;
+		width: 350px;
+		z-index: 5;
+		background-color: #fff;
+		padding: 5px;
+		border: 1px solid #999;
+		}
+#latlng {
+		width: 225px;
+		}
+</style>
 
-      #infowindow-content .title {
-        font-weight: bold;
-      }
-
-      #infowindow-content {
-        display: none;
-      }
-
-      #map #infowindow-content {
-        display: inline;
-      }
-
-      .pac-card {
-        margin: 10px 10px 0 0;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
-        font-family: Roboto;
-      }
-
-      #pac-container {
-        padding-bottom: 12px;
-        margin-right: 12px;
-      }
-
-      .pac-controls {
-        display: inline-block;
-        padding: 5px 11px;
-      }
-
-      .pac-controls label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 400px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      #title {
-        color: #fff;
-        background-color: #4d90fe;
-        font-size: 25px;
-        font-weight: 500;
-        padding: 6px 12px;
-      }
-      #target {
-        width: 345px;
-      }
-    </style>
-
+<!--
+<style>
+#map {
+	height: 100%;
+	}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		}
+#map {
+	height: 500px;
+	width: 400px;
+	}
+</style>
+-->
 <h2>เพิ่มข้อมูลที่อยู่ลูกค้า</h2>
 <form action="{{ url('/') }}/position" method="POST">
 	{{ csrf_field() }}
@@ -140,14 +103,15 @@
 		<button type="submit">Create</button>
 	</div>
 </form>
+
+<!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่-->
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <script>
-
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
+          zoom: 15,
           mapTypeId: 'roadmap'
         });
 
@@ -212,8 +176,9 @@
       }
 
     </script>
-
-<!--- ค้นหาโดย la&long
+@endsection
+<!--- ค้นหาโดย la&long -->
+<!--
 <div id="floating-panel">
 <input id="latlng" type="text" value="13.847860,100.604274">
 <input id="submit" type="button" value="Reverse Geocode">
@@ -246,31 +211,31 @@
 	});
 }
 function geocodeLatLng(geocoder, map, infowindow) {
-var input = document.getElementById('latlng').value;
-var latlngStr = input.split(',', 2);
-var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-geocoder.geocode({'location': latlng}, function(results, status) {
-if (status === 'OK') {
-if (results[1]) {
-map.setZoom(11);
-var marker = new google.maps.Marker({
-position: latlng,
-map: map
-});
-infowindow.setContent(results[1].formatted_address);
-infowindow.open(map, marker);
-} else {
-window.alert('No results found');
-}
-} else {
-window.alert('Geocoder failed due to: ' + status);
-}
-});
-}
-</script> 
---->
+	var input = document.getElementById('latlng').value;
+	var latlngStr = input.split(',', 2);
+	var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+	geocoder.geocode({'location': latlng}, function(results, status) {
+	if (status === 'OK') {
+	if (results[1]) {
+		map.setZoom(11);
+		var marker = new google.maps.Marker({
+		position: latlng,
+		map: map
+	});
+	infowindow.setContent(results[1].formatted_address);
+	infowindow.open(map, marker);
+	} else {
+	window.alert('No results found');}
+	} else {
+	window.alert('Geocoder failed due to: ' + status);
+	}
+	});
+	}
+	</script> 
+	--->
 
-<!-- Position Present
+<!--Position Present-->
+<!--
 <div id="map"></div>
 	<script>
 		function initMap() {
@@ -310,4 +275,4 @@ window.alert('Geocoder failed due to: ' + status);
 		}
 	</script>
 -->
-@endsection
+
