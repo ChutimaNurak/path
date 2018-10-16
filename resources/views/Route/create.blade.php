@@ -14,21 +14,7 @@
 	<div class="line">
 		<strong>รหัสตำแหน่ง : </strong>
 		<input type="number" name="ID_Position" placeholder="ระบุรหัสตำแหน่ง" >
-	</div>
-	<div class="line">
-		<strong>รหัสเส้นทาง : </strong>
-		<input type="number" name="ID_Route" placeholder="ระบุรหัสเส้นทาง" >
-	</div>
-	<div class="line">
-		<strong>ลำดับที่ : </strong>
-		<input type="number" name="Sequence" placeholder="ระบุระยะเส้นทาง">
-	</div>
-
-	<div class="line">
-		<strong>ระยะเส้นทาง : </strong>
-		<input type="number" name="District" placeholder="ระบุระยะทาง" >
-	</div>
-	
+	</div>	
 	
 	<div class="line">
 		<button type="button"><a href="{{ url('/') }}/job/{{$ID_Job}}">back</a></button>

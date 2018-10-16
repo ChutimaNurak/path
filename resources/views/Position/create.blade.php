@@ -87,14 +87,14 @@ html, body {
 		<input type="text" name="Zip_code" placeholder="ระบุรหัสไปรณีย์" >
 	</div>
 	
-	<div class="line">
+	<div class="line" >
 		<strong>ละจิจูด : </strong>
-		<input type="text" name="Latitude" placeholder="ระบุละจิจูด">
+		<input id="Latitude" type="text" name="Latitude" placeholder="ระบุละจิจูด">
 	</div>
 
 	<div class="line">
 		<strong>ลองจิจูด : </strong>
-		<input type="text" name="Longitude"  placeholder="ระบุลองจิจูด" >
+		<input id="Longitude" type="text" name="Longitude"  placeholder="ระบุลองจิจูด"  >
 	</div>
 
 
@@ -129,19 +129,24 @@ html, body {
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function() {
+          //อาร์เรย์ที่อยู่
           var places = searchBox.getPlaces();
+          //console.log("places : ",places);
 
+          //จำนวนอาร์เรยืที่อยู่ 
           if (places.length == 0) {
             return;
           }
 
-          // Clear out the old markers.
+          // Clear out the old markers. ล้างข้อมูลเก่าที่เคยค้นหา
           markers.forEach(function(marker) {
             marker.setMap(null);
           });
+
           markers = [];
 
           // For each place, get the icon, name and location.
+
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
             if (!place.geometry) {
@@ -163,6 +168,16 @@ html, body {
               title: place.name,
               position: place.geometry.location
             }));
+            //ค่า lat&lng
+console.log("place.geometry.location :",place.geometry.location.lat(),place.geometry.location.lng());
+var lat=place.geometry.location.lat();
+var	lng=place.geometry.location.lng();
+var Latitude = document.getElementById("Latitude");
+console.log("lat",Latitude);
+Latitude.value = lat;
+var Longitude = document.getElementById("Longitude");
+console.log("lng",Longitude);
+Longitude.value = lng;
 
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
@@ -176,6 +191,10 @@ html, body {
       }
 
     </script>
+
+    <!-- GoogleMaps Api -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initAutocomplete"async defer>
+   </script>
 @endsection
 <!--- ค้นหาโดย la&long -->
 <!--

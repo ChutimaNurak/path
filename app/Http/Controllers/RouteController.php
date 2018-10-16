@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\RouteModel;
 use App\JobModel;
 use Illuminate\Http\Request;
+use App\PositionModel;
 
 class RouteController extends Controller
 {
@@ -31,11 +32,8 @@ class RouteController extends Controller
     {
         $ID_Job = $request->input('ID_Job');
         $ID_Position = $request->input('ID_Position');
-        $Sequence = $request->input('Sequence');
-        $District = $request->input('District');
-        $ID_Route = $request->input('ID_Route');
         $model = new RouteModel();
-        $model->insert($ID_Job,$ID_Position,$Sequence,$District,$ID_Route);
+        $model->insert($ID_Job,$ID_Position);
         return redirect("/job/{$ID_Job}");
 
     }

@@ -26,9 +26,9 @@ class RouteModel
 		return DB::select($sql, []);
 	}
 
-	function insert($id_job,$id_position,$sequence,$district,$ID_Route){
-		$sql = "insert into route (ID_Job,ID_Position,Sequence,District,ID_Route) 
-				values ({$id_job},{$id_position},{$sequence},{$district},{$ID_Route})";
+	function insert($id_job,$id_position){
+		$sql = "insert into route (ID_Job,ID_Position) 
+				values ({$id_job},{$id_position})";
 		DB::insert($sql, []);
 	}
 
