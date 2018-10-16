@@ -42,8 +42,6 @@
 		<th>อำเภอ</th>
 		<th>จังหวัด</th>
 		<th>รหัสไปรษณีย์</th>
-		<th>ละติจูด</th>
-		<th>ลองจิจูด</th>
 		<th></th>
 	</tr>
 	@foreach($table_position as $row)
@@ -56,8 +54,6 @@
 		<td>{{ $row->City }}</td>
 		<td>{{ $row->Province }}</td>
 		<td>{{ $row->Zip_code }}</td>
-		<td>{{ $row->Latitude }}</td>
-		<td>{{ $row->Longitude }}</td>
 		<td style="text-align: center!important;">
 			<form class="inline" action="{{ url('/') }}/position/{{ $row->ID_Position }}?ID={{ $row->ID }}" method="POST"> 
 			{{ csrf_field() }} 

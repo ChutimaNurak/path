@@ -31,7 +31,7 @@
 	
 	
 	<div class="line">
-		<button><a href="{{ url('/') }}/job/{{$ID_Job}}">back</a></button>
+		<button type="button"><a href="{{ url('/') }}/job/{{$ID_Job}}">back</a></button>
 		<button type="submit">Create</button>
 	</div>
 </form>

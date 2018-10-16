@@ -8,7 +8,7 @@
 		{{ method_field('PUT') }} 
 		<div class="line"> 
 			<strong>ปี/เดือน/วัน และเวลา : </strong> 
-			<input type="text" name="Date"  value="{{ $row->Date }}"> 
+			<input type="datetime" name="Date"  value="{{ $row->Date }}"> 
 		</div> 
 		<div class="line"> 
 			<strong>ระยะทางรวม : </strong> 

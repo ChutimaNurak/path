@@ -8,7 +8,7 @@
 		{{ method_field('PUT') }}
 		<div class="line"> 
 			<strong>รหัสลูกค้า : </strong> 
-			<input type="number" name="ID" value="{{ $row->ID }}"> 
+			<input type="number" name="ID" value="{{ $row->ID }}" readonly> 
 		</div> 
 		<div class="line"> 
 			<strong>บ้านเลขที่ : </strong> 
