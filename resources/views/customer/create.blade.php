@@ -13,12 +13,12 @@
 	
 	<div class="line">
 		<strong>เบอร์โทร : </strong>
-		<input  type="text" data-masked-input="999-9999999" pattern="[0-9]{3}-[0-9]{7}" maxlength="11" name="Telephone" placeholder="ระบุเบอร์โทรมือถือ">
+		<input  type="text" data-masked-input="999-9999999" pattern="[0-9]{3}-[0-9]{7}" maxlength="11" name="Telephone" placeholder="0xx-xxxxxxx">
 	</div>
 	
 	<div class="line">
 		<strong>อีเมลล์ : </strong>
-		<input type="Email" name="Email" placeholder="ระบุอีเมลล์">
+		<input type="Email" name="Email" placeholder="xxx@gmail.com">
 	</div>
 
 	

@@ -10,12 +10,14 @@
 </style>
 <br>
 <h1 style="text-align: center!important">รายละเอียดข้อมูลลูกค้า</h1>
-	<div class="line"> 
-		<form class="inline" action="{{ url('/') }}/customer" method="GET" > 
+<br>
+	<div class="line" style="text-align: center!important"> 
+		<form class="inline" action="{{ url('/') }}/customer" method="GET"> 
 			<input type="text" name="q" placeholder="ระบุชื่อ-นามสกุล" value="{{ $q }}"> 
-			<button type="submit">ค้นหา</button> 
+			<button type="submit">ค้นหา</button> .
 		</form> 
 	</div>
+<br>
 <br>
 <table border=1>
 	<tr>

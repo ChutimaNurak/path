@@ -8,13 +8,13 @@
 	th{
 		text-align: center!important;
 	}
-	h3{
+	h2{
 		text-align: center!important;
 	}
 </style>
 
 @forelse($table_job as $row) 
-<h2>รหัสรอบงาน {{ $row->ID_Job }} </h2> 
+<h3>รหัสรอบงาน {{ $row->ID_Job }} </h3> 
 	<div class="line"> 
 		<strong>ปี/เดือน/วัน และเวลา : </strong> 
 		<span>{{ $row->Date }}</span> 
@@ -23,12 +23,13 @@
 		<strong>ระยะทางรวม : </strong> 
 		<span>{{ $row->Distance_Sum }}</span> 
 	</div> 
-	
-	<div class="line"> 
+		<div class="line"> 
 			<button><a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}"> เพิ่มข้อมูลเส้นทาง </a></button>
 			<button><a href="{{ url('/') }}/job">back</a></button>
 	</div> 
 
+<br>
+<h2>ข้อมูลรอบงาน {{ $row->ID_Job }} </h2>
 <br>
 	<table border=1>
 	<tr>

@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\DB;
 
 class PositionModel 
 {
+	function select_all(){
+		$sql = "select CONCAT(Name,ID_Position,House_number,Village,District,City,Province,Zip_code) AS Name_Position FROM position INNER JOIN customer ON position.ID = customer.ID";
+		return DB::select($sql, []);
+	}
+
 	function select(){
 		$sql = "select * from position";
 		return DB::select($sql, []);

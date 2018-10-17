@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\RouteModel;
 use App\JobModel;
-use Illuminate\Http\Request;
 use App\PositionModel;
+use Illuminate\Http\Request;
+
 
 class RouteController extends Controller
 {
@@ -22,9 +23,14 @@ class RouteController extends Controller
 
     public function create(Request $request)
     {
+        //PositionModel
+        $model = new PositionModel();
+        $table_position= $model->select_all();
+        $data1 = ['table_position'=>$table_position];
+
         $ID_Job = $request->input('ID_Job');
         $data = ['ID_Job' => $ID_Job];
-         return view('route/create',$data);
+         return view('route/create',$data,$data1);
     }
 
     
@@ -51,9 +57,14 @@ class RouteController extends Controller
     public function edit($id)
     {
          $model = new RouteModel();        
-         $table_route = $model->select_id($id);        
-         $data = ['table_route' => $table_route];        
-        return view('route/edit',$data); 
+         $table_route = $model->select_id($id); 
+         $data = ['table_route' => $table_route]; 
+
+         $model = new PositionModel();   
+         $table_position = $model->select_all();  
+         $data1 = ['table_position' => $table_position]; 
+                
+        return view('route/edit',$data,$data1); 
     }
 
     

@@ -14,12 +14,14 @@
 </style>
 <br>
 <h1>รายละเอียดข้อมูลรอบงาน</h1>
-	<div class="line"> 
-		<form class="inline" action="{{ url('/') }}/job" method="GET"> 
+<br>
+	<div class="line" style="text-align: center!important"> 
+		<form class="inline" action="{{ url('/') }}/job" method="GET" > 
 			<input type="text" name="q" placeholder="ปี/เดือน/วัน และเวลา" value="{{ $q }}"> 
 			<button type="submit">ค้นหา</button> 
 		</form> 
 	</div>
+<br>
 <br>
 <table border=1>
 	<tr>

@@ -12,15 +12,15 @@
 		</div> 
 		<div class="line"> 
 			<strong>เบอร์โทร : </strong> 
-			<input type="text" name="Telephone" value="{{$row->Telephone }}"> 
+			<input type="text" data-masked-input="999-9999999" pattern="[0-9]{3}-[0-9]{7}" maxlength="11" name="Telephone" value="{{$row->Telephone }}"> 
 		</div> 
 		<div class="line"> 
 			<strong>อีเมลล์ : </strong> 
-			<input type="text" name="Email" value="{{ $row->Email }}"> 
+			<input type="Email" name="Email" value="{{ $row->Email }}"> 
 		</div> 
 		
 		<div class="line">
-			<button><a href="{{ url('/') }}/customer/{{ $row->ID }}">back</a></button>
+			<button><a href="{{ url('/') }}/customer">back</a></button>
 			<button type="submit">Update</button> 
 		</div>
 	</form>

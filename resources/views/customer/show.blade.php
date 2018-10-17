@@ -7,12 +7,12 @@
 	th {
 		text-align: center!important;
 	}
-	h3 {
+	h2 {
 		text-align: center!important;
 	}
 </style>
 @forelse($table_customer as $row) 
-<h2>รหัสลูกค้า {{ $row->ID }} </h2> 
+<h3>รหัสลูกค้า {{ $row->ID }} </h3> 
  
 	<div class="line"> 
 		<strong>ชื่อ - นามสกุล : </strong> 
@@ -31,7 +31,8 @@
 			<button><a href="{{ url('/') }}/customer">back</a></button>
 	</div> 
 
-<h3>ข้อมูลที่อยู่ของ {{ $row->Name }} </h3>
+<h2>ข้อมูลที่อยู่ของ {{ $row->Name }} </h2>
+<br>
 <table border=1>
 	<tr>
 		<th>รหัสตำแหน่ง</th>

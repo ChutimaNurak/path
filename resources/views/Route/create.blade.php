@@ -13,7 +13,15 @@
 	
 	<div class="line">
 		<strong>รหัสตำแหน่ง : </strong>
-		<input type="number" name="ID_Position" placeholder="ระบุรหัสตำแหน่ง" >
+		<!--<input type="number" name="ID_Position" placeholder="ระบุรหัสตำแหน่ง" >-->
+		<select name="ID_Position">
+			@foreach($table_position as $row_position)
+			<option value="{{ $row_position->ID_Position }}"
+							{{ $row_position->ID_Position === $row->ID_Position ? "selected" : "" }} >
+						{{ $row_position->Name_Position }}
+			</option>
+			@endforeach
+		</select>
 	</div>	
 	
 	<div class="line">

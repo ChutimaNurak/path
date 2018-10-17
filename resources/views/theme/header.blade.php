@@ -5,11 +5,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.html">การพัฒนาระบบการวางแผนการขนส่งเพื่อหาเส้นทางที่สั้นที่สุด</a>
+    <a class="navbar-brand" href="index.html">ระบบการวางแผนการขนส่งเพื่อหาเส้นทางที่สั้นที่สุด</a>
 </div>
-<!-- /.navbar-header -->
-<ul class="nav navbar-top-links navbar-right">
-    <!-- <li class="dropdown">
+<!-- /.navbar-header 
+ <ul class="nav navbar-top-links navbar-right">
+     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
@@ -89,8 +89,8 @@
             </li>
         </ul>
 
-    </li> -->
-    <!-- /.dropdown -->
+    </li> 
+     /.dropdown 
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -104,8 +104,8 @@
             <li><a href="login.html"><i class="#"></i> Logout</a>
             </li>
         </ul>
-        <!-- /.dropdown-user -->
+         /.dropdown-user 
     </li>
-    <!-- /.dropdown -->
+     /.dropdown
 </ul>
-<!-- /.navbar-top-links -->
+ /.navbar-top-links -->

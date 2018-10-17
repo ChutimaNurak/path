@@ -2,13 +2,10 @@
 @section('content')
 <!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่ -->
 <style>
-/* Always set the map height explicitly to define the size of the div
-* element that contains the map. */
 #map {
 		height: 500px;
 		width: 600px;
 		}
-/* Optional: Makes the sample page fill the window. */
 html {
 		height: 100%;
 		margin: 0;
@@ -30,23 +27,6 @@ html {
 		}
 </style>
 
-<!--
-<style>
-#map {
-	height: 100%;
-	}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		}
-#map {
-	height: 500px;
-	width: 400px;
-	}
-</style>
--->
 <h2>เพิ่มข้อมูลที่อยู่ลูกค้า</h2>
 <form action="{{ url('/') }}/position" method="POST">
 	{{ csrf_field() }}
@@ -103,15 +83,27 @@ html, body {
 		<button type="submit">Create</button>
 	</div>
 </form>
-
+<br> 
 <!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่-->
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <script>
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 15,
+        //กำหนดค่า Latitude and Longitude ที่จะแสดงผลตรงกลาง Map
+			center: {lat: -33.8688, lng: 151.2195},
+        //การเปิด/ปรับค่าค่า zoomControl แต่เปิด/ปรับค่า mapTypeContro
+          zoomControl: true,
+				zoomControlOptions: {
+				style: google.maps.ZoomControlStyle.LARGE
+			},
+
+		mapTypeControl: true,
+		mapTypeControlOptions: {
+		style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+		},
+		//กำหนดค่าจาก 0 - 21
+          zoom: 14,
           mapTypeId: 'roadmap'
         });
 
@@ -161,7 +153,7 @@ html, body {
               scaledSize: new google.maps.Size(25, 25)
             };
 
-            // Create a marker for each place.
+            // Create a marker for each place. เคลียค่า markers
             markers.push(new google.maps.Marker({
               map: map,
               icon: icon,
@@ -169,15 +161,15 @@ html, body {
               position: place.geometry.location
             }));
             //ค่า lat&lng
-console.log("place.geometry.location :",place.geometry.location.lat(),place.geometry.location.lng());
-var lat=place.geometry.location.lat();
-var	lng=place.geometry.location.lng();
-var Latitude = document.getElementById("Latitude");
-console.log("lat",Latitude);
-Latitude.value = lat;
-var Longitude = document.getElementById("Longitude");
-console.log("lng",Longitude);
-Longitude.value = lng;
+			console.log("place.geometry.location :",place.geometry.location.lat(),place.geometry.location.lng());
+			var lat=place.geometry.location.lat();
+			var	lng=place.geometry.location.lng();
+			var Latitude = document.getElementById("Latitude");
+			console.log("lat",Latitude);
+			Latitude.value = lat;
+			var Longitude = document.getElementById("Longitude");
+			console.log("lng",Longitude);
+			Longitude.value = lng;
 
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
@@ -196,102 +188,3 @@ Longitude.value = lng;
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initAutocomplete"async defer>
    </script>
 @endsection
-<!--- ค้นหาโดย la&long -->
-<!--
-<div id="floating-panel">
-<input id="latlng" type="text" value="13.847860,100.604274">
-<input id="submit" type="button" value="Reverse Geocode">
-</div>
-<div id="map"></div>
-<script>
-	var map;
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-		//กำหนดค่า Latitude and Longitude ที่จะแสดงผลตรงกลาง Map
-		center: {lat: 13.847860, lng: 100.604274},
-		//การเปิด/ปรับค่าค่า zoomControl แต่เปิด/ปรับค่า mapTypeContro
-				zoomControl: true,
-				zoomControlOptions: {
-				style: google.maps.ZoomControlStyle.LARGE
-			},
-
-		mapTypeControl: true,
-		mapTypeControlOptions: {
-		style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-		},
-		//กำหนดค่าจาก 0 - 21
-		zoom: 11
-		});
-	
-	var geocoder = new google.maps.Geocoder;
-	var infowindow = new google.maps.InfoWindow;
-	document.getElementById('submit').addEventListener('click', function() {
-	geocodeLatLng(geocoder, map, infowindow);
-	});
-}
-function geocodeLatLng(geocoder, map, infowindow) {
-	var input = document.getElementById('latlng').value;
-	var latlngStr = input.split(',', 2);
-	var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-	geocoder.geocode({'location': latlng}, function(results, status) {
-	if (status === 'OK') {
-	if (results[1]) {
-		map.setZoom(11);
-		var marker = new google.maps.Marker({
-		position: latlng,
-		map: map
-	});
-	infowindow.setContent(results[1].formatted_address);
-	infowindow.open(map, marker);
-	} else {
-	window.alert('No results found');}
-	} else {
-	window.alert('Geocoder failed due to: ' + status);
-	}
-	});
-	}
-	</script> 
-	--->
-
-<!--Position Present-->
-<!--
-<div id="map"></div>
-	<script>
-		function initMap() {
-			var mapOptions = {
-				center: {lat: 13.847860, lng: 100.604274},
-				zoom: 11
-		}
-
-		var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
-			infoWindow = new google.maps.InfoWindow;
-			// Try HTML5 geolocation.
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(function(position) {
-				var pos = {
-				lat: position.coords.latitude,
-				lng: position.coords.longitude
-				};
-		infoWindow.setPosition(pos);
-		infoWindow.setContent('Location found. lat: ' + position.coords.latitude + ', lng: ' + position.coords.longitude + ' ');
-		infoWindow.open(maps);
-		map.setCenter(pos);
-		}, function() {
-		handleLocationError(true, infoWindow, map.getCenter());
-		});
-		} else {
-		// Browser doesn't support Geolocation
-		handleLocationError(false, infoWindow, map.getCenter());
-		}
-
-		}
-		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-		infoWindow.setPosition(pos);
-		infoWindow.setContent(browserHasGeolocation ?
-		'Error: The Geolocation service failed.' :
-		'Error: Your browser doesn\'t support geolocation.');
-		infoWindow.open(map);
-		}
-	</script>
--->
-
