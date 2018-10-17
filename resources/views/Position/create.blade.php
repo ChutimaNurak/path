@@ -76,11 +76,9 @@ html {
 		<strong>ลองจิจูด : </strong>
 		<input id="Longitude" type="text" name="Longitude"  placeholder="ระบุลองจิจูด"  >
 	</div>
-
-
 	<div class="line">
-		<button type="button"><a href="{{ url('/') }}/customer/{{$ID}}">back</a></button>
-		<button type="submit">Create</button>
+		<a href="{{ url('/') }}/customer/{{$ID}}"  class="btn btn-primary">back</a>
+		<button type="submit" class="btn btn-warning">Create</button>
 	</div>
 </form>
 <br> 

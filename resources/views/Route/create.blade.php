@@ -16,17 +16,16 @@
 		<!--<input type="number" name="ID_Position" placeholder="ระบุรหัสตำแหน่ง" >-->
 		<select name="ID_Position">
 			@foreach($table_position as $row_position)
-			<option value="{{ $row_position->ID_Position }}"
-							{{ $row_position->ID_Position === $row->ID_Position ? "selected" : "" }} >
-						{{ $row_position->Name_Position }}
+			<option value="{{ $row_position->ID_Position }}">
+			{{ $row_position->Name_Position }}
 			</option>
-			@endforeach
-		</select>
+            @endforeach
+      </select>	
 	</div>	
 	
 	<div class="line">
-		<button type="button"><a href="{{ url('/') }}/job/{{$ID_Job}}">back</a></button>
-		<button type="submit">Create</button>
+		<a href="{{ url('/') }}/job/{{$ID_Job}}" class="btn btn-primary">back</a>
+		<button type="submit" class="btn btn-warning">Create</button>
 	</div>
 </form>
 @endsection

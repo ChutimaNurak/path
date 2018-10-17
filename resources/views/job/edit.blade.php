@@ -17,8 +17,8 @@
 
 		
 		<div class="line">
-			<button><a href="{{ url('/') }}/job">back</a></button>
-			<button type="submit">Update</button> 
+			<a href="{{ url('/') }}/job"  class="btn btn-primary">back</a>
+			<button type="submit" class="btn btn-outline btn-warning">Update</button> 
 		</div>
 	</form>
 @empty

@@ -14,7 +14,10 @@
 	<div class="line" style="text-align: center!important"> 
 		<form class="inline" action="{{ url('/') }}/customer" method="GET"> 
 			<input type="text" name="q" placeholder="ระบุชื่อ-นามสกุล" value="{{ $q }}"> 
-			<button type="submit">ค้นหา</button> .
+			<button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+		</form> 
 		</form> 
 	</div>
 <br>
@@ -25,7 +28,7 @@
 		<th>ชื่อ-นามสกุล</th>
 		<th>เบอร์โทร</th>
 		<th>อีเมลล์</th>
-		<th>action</th>
+		<th></th>
 	</tr>
 	@foreach($table_customer as $row)
 	<tr>
@@ -37,9 +40,9 @@
 			<form class="inline" action="{{ url('/') }}/customer/{{ $row->ID }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 
-			<button type="button"><a href="{{ url('/') }}/customer/{{ $row->ID }}">Viwe</a></button>
-			<button type="button"><a href="{{ url('/') }}/customer/{{ $row->ID }}/edit">edit</a></button>
-			<button type="submit">Delete</button> 
+			<a href="{{ url('/') }}/customer/{{ $row->ID }}" class="btn btn-outline btn-primary">View</a>
+			<a href="{{ url('/') }}/customer/{{ $row->ID }}/edit" class="btn btn-outline btn-success">edit</a>
+			<button type="submit"  class="btn btn-outline btn-danger">Delete</button> 
 			</form>
 		</td>
 	</tr>

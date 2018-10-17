@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', function () {
+    return view('home');
+});
 
 Route::resource('/customer','CustomerController');
 Route::resource('/position','PositionController');

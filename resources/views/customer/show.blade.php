@@ -27,8 +27,8 @@
 		<span>{{ $row->Email }}</span> 
 	</div> 
 	<div class="line"> 
-			<button><a href="{{ url('/') }}/position/create?ID={{ $row->ID }}"> เพิ่มข้อมูลที่อยู่ลูกค้า </a></button>
-			<button><a href="{{ url('/') }}/customer">back</a></button>
+			<a href="{{ url('/') }}/position/create?ID={{ $row->ID }}" class="btn btn-warning"> เพิ่มข้อมูลที่อยู่ลูกค้า </a>
+			<a href="{{ url('/') }}/customer" class="btn btn-primary">back</a>
 	</div> 
 
 <h2>ข้อมูลที่อยู่ของ {{ $row->Name }} </h2>
@@ -59,8 +59,8 @@
 			<form class="inline" action="{{ url('/') }}/position/{{ $row->ID_Position }}?ID={{ $row->ID }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 
-			<button type="button"><a href="{{ url('/') }}/position/{{ $row->ID_Position }}/edit">edit</a></button>
-			<button type="submit">Delete</button> 
+			<a href="{{ url('/') }}/position/{{ $row->ID_Position }}/edit"class="btn btn-outline btn-success">edit</a>
+			<button type="submit" class="btn btn-outline btn-danger">Delete</button> 
 			
 			</form>
 		</td>

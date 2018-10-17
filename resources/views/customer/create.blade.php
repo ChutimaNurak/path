@@ -23,8 +23,8 @@
 
 	
 	<div class="line">
-		<button><a href="{{ url('/') }}/customer">back</a></button>
-		<button type="submit">Create</button>
+		<a href="{{ url('/') }}/customer" class="btn btn-primary">back</a>
+		<button type="submit" class="btn btn-warning">Create</button>
 	</div>
 </form>
 @endsection

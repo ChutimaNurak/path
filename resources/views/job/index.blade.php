@@ -15,10 +15,12 @@
 <br>
 <h1>รายละเอียดข้อมูลรอบงาน</h1>
 <br>
-	<div class="line" style="text-align: center!important"> 
-		<form class="inline" action="{{ url('/') }}/job" method="GET" > 
-			<input type="text" name="q" placeholder="ปี/เดือน/วัน และเวลา" value="{{ $q }}"> 
-			<button type="submit">ค้นหา</button> 
+	<div class="line" style="text-align: center!important" class="btn btn-warnin" > 
+		<form class="inline" action="{{ url('/') }}/job" method="GET"  > 
+			<input type="text" name="q" placeholder="ปี/เดือน/วัน และเวลา" value="{{ $q }}" > 
+			<button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
 		</form> 
 	</div>
 <br>
@@ -28,7 +30,7 @@
 		<th>รหัสรอบงาน</th>
 		<th>ปี/เดือน/วัน และเวลา</th>
 		<th>ระยะทางรวม</th>
-		<th>action</th>
+		<th></th>
 	</tr>
 	@foreach($table_job as $row)
 	<tr>
@@ -39,9 +41,9 @@
 			<form class="inline" action="{{ url('/') }}/job/{{ $row->ID_Job }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 						
-			<button type="button"><a href="{{ url('/') }}/job/{{ $row->ID_Job }}">Viwe</a></button>
-			<button type="button"><a href="{{ url('/') }}/job/{{ $row->ID_Job }}/edit">edit</a></button>
-			<button type="submit">Delete</button> 
+			<a href="{{ url('/') }}/job/{{ $row->ID_Job }}" class="btn btn-outline btn-primary">View</a>
+			<a href="{{ url('/') }}/job/{{ $row->ID_Job }}/edit" class="btn btn-outline btn-success">edit</a>
+			<button type="submit" class="btn btn-outline btn-danger" >Delete</button> 
 		</form>
 	</tr>
 	</tr>

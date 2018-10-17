@@ -42,9 +42,10 @@
 			<strong>ลองจิจูด : </strong> 
 			<input type="text" name="Longitude" value="{{ $row->Longitude }}"> 
 		</div>
+		<br>
 		<div class="line"> 
-			<button><a href="{{ url('/') }}/customer/{{ $row->ID }}">back</a></button>
-			<button type="submit">Update</button> 
+			<a href="{{ url('/') }}/customer/{{ $row->ID }}" class="btn btn-primary">back</a>
+			<button type="submit" class="btn btn-outline btn-warning">Update</button> 
 		</div>
 	</form>
 @empty

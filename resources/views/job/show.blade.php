@@ -24,8 +24,8 @@
 		<span>{{ $row->Distance_Sum }}</span> 
 	</div> 
 		<div class="line"> 
-			<button><a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}"> เพิ่มข้อมูลเส้นทาง </a></button>
-			<button><a href="{{ url('/') }}/job">back</a></button>
+			<a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}" class="btn btn-warning"> เพิ่มข้อมูลเส้นทาง </a>
+			<a href="{{ url('/') }}/job" class="btn btn-primary">back</a>
 	</div> 
 
 <br>
@@ -51,8 +51,8 @@
 			<form class="inline" action="{{ url('/') }}/route/{{ $row->ID_Route }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 
-			<button><a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit">edit</a></button>
-			<button type="submit">Delete</button> 
+			<a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit" class="btn btn-outline btn-success">edit</a>
+			<button type="submit" class="btn btn-outline btn-danger">Delete</button> 
 			</form>
 	</tr>
 	@endforeach

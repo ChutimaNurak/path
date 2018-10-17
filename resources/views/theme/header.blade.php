@@ -5,7 +5,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.html">ระบบการวางแผนการขนส่งเพื่อหาเส้นทางที่สั้นที่สุด</a>
+    <a class="navbar-brand" href="{{ url('/') }}/home">ระบบการวางแผนการขนส่งเพื่อหาเส้นทางที่สั้นที่สุด</a>
 </div>
 <!-- /.navbar-header 
  <ul class="nav navbar-top-links navbar-right">
