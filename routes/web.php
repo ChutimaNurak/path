@@ -14,12 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/home', function () {
     return view('home');
 });
 
 Route::resource('/customer','CustomerController');
+
 Route::resource('/position','PositionController');
+
 Route::resource('/job','JobController');
+//Route::get('/route/dis/{id_job}','RouteController@dis');
+
 Route::resource('/route', 'RouteController');
-Route::get('/create?ID_Job={{id}}','RouteController@genRoute');

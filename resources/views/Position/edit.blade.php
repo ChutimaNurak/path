@@ -1,5 +1,6 @@
 @extends('theme.default')
 @section('content')
+@forelse($table_position as $row) 
 
 <style>
 #map {
@@ -25,60 +26,73 @@ html {
 #latlng {
 		width: 225px;
 		}
+h2{
+	text-align: center!important;
+}
 </style>
 
-@forelse($table_position as $row) 
-	<h2>แก้ไขข้อมูลตำแหน่ง : {{ $row->ID_Position }}</h2> 
+<br>
+<h2>แก้ไขข้อมูลรหัสตำแหน่ง {{ $row->ID_Position }}</h2> 
+	
 	<form action="{{ url('/') }}/position/{{ $row->ID_Position }}" method="POST"> 
 		{{ csrf_field() }} 
 		{{ method_field('PUT') }}
 		<div class="line"> 
 			<strong>รหัสลูกค้า : </strong> 
-			<input type="number" name="ID" value="{{ $row->ID }}" readonly> 
+			<input class="form-control" type="number" name="ID" value="{{ $row->ID }}" readonly> 
 		</div> 
+		<br>
+
 		<div class="line"> 
 			<strong>บ้านเลขที่ : </strong> 
-			<input type="text" name="House_number"  value="{{ $row->House_number }}"> 
+			<input class="form-control" type="text" name="House_number"  value="{{ $row->House_number }}"> 
 		</div> 
+		<br>
+
 		<div class="line"> 
 			<strong>หมู่ที่ : </strong> 
-			<input type="text" name="Village" value="{{ $row->Village }}"> 
+			<input class="form-control" class="form-control" type="text" name="Village" value="{{ $row->Village }}"> 
 		</div> 
+		<br>
+
 		<div class="line"> 
 			<strong>ตำบล : </strong> 
-			<input type="text" name="District" value="{{ $row->District }}"> 
+			<input class="form-control" type="text" name="District" value="{{ $row->District }}"> 
 		</div> 
 		<div class="line"> 
 			<strong>อำเภอ : </strong> 
-			<input type="text" name="City"  value="{{ $row->City }}"> 
+			<input class="form-control" type="text" name="City"  value="{{ $row->City }}"> 
 		</div> 
+		<br>
+
 		<div class="line"> 
 			<strong>จังหวัด : </strong> 
-			<input type="text" name="Province" value="{{ $row->Province }}"> 
+			<input class="form-control" type="text" name="Province" value="{{ $row->Province }}"> 
 		</div> 
+		<br>
+
 		<div class="line"> 
 			<strong>รหัสไปรษณีย์ : </strong> 
-			<input type="text" name="Zip_code" value="{{ $row->Zip_code }}"> 
-		</div>
-		<div class="line"> 
-			<strong>ละติจูด : </strong> 
-			<input id="Latitude" type="text" name="Latitude" value="{{ $row->Latitude }}" > 
-		</div> 
-		<div class="line"> 
-			<strong>ลองจิจูด : </strong> 
-			<input id="Longitude" type="text" name="Longitude" value="{{ $row->Longitude }}"> 
+			<input class="form-control" type="text" name="Zip_code" value="{{ $row->Zip_code }}"> 
 		</div>
 		<br>
-		<div class="line"> 
-			<a href="{{ url('/') }}/customer/{{ $row->ID }}" class="btn btn-primary">back</a>
-			<button type="submit" class="btn btn-outline btn-warning">Update</button> 
-		</div>
-	</form>
-@empty
-<div>This Position id does not exist</div> 
-@endforelse
 
-<br> 
+		<div class="line"> 
+			<strong>ละติจูด : </strong> 
+			<input id="Latitude" class="form-control"  type="text" name="Latitude" value="{{ $row->Latitude }}" > 
+		</div> 
+		<br>
+
+		<div class="line"> 
+			<strong>ลองจิจูด : </strong> 
+			<input id="Longitude" class="form-control"  type="text" name="Longitude" value="{{ $row->Longitude }}"> 
+		</div>
+		<br>
+   	<div class="line"> 
+			<a href="{{ url('/') }}/customer/{{ $row->ID }}" class="btn btn-primary pull-right">back</a>
+			<button type="submit" class="btn btn-outline btn-warning btn-success">Update</button> 
+		</div>
+		<br>
 <!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่-->
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
@@ -182,4 +196,10 @@ html {
     <!-- GoogleMaps Api -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initAutocomplete"async defer>
    </script>
+   <br>
+	</form>
+
+@empty
+<div>This Position id does not exist</div> 
+@endforelse
 @endsection

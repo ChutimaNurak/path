@@ -1,19 +1,21 @@
 @extends('theme.default')
 @section('content')
+@forelse($table_customer as $row) 
+
 <style type="text/css">
 	table {
 		width:100%;
-	}
-	th {
-		text-align: center!important;
 	}
 	h2 {
 		text-align: center!important;
 	}
 </style>
-@forelse($table_customer as $row) 
-<h3>รหัสลูกค้า {{ $row->ID }} </h3> 
- 
+
+<!-- ข้อมูลลูกค้า -->
+	<div div class="line">
+		<strong>รหัสลูกค้า</strong> 
+		<span>{{ $row->ID }}</span>
+	</div>
 	<div class="line"> 
 		<strong>ชื่อ - นามสกุล : </strong> 
 		<span>{{ $row->Name }}</span> 
@@ -33,40 +35,45 @@
 
 <h2>ข้อมูลที่อยู่ของ {{ $row->Name }} </h2>
 <br>
-<table border=1>
+
+<!-- ตาราง -->
+<table class="table">
 	<tr>
 		<th>รหัสตำแหน่ง</th>
-		<th>รหัสลูกค้า</th>
 		<th>บ้านเลขที่</th>
 		<th>หมู่ที่</th>
 		<th>ตำบล</th>
 		<th>อำเภอ</th>
 		<th>จังหวัด</th>
 		<th>รหัสไปรษณีย์</th>
+		<th>ละจิจูด</th>
+		<th>ลองจิจูด</th>
 		<th></th>
 	</tr>
 	@foreach($table_position as $row)
 	<tr>
 		<td style="text-align: center!important;">{{ $row->ID_Position }} </td>
-		<td style="text-align: center!important;">{{ $row->ID }}</td>
 		<td >{{ $row->House_number }}</td>
 		<td>{{ $row->Village }} </td>
 		<td>{{ $row->District }}</td>
 		<td>{{ $row->City }}</td>
 		<td>{{ $row->Province }}</td>
 		<td>{{ $row->Zip_code }}</td>
+		<td>{{ $row->Latitude }}</td>
+		<td>{{ $row->Longitude }}</td>
 		<td style="text-align: center!important;">
 			<form class="inline" action="{{ url('/') }}/position/{{ $row->ID_Position }}?ID={{ $row->ID }}" method="POST"> 
 			{{ csrf_field() }} 
 			{{ method_field('DELETE') }} 
 			<a href="{{ url('/') }}/position/{{ $row->ID_Position }}/edit"class="btn btn-outline btn-success">edit</a>
-			<button type="submit" class="btn btn-outline btn-danger">Delete</button> 
+			<button type="submit" class="btn btn-danger">Delete</button> 
 			
 			</form>
 		</td>
 	</tr>
 	@endforeach
 </table>
+
 	@empty 
 	<div>This Customer id does not exist</div>
  @endforelse

@@ -17,22 +17,23 @@ class JobModel
 	}
 
 	function select_search($q){
-		$sql = "select * from job where Date like '%{$q}%'";
+		$sql = "select * from job where Name_Job like '%{$q}%'";
 		return DB::select($sql, []);
 	}
 
-	function insert(){
-		//$sql = "insert into job (Distance_Sum) values (50)";
-		$sql = "insert into job (Distance_Sum) values (0)";
+	function insert($name_job){
+		$sql = "insert into job (Name_Job) values ('{$name_job}')";
 		DB::insert($sql, []);
 	}
 
-	function update($date, $distance_Sum,$id){
-		$sql = "update job 
-			set 
-				Date 	  = '{$date}',
-				Distance_Sum  = {$distance_Sum} 
-			where ID_Job = {$id}";
+	function update($name_job,$date, $distance_sum,$time_sum,$id){
+		$sql = "update job
+				set 
+				   Name_Job = '{$name_job}',
+				   Date = '{$date}',
+				   Distance_Sum = {$distance_sum},
+				   Time_Sum = {$time_sum}
+				where ID_Job = {$id}";
 		DB::update($sql, []);
 	}
 

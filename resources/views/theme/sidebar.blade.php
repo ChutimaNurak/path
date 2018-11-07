@@ -15,20 +15,13 @@
 
 <!-- ลูกค้า -->
            <li>
-                <a href=" "><i class="#"></i>ลูกค้า
-                    <span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('/') }}/customer">ข้อมูลลูกค้า</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/') }}/customer/create"> เพิ่มข้อมูลลูกค้า </a>
-                    </li>
-                </ul>
+                <a href="{{ url('/') }}/customer">ข้อมูลลูกค้า</a>
             </li>
-<!-- เส้นทาง -->
+<!-- รอบงาน -->
             <li>
+                <a href="{{ url('/') }}/job">ข้อมูลรอบงาน</a>
+            </li>
+            <!--   <li>
                 <a href="#"><i class="#"></i>รอบงาน
                     <span class="fa arrow"></span>
                 </a>
@@ -41,7 +34,7 @@
                         <a href="{{ url('/') }}/job/create">เพิ่มข้อมูลรอบงาน</a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>

@@ -25,63 +25,78 @@ html {
 #latlng {
 		width: 225px;
 		}
+	h2{
+		text-align: center!important;
+	}
 </style>
 
+<br>
 <h2>เพิ่มข้อมูลที่อยู่ลูกค้า</h2>
+
 <form action="{{ url('/') }}/position" method="POST">
 	{{ csrf_field() }}
 	{{ method_field('POST') }}
 	
 	<div class="line">
 		<strong>รหัสลูกค้า :</strong>
-		<input type="text" name="ID" value="{{$ID}}" readonly >
+		<input  class="form-control" type="text" name="ID" value="{{$ID}}" readonly >
 	</div>
-	
+	<br>
+
 	<div class="line">
 		<strong>บ้านเลขที่ : </strong>
-		<input type="text" name="House_number" placeholder="ระบุบ้านเลขที่" >
+		<input  class="form-control" type="text" name="House_number" placeholder="ระบุบ้านเลขที่" >
 	</div>
-	
+	<br>
+
 	<div class="line">
 		<strong>หมูที่ : </strong>
-		<input type="text" name="Village" placeholder="ระบุหมูที่" >
+		<input  class="form-control" type="text" name="Village" placeholder="ระบุหมูที่" >
 	</div>
+	<br>
 
 	<div class="line">
 		<strong>ตำบล: </strong>
-		<input type="text" name="District" placeholder="ระบุตำบล" >
+		<input  class="form-control" type="text" name="District" placeholder="ระบุตำบล" >
 	</div>
-	
+	<br>
+
 	<div class="line">
 		<strong>อำเภอ : </strong>
-		<input type="text" name="City" placeholder="ระบุอำเภอ" >
+		<input  class="form-control" type="text" name="City" placeholder="ระบุอำเภอ" >
 	</div>
-	
+	<br>
+
 	<div class="line">
 		<strong>จังหวัง : </strong>
-		<input type="text" name="Province" placeholder="ระบุจังหวัง" >
+		<input  class="form-control" type="text" name="Province" placeholder="ระบุจังหวัง" >
 	</div>
-	
+	<br>
+
 	<div class="line">
 		<strong>รหัสไปรณีย์ : </strong>
-		<input type="text" name="Zip_code" placeholder="ระบุรหัสไปรณีย์" >
+		<input  class="form-control" type="text" name="Zip_code" placeholder="ระบุรหัสไปรณีย์" >
 	</div>
-	
+	<br>
+
 	<div class="line" >
 		<strong>ละจิจูด : </strong>
-		<input id="Latitude" type="text" name="Latitude" placeholder="ระบุละจิจูด">
+		<input id="Latitude"  class="form-control" type="text" name="Latitude" placeholder="ระบุละจิจูด">
 	</div>
+	<br>
 
 	<div class="line">
 		<strong>ลองจิจูด : </strong>
-		<input id="Longitude" type="text" name="Longitude"  placeholder="ระบุลองจิจูด"  >
+		<input id="Longitude" class="form-control" type="text" name="Longitude"  placeholder="ระบุลองจิจูด"  >
 	</div>
+	<br>
+
 	<div class="line">
-		<a href="{{ url('/') }}/customer/{{$ID}}"  class="btn btn-primary">back</a>
-		<button type="submit" class="btn btn-warning">Create</button>
+		<a href="{{ url('/') }}/customer/{{$ID}}"  class="btn btn-primary pull-right ">back</a>
+		<button type="submit" class="btn btn-warning btn-success btn-warning" >Create</button>
 	</div>
-</form>
-<br> 
+	<br>
+
 <!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่-->
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
@@ -179,10 +194,13 @@ html {
           map.fitBounds(bounds);
         });
       }
-
     </script>
 
     <!-- GoogleMaps Api -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initAutocomplete"async defer>
    </script>
+   <br>
+   
+   	
+</form>
 @endsection
