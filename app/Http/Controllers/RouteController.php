@@ -80,30 +80,77 @@ class RouteController extends Controller{
     }
 
     //คำนวนเส้นทาง
-    // public function dis($id){
-    //         $model = new RouteModel();        
-    //         $table_route = $model->select_route($id);
-    //         print_r($table_route);
-    //         //สร้างออปเจ๊ก
-    //         $first = new \stdClass();
-    //         //ตำแกน่งเริ่มต้น
-    //         $first->Latitude = 14.133469;
-    //         $first->Longitude = 100.616013;
+    public function dis($ID_Job){
+        //ประกาศตัวแปร เก็บเป็นอาร์เรยย์
+        //ตำแหน่งที่ยังไม่ได้เรียง ดึงมากจาก Route ด้วย ID_Job
 
-    //         $order = [$first];
-    //         $distance = [];
-    //             for($i = 0 ; $i<count($table_route); $i++) {
-    //             $distance[$i] = haversineGreatCircleDistance(end($order)->Latitude, 
-    //                 end($order)->Longitude, 
-    //                 $table_route[$i]->Latitude,
-    //                 $table_route[$i]->Longitude);         
-    //             }
+        $model = new RouteModel();        
+        $table_route = $model->select_la_lon($ID_Job); 
+        $number = $table_route;
+        
+        //print_r($number);
 
-    //         $data = ['table_route' => $table_route]; 
-            
-    //     return view("route/dis",$data);
-    //     }
+        //สร้างออปเจค
+        $first = new \stdClass();
+        //สร้างตำแหน่งเริ่มต้น
+        $first->Latitude = 14.133469;
+        $first->Longitude = 100.616013;
+
+        //ตำแหน่งที่เรียงแล้ว ป็นอาเรยย์  $firstเป็นตำแหน่งเริ่มต้น
+        $minValue = [$first];
  
+
+        //วูลฟอร์ stat;stop;stap
+        for($i=0;count($number)!=0;$i++){
+            $min = 99999999999;
+            $pos = 0;             
+            for($j=0; $j<count($number);$j++){
+                //la lon ตำแหน่งเริ่มต้น ตำแหน้งตัวสุดท้ายที่อยู่ใน minValue
+                $x1 = $minValue[count($minValue) - 1]->Latitude;
+                $y1 = $minValue[count($minValue) - 1]->Longitude;
+                //la lon ตำแหน่งถัดไป ตำแหน่งที่อยู่ในnumber
+                $x2 = $number[$j]->Latitude;
+                $y2 = $number[$j]->Longitude;
+                //เรียกฟังชั่นในmodelเดียวกัน
+                $d = $this->District($x1,$x2,$y1,$y2);
+                //เงือนไข ตำแหน่งตัวสุดท้ายของminValue เปรียบเทีบค่าระยะทางกับ ตำแหน่งใน number
+                if( $d < $min ) 
+                {
+                    $min = $d;
+                    $pos = $j;        
+                }
+            }
+            print_r($number[$pos]);
+            //ค่า $number[i] ที่ดีที่สุดไปเก็บไว้ใน $minValue[j] 
+            $minValue[] = $number[$pos];
+            //ลบค่า number ตามตำแหน่งที่ $pos ใส่1เพราะต้องการลบแค่ตำแหน่งที่pos
+            array_splice($number, $pos, 1);   
+        }
+        print_r($minValue);    
+        //อัพเดทฐานข้ัอมูล
+        $i = 1;
+        //ลบตำแหน่งแรกออกจากminValue 0 คือต่ำแหน่ง 1คือ1ตัว แต่ถ้าไม่ใช่1ลบตั้งแต่1เป็นต้นไป
+        array_splice($minValue, 0, 1); 
+        foreach($minValue as $row){
+
+            //update
+            $model = new RouteModel(); 
+            //print_r($row);
+            //$row->ID_Job rowคือแถว เข้าถึงคอลัมID_Job
+            $model->update($row->ID_Job, $row->ID_Position, $i, 0, 0, $row->ID_Route);
+            $i++;
+         }
+          return redirect("/job/{$ID_Job}");
+    }
+
+    public function District($x1,$x2,$y1,$y2){
+        //$x1,$x2,$y1,$y2,$d; phpไม่จำเป็นต้องประกาศ
+        $d=sqrt( (($x1-$x2)*($x1-$x2)) + (($x1-$x2)*($y1-$y2)) );
+        return $d;
+    }
+
+}  
+    
     // function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo) {
     //     $earthRadius = 6371000;
     //     // convert from degrees to radians
@@ -119,4 +166,3 @@ class RouteController extends Controller{
     //     $angle = atan2(sqrt($a), $b);
     //   return ($angle * $earthRadius);
     // }   
-}   

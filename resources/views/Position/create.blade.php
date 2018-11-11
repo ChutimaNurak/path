@@ -2,106 +2,98 @@
 @section('content')
 <!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่ -->
 <style>
-#map {
-		height: 500px;
-		width: 600px;
+	#map {
+			height: 500px;
+			width: 1050px;
+			}
+	html {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			}
+	#floating-panel {
+			position: absolute;
+			top: 5px;
+			left: 30%;
+			margin-left: -180px;
+			width: 350px;
+			z-index: 5;
+			background-color: #fff;
+			padding: 5px;
+			border: 1px solid #999;
+			}
+	#latlng {
+			width: 225px;
+			}
+		h2{
+			text-align: center!important;
 		}
-html {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		}
-#floating-panel {
-		position: absolute;
-		top: 5px;
-		left: 30%;
-		margin-left: -180px;
-		width: 350px;
-		z-index: 5;
-		background-color: #fff;
-		padding: 5px;
-		border: 1px solid #999;
-		}
-#latlng {
-		width: 225px;
-		}
-	h2{
-		text-align: center!important;
-	}
 </style>
 
 <br>
 <h2>เพิ่มข้อมูลที่อยู่ลูกค้า</h2>
-
-<form action="{{ url('/') }}/position" method="POST">
-	{{ csrf_field() }}
-	{{ method_field('POST') }}
-	
-	<div class="line">
-		<strong>รหัสลูกค้า :</strong>
-		<input  class="form-control" type="text" name="ID" value="{{$ID}}" readonly >
+<div class="col-md-offset-2 col-md-8">
+	<div class="x_panel">
+		<form action="{{ url('/') }}/position" method="POST">
+			{{ csrf_field() }}
+			{{ method_field('POST') }}
+			<div class="line">
+				<strong>รหัสลูกค้า :</strong>
+				<input  class="form-control" type="text" name="ID" value="{{$ID}}" readonly >
+			</div>
+		<br>
+			<div class="line">
+				<strong>บ้านเลขที่ : </strong>
+				<input  class="form-control" type="text" name="House_number" placeholder="ระบุบ้านเลขที่" >
+			</div>
+		<br>
+			<div class="line">
+				<strong>หมูที่ : </strong>
+				<input  class="form-control" type="text" name="Village" placeholder="ระบุหมูที่" >
+			</div>
+		<br>
+			<div class="line">
+				<strong>ตำบล: </strong>
+				<input  class="form-control" type="text" name="District" placeholder="ระบุตำบล" >
+			</div>
+		<br>
+			<div class="line">
+				<strong>อำเภอ : </strong>
+				<input  class="form-control" type="text" name="City" placeholder="ระบุอำเภอ" >
+			</div>
+		<br>
+			<div class="line">
+				<strong>จังหวัง : </strong>
+				<input  class="form-control" type="text" name="Province" placeholder="ระบุจังหวัง" >
+			</div>
+		<br>
+			<div class="line">
+				<strong>รหัสไปรณีย์ : </strong>
+				<input  class="form-control" type="text" name="Zip_code" placeholder="ระบุรหัสไปรณีย์">
+			</div>
+		<br>
+			<div class="line" >
+				<strong>ละจิจูด : </strong>
+				<input id="Latitude"  class="form-control" type="text" name="Latitude" placeholder="ระบุละจิจูด">
+			</div>
+		<br>
+			<div class="line">
+				<strong>ลองจิจูด : </strong>
+				<input id="Longitude" class="form-control" type="text" name="Longitude"  placeholder="ระบุลองจิจูด"  >
+			</div>
+		<br>
+			<div class="line">
+				<a href="{{ url('/') }}/customer/{{$ID}}"  class="btn btn-primary pull-right ">back</a>
+				<button type="submit" class="btn btn-warning btn-success btn-warning" >Create</button>
+			</div>
+		<br>
 	</div>
-	<br>
-
-	<div class="line">
-		<strong>บ้านเลขที่ : </strong>
-		<input  class="form-control" type="text" name="House_number" placeholder="ระบุบ้านเลขที่" >
-	</div>
-	<br>
-
-	<div class="line">
-		<strong>หมูที่ : </strong>
-		<input  class="form-control" type="text" name="Village" placeholder="ระบุหมูที่" >
-	</div>
-	<br>
-
-	<div class="line">
-		<strong>ตำบล: </strong>
-		<input  class="form-control" type="text" name="District" placeholder="ระบุตำบล" >
-	</div>
-	<br>
-
-	<div class="line">
-		<strong>อำเภอ : </strong>
-		<input  class="form-control" type="text" name="City" placeholder="ระบุอำเภอ" >
-	</div>
-	<br>
-
-	<div class="line">
-		<strong>จังหวัง : </strong>
-		<input  class="form-control" type="text" name="Province" placeholder="ระบุจังหวัง" >
-	</div>
-	<br>
-
-	<div class="line">
-		<strong>รหัสไปรณีย์ : </strong>
-		<input  class="form-control" type="text" name="Zip_code" placeholder="ระบุรหัสไปรณีย์" >
-	</div>
-	<br>
-
-	<div class="line" >
-		<strong>ละจิจูด : </strong>
-		<input id="Latitude"  class="form-control" type="text" name="Latitude" placeholder="ระบุละจิจูด">
-	</div>
-	<br>
-
-	<div class="line">
-		<strong>ลองจิจูด : </strong>
-		<input id="Longitude" class="form-control" type="text" name="Longitude"  placeholder="ระบุลองจิจูด"  >
-	</div>
-	<br>
-
-	<div class="line">
-		<a href="{{ url('/') }}/customer/{{$ID}}"  class="btn btn-primary pull-right ">back</a>
-		<button type="submit" class="btn btn-warning btn-success btn-warning" >Create</button>
-	</div>
-	<br>
-
+</div>
 <!--ค้นหาตำแหน่งจาก Latitude และ Longitude และปักหมุด (Marker) ลงบนแผนที่-->
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<div id="map"></div>
     <script>
-      function initAutocomplete() {
+    	function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
         //กำหนดค่า Latitude and Longitude ที่จะแสดงผลตรงกลาง Map
 			center: {lat: -33.8688, lng: 151.2195},
@@ -196,11 +188,7 @@ html {
       }
     </script>
 
-    <!-- GoogleMaps Api -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initAutocomplete"async defer>
-   </script>
-   <br>
-   
-   	
+<!-- GoogleMaps Api -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initAutocomplete"async defer></script>
 </form>
 @endsection

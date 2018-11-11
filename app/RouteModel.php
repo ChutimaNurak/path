@@ -22,14 +22,15 @@ class RouteModel
 		return DB::select($sql, []);
 	}
 	//View Latitude&Longitude
-	// function select_route($id) {
-	// 	$sql = "select position.Latitude, position.Longitude 
-	// 			FROM position 
-	// 			INNER JOIN route ON position.ID_Position = route.ID_Position 
-	// 			INNER JOIN job ON route.ID_Job = job.ID_Job 
-	// 			WHERE job.ID_Job = {$id}";
-	// 	return DB::select($sql,[]);
-	// }
+	function select_la_lon($id) {
+		$sql = "select position.Latitude, position.Longitude , route.ID_Route, position.ID_Position, job.ID_Job
+				FROM position 
+				INNER JOIN route ON position.ID_Position = route.ID_Position 
+				INNER JOIN job ON route.ID_Job = job.ID_Job 
+				WHERE job.ID_Job = {$id}";
+				//echo $sql;
+		return DB::select($sql,[]);
+	}
 
 	function select_id_job($id){
 		$sql = "select * from route where ID_Job = {$id}";
@@ -57,6 +58,7 @@ class RouteModel
 				Time 		 = {$time}
 
 			where ID_Route = {$id}";
+			echo $sql;
 		DB::update($sql, []);
 	}
 

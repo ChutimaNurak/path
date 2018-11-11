@@ -14,7 +14,7 @@ class PositionModel
 	}
 
 		function select_id_customer($id){
-			$sql = "select * from Position where ID_Position = {$id}";
+			$sql = "select * from Position where ID = {$id}";
 
 		return DB::select($sql, []);
 	}
