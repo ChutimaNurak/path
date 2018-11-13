@@ -33,7 +33,8 @@
 <!-- ตาราง -->
 <table class="table">
 	<tr>
-		<th style="text-align: center!important;">รหัสรอบงาน</th>
+		<!-- <th style="text-align: center!important;">รหัสรอบงาน</th> -->
+		<th></th>
 		<th>ชื่อรอบงาน</th>
 		<th style="text-align: center!important;">ปี/เดือน/วัน และเวลา ที่เพิ่มรอบงาน</th>
 		<th style="text-align: center!important;">ระยะทางรวม (กิโลเมตร)</th>
@@ -42,7 +43,8 @@
 	</tr>
 	@foreach($table_job as $row)
 	<tr>
-		<td style="text-align: center!important;">{{ $row->ID_Job }} </td>
+		<!-- <td style="text-align: center!important;">{{ $row->ID_Job }} </td> -->
+		<td></td>
 		<td>{{ $row->Name_Job }} </td>
 		<td style="text-align: center!important;">{{ $row->Date }}</td>
 		<td style="text-align: center!important;">{{ $row->Distance_Sum }}</td>

@@ -79,8 +79,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    ระบบการวางแผนการขนส่งเพื่อหาเส้นทางที่สั้นที่สุด
+                    ระบบการวางแผนการขนส่ง
                 </div>
+                <div class="title m-b-md">
+                    เพื่อหาเส้นทางที่สั้นที่สุด
+                </div>
+
 
                 <div class="links">
                     <a href="{{ url('/') }}/customer">ข้อมูลลูกค้า</a>

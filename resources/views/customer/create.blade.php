@@ -16,17 +16,17 @@
 		<div class="x_panel">
 			<div class="line">
 				<strong>ชื่อ - นามสกุล : </strong>
-				<input class="form-control" type="text" name="Name" placeholder="ระบุชื่อ - นามสกุล" pattern="">
+				<input class="form-control" type="text" name="Name" placeholder="ระบุชื่อ - นามสกุล" required>
 			</div>
 		<br>
 			<div class="line">
 				<strong>เบอร์โทร : </strong>
-				<input  class="form-control" type="text" data-masked-input="999-9999999" pattern="[0-9]{3}-[0-9]{7}" maxlength="11" name="Telephone" placeholder="0xx-xxxxxxx">
+				<input  class="form-control" type="text" data-masked-input="999-9999999" pattern="[0-9]{3}-[0-9]{7}" maxlength="11" name="Telephone" placeholder="0xx-xxxxxxx" required>
 			</div>
 		<br>
 			<div class="line">
 				<strong>อีเมลล์ : </strong>
-				<input class="form-control" type="Email" name="Email" placeholder="xxx@gmail.com">
+				<input class="form-control" type="Email" name="Email" placeholder="xxx@gmail.com" required>
 			</div>
 		<br>
 			<div class="line">

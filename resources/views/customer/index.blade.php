@@ -31,7 +31,8 @@
 <!-- ตาราง -->
 		<table class="table">
 			<tr>
-				<th style="text-align: center!important;">รหัสลูกค้า</th>
+				<!-- <th style="text-align: center!important;">รหัสลูกค้า</th> -->
+				<th></th>
 				<th>ชื่อ-นามสกุล</th>
 				<th>เบอร์โทร</th>
 				<th>อีเมลล์</th>
@@ -39,7 +40,8 @@
 			</tr>
 			@foreach($table_customer as $row)
 			<tr>
-				<td style="text-align: center!important">{{ $row->ID }} </td>
+				<td></td>
+				<!-- <td style="text-align: center!important">{{ $row->ID }} </td> -->
 				<td>{{ $row->Name }}</td>
 				<td>{{ $row->Telephone }}</td>
 				<td>{{ $row->Email}} </td>

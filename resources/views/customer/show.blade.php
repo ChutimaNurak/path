@@ -39,7 +39,8 @@
 <!-- ตาราง -->
 <table class="table">
 	<tr>
-		<th>รหัสตำแหน่ง</th>
+		<th></th>
+		<!-- <th>รหัสตำแหน่ง</th> -->
 		<th>บ้านเลขที่</th>
 		<th>หมู่ที่</th>
 		<th>ตำบล</th>
@@ -52,7 +53,8 @@
 	</tr>
 	@foreach($table_position as $row)
 	<tr>
-		<td style="text-align: center!important;">{{ $row->ID_Position }} </td>
+		<td></td>
+		<!-- <td style="text-align: center!important;">{{ $row->ID_Position }} </td> -->
 		<td >{{ $row->House_number }}</td>
 		<td>{{ $row->Village }} </td>
 		<td>{{ $row->District }}</td>

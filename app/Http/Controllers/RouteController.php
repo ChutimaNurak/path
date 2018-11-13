@@ -103,7 +103,7 @@ class RouteController extends Controller{
         //วูลฟอร์ stat;stop;stap
         for($i=0;count($number)!=0;$i++){
             $min = 99999999999;
-            $pos = 0;             
+            $pos = 0;          
             for($j=0; $j<count($number);$j++){
                 //la lon ตำแหน่งเริ่มต้น ตำแหน้งตัวสุดท้ายที่อยู่ใน minValue
                 $x1 = $minValue[count($minValue) - 1]->Latitude;
@@ -121,6 +121,8 @@ class RouteController extends Controller{
                 }
             }
             print_r($number[$pos]);
+            //ผัง
+            $number[$pos]->d = $d; 
             //ค่า $number[i] ที่ดีที่สุดไปเก็บไว้ใน $minValue[j] 
             $minValue[] = $number[$pos];
             //ลบค่า number ตามตำแหน่งที่ $pos ใส่1เพราะต้องการลบแค่ตำแหน่งที่pos
@@ -140,29 +142,30 @@ class RouteController extends Controller{
             $model->update($row->ID_Job, $row->ID_Position, $i, 0, 0, $row->ID_Route);
             $i++;
          }
-          return redirect("/job/{$ID_Job}");
+          //return redirect("/job/{$ID_Job}");
     }
 
-    public function District($x1,$x2,$y1,$y2){
+    public function District2($x1,$x2,$y1,$y2){
         //$x1,$x2,$y1,$y2,$d; phpไม่จำเป็นต้องประกาศ
-        $d=sqrt( (($x1-$x2)*($x1-$x2)) + (($x1-$x2)*($y1-$y2)) );
+        $d=sqrt( (($x2-$x1)*($x2-$x1)) + (($y2-$y1)*($y2-$y1)) );
         return $d;
     }
+    public function District($latitudeFrom, $latitudeTo, $longitudeFrom, $longitudeTo) {
+        $earthRadius = 6371000;
+        // convert from degrees to radians
+        $latFrom = deg2rad($latitudeFrom);
+        $lonFrom = deg2rad($longitudeFrom);
+        $latTo = deg2rad($latitudeTo);
+        $lonTo = deg2rad($longitudeTo);
+
+        $lonDelta = $lonTo - $lonFrom;
+        $a = pow(cos($latTo) * sin($lonDelta), 2) + pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+        $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+
+        $angle = atan2(sqrt($a), $b);
+      return ($angle * $earthRadius) / 1000;
+    }   
 
 }  
     
-    // function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo) {
-    //     $earthRadius = 6371000;
-    //     // convert from degrees to radians
-    //     $latFrom = deg2rad($latitudeFrom);
-    //     $lonFrom = deg2rad($longitudeFrom);
-    //     $latTo = deg2rad($latitudeTo);
-    //     $lonTo = deg2rad($longitudeTo);
-
-    //     $lonDelta = $lonTo - $lonFrom;
-    //     $a = pow(cos($latTo) * sin($lonDelta), 2) + pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
-    //     $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
-
-    //     $angle = atan2(sqrt($a), $b);
-    //   return ($angle * $earthRadius);
-    // }   
+   
