@@ -49,7 +49,8 @@
         -->
         <!-- Custom Theme JavaScript -->
         <script src="{!! asset('theme/dist/js/sb-admin-2.js') !!}"></script>
-    </body>
+       <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initAutocomplete"async defer></script>
+    </body> -->
 </html>
 
 <!-- API Key = AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY -->

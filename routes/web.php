@@ -30,7 +30,6 @@ Route::put('/customer/{id}', 'CustomerController@update');
 Route::delete('/customer/{id}', 'CustomerController@destroy');
 */
 
-
 Route::resource('/position','PositionController');
 
 Route::resource('/job','JobController');
