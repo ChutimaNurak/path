@@ -36,6 +36,14 @@ class JobModel
 				where ID_Job = {$id}";
 		DB::update($sql, []);
 	}
+	function up_time($distane_sum,$time_sum,$id_job){
+		$sql = "update job
+				set 
+				Distance_Sum = {$distane_sum},
+				Time_Sum = {$time_sum}
+				where ID_Job = {$id_job}";
+		DB::update($sql, []);
+	}
 
 	function delete($id){
 		$sql = "delete from job where ID_Job = {$id}";

@@ -120,9 +120,11 @@ class RouteController extends Controller{
                     $pos = $j;        
                 }
             }
-            print_r($number[$pos]);
-            //ผัง
-            $number[$pos]->d = $d; 
+            //print_r($number[$pos]);
+            //ฝังd
+            $number[$pos]->d = $d;
+            $t=$d*1.2;
+            $number[$pos]->t = $t; 
             //ค่า $number[i] ที่ดีที่สุดไปเก็บไว้ใน $minValue[j] 
             $minValue[] = $number[$pos];
             //ลบค่า number ตามตำแหน่งที่ $pos ใส่1เพราะต้องการลบแค่ตำแหน่งที่pos
@@ -132,21 +134,26 @@ class RouteController extends Controller{
         //อัพเดทฐานข้ัอมูล
         $i = 1;
         //ลบตำแหน่งแรกออกจากminValue 0 คือต่ำแหน่ง 1คือ1ตัว แต่ถ้าไม่ใช่1ลบตั้งแต่1เป็นต้นไป
-        array_splice($minValue, 0, 1); 
+        array_splice($minValue, 0, 1);
+        $time_sum = 0;
+        $dis_sum = 0; 
         foreach($minValue as $row){
 
+            $time_sum = $time_sum + $row->t;
+            $dis_sum = $dis_sum + $row->d;
             //update
             $model = new RouteModel(); 
             //print_r($row);
             //$row->ID_Job rowคือแถว เข้าถึงคอลัมID_Job
-            $model->update($row->ID_Job, $row->ID_Position, $i, 0, 0, $row->ID_Route);
+            $model->update($row->ID_Job, $row->ID_Position, $i, $row->d, $row->t, $row->ID_Route);
             $i++;
          }
-          //return redirect("/job/{$ID_Job}");
+         $model_job = new JobModel();
+         $model_job->up_time($dis_sum,$time_sum,$ID_Job);
+          return redirect("/job/{$ID_Job}");
     }
 
     public function District2($x1,$x2,$y1,$y2){
-        //$x1,$x2,$y1,$y2,$d; phpไม่จำเป็นต้องประกาศ
         $d=sqrt( (($x2-$x1)*($x2-$x1)) + (($y2-$y1)*($y2-$y1)) );
         return $d;
     }

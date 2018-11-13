@@ -18,7 +18,11 @@ class RouteModel
 	
 	//View ID_Job
 	function select_position_route($id){
-		$sql = "select * FROM position INNER JOIN route ON position.ID_Position = route.ID_Position WHERE ID_Job = {$id}";
+		$sql = "select * 
+				FROM position 
+				INNER JOIN route 
+				ON position.ID_Position = route.ID_Position 
+				WHERE ID_Job = {$id}";
 		return DB::select($sql, []);
 	}
 	//View Latitude&Longitude

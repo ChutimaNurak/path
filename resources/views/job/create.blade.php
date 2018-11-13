@@ -11,7 +11,7 @@
 
 			<div class="line">
 				<strong>ชื่อรอบงาน :</strong>
-				<input class="form-control" type="text" name="Name_Job" placeholder="ระบุชื่อรอบงาน" required>
+				<input class="form-control" type="text" name="Name_Job" placeholder="ระบุชื่อรอบงาน" required >
 			</div>
 			<br>
 

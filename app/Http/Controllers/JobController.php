@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\JobModel;
 use App\RouteModel;
+use App\CustomerModel;
 use Illuminate\Http\Request;
 
 class JobController extends Controller {
@@ -28,10 +29,15 @@ class JobController extends Controller {
    
     public function show($id) {
             $model = new JobModel();        
-            $table_job = $model->select_id($id);  
+            $table_job = $model->select_id($id);
+
             $model_route = new RouteModel();     
             $table_route = $model_route->select_position_route($id);
-            $data = ['table_job' => $table_job,'table_route' => $table_route,'ID_Job' => $id]; 
+
+            // $model_customer = new CustomerModel();
+            // $table_customer = $model_customer->select($id);
+
+            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id]; 
 
         return view('job/show',$data); 
     }

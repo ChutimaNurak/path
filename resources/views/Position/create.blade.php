@@ -6,11 +6,6 @@
 			height: 500px;
 			width: 1050px;
 			}
-	html {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-			}
 	#floating-panel {
 			position: absolute;
 			top: 5px;
@@ -44,32 +39,32 @@
 		<br>
 			<div class="line">
 				<strong>บ้านเลขที่ : </strong>
-				<input  class="form-control" type="text" name="House_number" placeholder="ระบุบ้านเลขที่" >
+				<input  class="form-control" type="text" name="House_number" placeholder="ระบุบ้านเลขที่" required>
 			</div>
 		<br>
 			<div class="line">
 				<strong>หมูที่ : </strong>
-				<input  class="form-control" type="text" name="Village" placeholder="ระบุหมูที่" >
+				<input  class="form-control" type="text" name="Village" placeholder="ระบุหมูที่" required>
 			</div>
 		<br>
 			<div class="line">
 				<strong>ตำบล: </strong>
-				<input  class="form-control" type="text" name="District" placeholder="ระบุตำบล" >
+				<input  class="form-control" type="text" name="District" placeholder="ระบุตำบล" required>
 			</div>
 		<br>
 			<div class="line">
 				<strong>อำเภอ : </strong>
-				<input  class="form-control" type="text" name="City" placeholder="ระบุอำเภอ" >
+				<input  class="form-control" type="text" name="City" placeholder="ระบุอำเภอ" required>
 			</div>
 		<br>
 			<div class="line">
 				<strong>จังหวัง : </strong>
-				<input  class="form-control" type="text" name="Province" placeholder="ระบุจังหวัง" >
+				<input  class="form-control" type="text" name="Province" placeholder="ระบุจังหวัง" required>
 			</div>
 		<br>
 			<div class="line">
 				<strong>รหัสไปรณีย์ : </strong>
-				<input  class="form-control" type="text" name="Zip_code" placeholder="ระบุรหัสไปรณีย์">
+				<input  class="form-control" type="text" name="Zip_code" placeholder="ระบุรหัสไปรณีย์" required>
 			</div>
 		<br>
 			<div class="line" >
