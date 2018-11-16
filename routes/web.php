@@ -20,6 +20,7 @@ Route::get('/home', function () {
 });
 
 Route::resource('/customer','CustomerController');
+Route::get('/customer/{id}/pdf','CustomerController@downloadPDF');
 /*
 Route::get('/customer', 'CustomerController@index');
 Route::get('/customer/create', 'CustomerController@create');
@@ -33,6 +34,7 @@ Route::delete('/customer/{id}', 'CustomerController@destroy');
 Route::resource('/position','PositionController');
 
 Route::resource('/job','JobController');
-Route::get('/route/dis/{ID_Job}','RouteController@dis');
+Route::get('/job/{id}/pdf','JobController@downloadPDF');
 
 Route::resource('/route', 'RouteController');
+Route::get('/route/dis/{ID_Job}','RouteController@dis');

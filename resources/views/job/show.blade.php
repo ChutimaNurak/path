@@ -11,11 +11,22 @@
 	h2{
 		text-align: center!important;
 	}
+	.button5 {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+	}
+
+	.button5:hover {
+	    background-color: #555555;
+	    color: white;
+	}
 </style>
 <br>
-
+	<button onclick="window.print()" class="button button5 pull-right hidden-print" >พิมพ์รายงาน</button>
+	<br>
 	<div class="line"> 
-		<strong>รหัสรอบงาน </strong> 
+		<strong>รหัสรอบงาน : </strong> 
 		<span>{{ $row->ID_Job }}</span> 
 	</div> 
 	<div class="line"> 
@@ -31,8 +42,8 @@
 		<span>{{ $row->Time_Sum }}</span> 
 	</div> 
 		<div class="line"> 
-			<a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}" class="btn btn-warning"> เพิ่มข้อมูลเส้นทาง </a>
-			<a href="{{ url('/') }}/job" class="btn btn-primary">back</a>
+			<a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}" class="btn btn-warning hidden-print"> เพิ่มข้อมูลเส้นทาง </a>
+			<a href="{{ url('/') }}/job" class="btn btn-primary hidden-print ">back</a>
 	</div> 
 
 <br>
@@ -41,7 +52,7 @@
 	<table class="table">
 		<tr>
 			<!-- <th style="text-align: center!important;">รหัสเส้นทาง</th> -->
-			<th></th>
+			<th>ชื่อ - นามสกุล</th>
 			<th>ตำแหน่ง</th>
 			<th style="text-align: center!important;">ละติจูด</th>
 			<th style="text-align: center!important;">ลองจิจูด</th>
@@ -53,7 +64,7 @@
 		@foreach($table_route as $row)
 		<tr>
 			<!-- <td style="text-align: center!important;">{{ $row->ID_Route }} </td> -->
-			<td></td>
+			<td>{{ $row->Name }}</td>
 			<td>{{ $row->Province }} </td>
 			<td style="text-align: center!important;">{{ $row->Latitude }} </td>
 			<td style="text-align: center!important;">{{ $row->Longitude }} </td>
@@ -64,15 +75,15 @@
 				<form class="inline" action="{{ url('/') }}/route/{{ $row->ID_Route }}?ID_Job={{$ID_Job}}" method="POST"> 
 				{{ csrf_field() }} 
 				{{ method_field('DELETE') }} 
-				<a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit" class="btn btn-outline btn-success">edit</a>
-				<button type="submit" class="btn btn-danger">Delete</button> 
+				<a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit" class="btn btn-outline btn-success hidden-print">edit</a>
+				<button type="submit" class="btn btn-danger hidden-print">Delete</button> 
 				</form>
 		</tr>
 		@endforeach
 	</table>
 
 <!-- หาเส้นทาง -->
-<a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn-primary">คำนวนเส้นทาง</a>
+<a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn-primary hidden-print">คำนวนเส้นทาง</a>
 <br>
 <br>
 
@@ -83,56 +94,26 @@
 		var map;
 		//console.log(dis);
 		function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
+		var mapOptions = {
 			center: {lat: 13.847860, lng: 100.604274},
-		    zoom: 11
-	    });
-	    
-	   
-	    // var directionsService = new google.maps.DirectionsService;
-     //    var directionsDisplay = new google.maps.DirectionsRenderer({
-     //      draggable: true,
-     //      map: map
-          
-     //    });
+			zoom: 18,
+			}
+			 
+		var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(13.847616, 100.604736),map: maps,
+						title: 'ถนน ลาดปลาเค้า',icon: 'images/camping-icon.png', 
+			});
 
-     //     directionsDisplay.addListener('directions_changed', function() {
-     //      computeTotalDistance(directionsDisplay.getDirections());
-     //    });
+		var info = new google.maps.InfoWindow({
+			content : '<div style="font-size: 25px;color: red">ThaiCreate.Com Camping</div>'
+			});
 
-     //    displayRoute('Perth, WA', 'Sydney, NSW', directionsService,
-     //        directionsDisplay);
+			google.maps.event.addListener(marker, 'click', function() {
+			nfo.open(maps, marker);
+			});
+		}
 
-	}
-
-		
-      // function displayRoute(origin, destination, service, display) {
-      //   service.route({
-      //     origin: origin,
-      //     destination: destination,
-      //     // waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
-      //     travelMode: 'DRIVING',
-      //     avoidTolls: true
-      //   }, function(response, status) {
-      //     if (status === 'OK') {
-      //       display.setDirections(response);
-      //     } else {
-      //       alert('Could not display directions due to: ' + status);
-      //     }
-      //   });
-      // }
-
-      // function computeTotalDistance(result) {
-      //   var total = 0;
-      //   var myroute = result.routes[0];
-      //   for (var i = 0; i < myroute.legs.length; i++) {
-      //     total += myroute.legs[i].distance.value;
-      //   }
-      //   total = total / 1000;
-      //   document.getElementById('total').innerHTML = total + ' km';
-      // }
-	
-	
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script>
 

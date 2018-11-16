@@ -106,20 +106,19 @@
           zoom: 14,
           mapTypeId: 'roadmap'
         });
-
-        // Create the search box and link it to the UI element.
+ 
+       // สร้างช่องค้นหาและเชื่อมโยงกับองค์ประกอบ UI
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-        // Bias the SearchBox results towards current map's viewport.
+        // SearchBox 
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
         });
 
         var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
+        // รายละเอียดเพิ่มเติมสำหรับสถานที่
         searchBox.addListener('places_changed', function() {
           //อาร์เรย์ที่อยู่
           var places = searchBox.getPlaces();
@@ -138,7 +137,6 @@
           markers = [];
 
           // For each place, get the icon, name and location.
-
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
             if (!place.geometry) {

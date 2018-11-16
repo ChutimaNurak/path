@@ -1,11 +1,8 @@
 <?php
-
 namespace App;
-
 use Illuminate\Support\Facades\DB;
-
-class CustomerModel
-{
+class CustomerModel {
+	
 	function select(){
 		$sql = "select * from customer";
 		return DB::select($sql, []);
@@ -41,5 +38,4 @@ class CustomerModel
 		$sql = "delete from customer where ID = {$id}";
 		DB::delete($sql, []);
 	}
-
 }

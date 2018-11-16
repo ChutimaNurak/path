@@ -1,11 +1,9 @@
 <?php
-
 namespace App;
-
 use Illuminate\Support\Facades\DB;
 
-class RouteModel 
-{
+class RouteModel {
+
 	function select(){
 		$sql = "select * from route";
 		return DB::select($sql, []);
@@ -16,13 +14,12 @@ class RouteModel
 		return DB::select($sql, []);
 	}
 	
-	//View ID_Job
+	//View ID_Job จาก position INNER JOIN route
 	function select_position_route($id){
-		$sql = "select * 
-				FROM position 
-				INNER JOIN route 
-				ON position.ID_Position = route.ID_Position 
-				WHERE ID_Job = {$id}";
+		$sql = "select * FROM customer 
+				INNER JOIN position ON customer.ID = position.ID 
+				INNER JOIN route ON route.ID_Position = position.ID_Position 
+                WHERE ID_Job =  {$id}";
 		return DB::select($sql, []);
 	}
 	//View Latitude&Longitude

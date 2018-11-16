@@ -10,7 +10,7 @@
 		text-align: center!important;
 	}
 </style>
-
+<br>
 <!-- ข้อมูลลูกค้า -->
 	<div div class="line">
 		<strong>รหัสลูกค้า</strong> 
@@ -41,28 +41,28 @@
 	<tr>
 		<th></th>
 		<!-- <th>รหัสตำแหน่ง</th> -->
-		<th>บ้านเลขที่</th>
-		<th>หมู่ที่</th>
+		<th style="text-align: center!important";>บ้านเลขที่</th>
+		<th style="text-align: center!important;">หมู่ที่</th>
 		<th>ตำบล</th>
 		<th>อำเภอ</th>
 		<th>จังหวัด</th>
-		<th>รหัสไปรษณีย์</th>
-		<th>ละจิจูด</th>
-		<th>ลองจิจูด</th>
+		<th style="text-align: center!important;">รหัสไปรษณีย์</th>
+		<th style="text-align: center!important;">ละจิจูด</th>
+		<th style="text-align: center!important;">ลองจิจูด</th>
 		<th></th>
 	</tr>
 	@foreach($table_position as $row)
 	<tr>
 		<td></td>
 		<!-- <td style="text-align: center!important;">{{ $row->ID_Position }} </td> -->
-		<td >{{ $row->House_number }}</td>
-		<td>{{ $row->Village }} </td>
+		<td style="text-align: center!important;">{{ $row->House_number }}</td>
+		<td style="text-align: center!important;">{{ $row->Village }} </td>
 		<td>{{ $row->District }}</td>
 		<td>{{ $row->City }}</td>
 		<td>{{ $row->Province }}</td>
-		<td>{{ $row->Zip_code }}</td>
-		<td>{{ $row->Latitude }}</td>
-		<td>{{ $row->Longitude }}</td>
+		<td style="text-align: center!important;">{{ $row->Zip_code }}</td>
+		<td style="text-align: center!important;">{{ $row->Latitude }}</td>
+		<td style="text-align: center!important;">{{ $row->Longitude }}</td>
 		<td style="text-align: center!important;">
 			<form class="inline" action="{{ url('/') }}/position/{{ $row->ID_Position }}?ID={{ $row->ID }}" method="POST"> 
 			{{ csrf_field() }} 

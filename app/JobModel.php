@@ -1,11 +1,8 @@
 <?php
-
 namespace App;
-
 use Illuminate\Support\Facades\DB;
-
-class JobModel 
-{
+class JobModel {
+	
 	function select(){
 		$sql = "select * from job";
 		return DB::select($sql, []);
