@@ -8,8 +8,8 @@ class CustomerModel {
 		return DB::select($sql, []);
 	}
 
-	function select_id($id){
-		$sql = "select * from customer where ID = {$id}";
+	function select_id($id_customer){
+		$sql = "select * from customer where ID = {$id_customer}";
 		return DB::select($sql, []);
 	}
 
@@ -24,18 +24,18 @@ class CustomerModel {
 		DB::insert($sql, []);
 	}
 
-	function update($Name, $Telephone, $Email,$id){
+	function update($Name, $Telephone, $Email,$id_customer){
 		$sql = "update customer 
 			set 
 				Name 	  = '{$Name}',
 				Telephone  = '{$Telephone}', 
 				Email     = '{$Email}'
-			where ID = {$id}";
+			where ID = {$id_customer}";
 		DB::update($sql, []);
 	}
 
-	function delete($id){
-		$sql = "delete from customer where ID = {$id}";
+	function delete($id_customer){
+		$sql = "delete from customer where ID = {$id_customer}";
 		DB::delete($sql, []);
 	}
 }

@@ -36,19 +36,19 @@
 
 		<div class="line"> 
 			<strong>ลำดับที่ : </strong> 
-			<input class="form-control"  type="text" name="Sequence" value="{{ $row->Sequence }}"> 
+			<input class="form-control"  type="text" name="Sequence" value="{{ $row->Sequence }}" readonly> 
 		</div> 
 		<br>
 
 		<div class="line"> 
 			<strong>ระยะทาง : </strong> 
-			<input class="form-control"  type="text" name="District" value="{{ $row->District }}"> 
+			<input class="form-control"  type="text" name="District" value="{{ $row->District }}" readonly >  
 		</div>
 		<br>
 
 		<div class="line"> 
 			<strong>เวลา : </strong> 
-			<input class="form-control"  type="text" name="Time" value="{{ $row->Time }}"> 
+			<input class="form-control"  type="text" name="Time" value="{{ $row->Time }}" readonly> 
 		</div>
 		<br>
 

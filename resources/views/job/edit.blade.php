@@ -28,12 +28,12 @@
 		<br>
 			<div class="line"> 
 				<strong>ระยะทางรวม : </strong> 
-				<input  class="form-control" type="number" name="Distance_Sum" value="{{$row-> Distance_Sum}}"> 
+				<input  class="form-control" type="number" name="Distance_Sum" value="{{$row-> Distance_Sum}}" readonly> 
 			</div> 
 		<br>
 			<div class="line"> 
 				<strong>เวลารวม : </strong> 
-				<input  class="form-control" type="number" name="Time_Sum" value="{{$row->Time_Sum }}"> 
+				<input  class="form-control" type="number" name="Time_Sum" value="{{$row->Time_Sum }}" readonly> 
 			</div> 
 		<br>
 			<div class="line">

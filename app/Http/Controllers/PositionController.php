@@ -15,69 +15,72 @@ class PositionController extends Controller {
     }
 
     public function create(Request $request) {
-            $ID = $request->input('ID');
-            $data =['ID' => $ID];
+            $id = $request->input('ID');
+            $data =['ID' => $id];
 
         return view('position/create',$data);
     }
 
 
     public function store(Request $request) {
-            $ID = $request->input('ID');
-            $House_number = $request->input('House_number');
-            $Village = $request->input('Village');
-            $District = $request->input('District');
-            $City = $request->input('City');
-            $Province = $request->input('Province');
-            $Zip_code = $request->input('Zip_code');
-            $Latitude = $request->input('Latitude');
-            $Longitude = $request->input('Longitude');
+            $id = $request->input('ID');
+            $house_number = $request->input('House_number');
+            $village = $request->input('Village');
+            $subdistrict = $request->input('Subdistrict');
+            $city = $request->input('City');
+            $province = $request->input('Province');
+            $zip_code = $request->input('Zip_code');
+            $latitude = $request->input('Latitude');
+            $longitude = $request->input('Longitude');
 
             $model = new PositionModel();
-            $model->insert($ID,$House_number, $Village, $District, $City, $Province, $Zip_code, $Latitude, $Longitude);
+            $model->insert($id, $house_number, $village, $subdistrict, $city, $province, $zip_code, 
+                $latitude, $longitude);
 
-        return redirect("/customer/{$ID}");
+        return redirect("/customer/{$id}");
 
     }
    
-    public function show($id) {
+    public function show($id_position) {
             $model = new PositionModel();        
-            $table_position = $model->select_id($id);       
+            $table_position = $model->select_id($id_position);       
             $data = ['table_position' => $table_position]; 
 
         return view('position/show',$data); 
     }
     
-    public function edit($id) {
+    public function edit($id_position) {
             $model = new PositionModel();        
-            $table_position = $model->select_id($id);        
+            $table_position = $model->select_id($id_position);        
             $data = ['table_position' => $table_position];   
 
         return view('position/edit',$data); 
     }
     
-    public function update(Request $request, $id){
-            $ID = $request->input('ID');        
-            $House_number = $request->input('House_number');        
-            $Village = $request->input('Village');        
-            $District = $request->input('District');
-            $City = $request->input('City');        
-            $Province = $request->input('Province');        
-            $Zip_code = $request->input('Zip_code');        
-            $Latitude = $request->input('Latitude');
-            $Longitude = $request->input('Longitude');
-            $model = new PositionModel();        
-            $model->update($ID, $House_number, $Village, $District, $City, $Province, $Zip_code, $Latitude, $Longitude, $id);
+    public function update(Request $request, $id_position){
+            $id = $request->input('ID');        
+            $house_number = $request->input('House_number');        
+            $village = $request->input('Village');        
+            $subdistrict = $request->input('Subdistrict');
+            $city = $request->input('City');        
+            $province = $request->input('Province');        
+            $zip_code = $request->input('Zip_code');        
+            $latitude = $request->input('Latitude');
+            $longitude = $request->input('Longitude');
 
-        return redirect("/customer/{$ID}"); 
+            $model = new PositionModel();        
+            $model->update($id, $house_number, $village, $subdistrict, $city, $province, $zip_code, 
+                $latitude, $longitude, $id_position);
+
+        return redirect("/customer/{$id}"); 
     }
 
     
-    public function destroy(Request $request, $id) {
+    public function destroy(Request $request, $id_position) {
            $model = new PositionModel();        
-           $model->delete($id);
-           $ID = $request->input('ID');
+           $model->delete($id_position);
+           $id = $request->input('ID');
 
-        return redirect("/customer/{$ID}");
+        return redirect("/customer/{$id}");
     }
 }

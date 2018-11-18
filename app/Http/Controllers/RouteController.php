@@ -30,26 +30,26 @@ class RouteController extends Controller{
     }
 
     public function store(Request $request) {
-            $ID_Job = $request->input('ID_Job');
-            $ID_Position = $request->input('ID_Position');
+            $id_job = $request->input('ID_Job');
+            $id_position = $request->input('ID_Position');
             $model = new RouteModel();
-            $model->insert($ID_Job,$ID_Position);
+            $model->insert($id_job,$id_position);
             
-        return redirect("/job/{$ID_Job}");
+        return redirect("/job/{$id_job}");
 
     }
    
-    public function show($id){
+    public function show($id_route){
             $model = new RouteModel();        
-            $table_route = $model->select_id($id);       
+            $table_route = $model->select_id($id_route);       
             $data = ['table_route' => $table_route];      
         
         return view('route/show',$data); 
     }
 
-    public function edit($id) {
+    public function edit($id_route) {
             $model = new RouteModel();        
-            $table_route = $model->select_id($id); 
+            $table_route = $model->select_id($id_route); 
             $data = ['table_route' => $table_route]; 
 
             $model = new PositionModel();   
@@ -59,33 +59,34 @@ class RouteController extends Controller{
         return view('route/edit',$data,$data1); 
     }
 
-    public function update(Request $request, $id) {
-            $ID_Job = $request->input('ID_Job');        
+    public function update(Request $request, $id_route) {
+            $id_job = $request->input('ID_Job');        
             $id_position = $request->input('ID_Position');        
             $sequence = $request->input('Sequence');    
             $district = $request->input('District');   
             $time = $request->input('Time');
-            $model = new RouteModel();        
-            $model->update($ID_Job, $id_position,$sequence,$district,$time,$id);
 
-        return redirect("/job/{$ID_Job}"); 
+            $model = new RouteModel();        
+            $model->update($id_job, $id_position,$sequence,$district,$time,$id_route);
+
+        return redirect("/job/{$id_job}"); 
     }
 
-    public function destroy(Request $request,$id){
+    public function destroy(Request $request,$id_route){
             $model = new RouteModel();     
-            $ID_Job = $request->input('ID_Job');     
-            $model->delete($id);
+            $id_job = $request->input('ID_Job');     
+            $model->delete($id_route);
         
-        return redirect("/job/{$ID_Job}");
+        return redirect("/job/{$id_job}");
     }
 
     //คำนวนเส้นทาง
-    public function dis($ID_Job){
+    public function dis($id_job){
         //ประกาศตัวแปร เก็บเป็นอาร์เรยย์
-        //ตำแหน่งที่ยังไม่ได้เรียง ดึงมากจาก Route ด้วย ID_Job
+        //ตำแหน่งที่ยังไม่ได้เรียง ดึงมากจาก Route ด้วย id_job
 
         $model = new RouteModel();        
-        $table_route = $model->select_la_lon($ID_Job); 
+        $table_route = $model->select_la_lon($id_job); 
         $number = $table_route;
         
         //print_r($number);
@@ -149,8 +150,8 @@ class RouteController extends Controller{
             $i++;
          }
          $model_job = new JobModel();
-         $model_job->up_time($dis_sum,$time_sum,$ID_Job);
-          return redirect("/job/{$ID_Job}");
+         $model_job->up_time($dis_sum,$time_sum,$id_job);
+          return redirect("/job/{$id_job}");
     }
 
     public function District2($x1,$x2,$y1,$y2){

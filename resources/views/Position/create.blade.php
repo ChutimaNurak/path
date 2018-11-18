@@ -49,7 +49,7 @@
 		<br>
 			<div class="line">
 				<strong>ตำบล: </strong>
-				<input  class="form-control" type="text" name="District" placeholder="ระบุตำบล" required>
+				<input  class="form-control" type="text" name="Subdistrict" placeholder="ระบุตำบล" required>
 			</div>
 		<br>
 			<div class="line">
@@ -91,9 +91,9 @@
     	function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
         //กำหนดค่า Latitude and Longitude ที่จะแสดงผลตรงกลาง Map
-			center: {lat: -33.8688, lng: 151.2195},
+			center: {lat: 13.847624, lng: 100.785967},
         //การเปิด/ปรับค่าค่า zoomControl แต่เปิด/ปรับค่า mapTypeContro
-          zoomControl: true,
+          zoomControl: 10,
 				zoomControlOptions: {
 				style: google.maps.ZoomControlStyle.LARGE
 			},
@@ -103,7 +103,7 @@
 		style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
 		},
 		//กำหนดค่าจาก 0 - 21
-          zoom: 14,
+          zoom: 10,
           mapTypeId: 'roadmap'
         });
  

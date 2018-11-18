@@ -57,7 +57,7 @@
 		<!-- <td style="text-align: center!important;">{{ $row->ID_Position }} </td> -->
 		<td style="text-align: center!important;">{{ $row->House_number }}</td>
 		<td style="text-align: center!important;">{{ $row->Village }} </td>
-		<td>{{ $row->District }}</td>
+		<td>{{ $row->Subdistrict }}</td>
 		<td>{{ $row->City }}</td>
 		<td>{{ $row->Province }}</td>
 		<td style="text-align: center!important;">{{ $row->Zip_code }}</td>

@@ -8,8 +8,8 @@ class JobModel {
 		return DB::select($sql, []);
 	}
 
-	function select_id($id){
-		$sql = "select * from job where ID_Job = {$id}";
+	function select_id($id_job){
+		$sql = "select * from job where ID_Job = {$id_job} ";
 		return DB::select($sql, []);
 	}
 
@@ -23,14 +23,14 @@ class JobModel {
 		DB::insert($sql, []);
 	}
 
-	function update($name_job,$date, $distance_sum,$time_sum,$id){
+	function update($name_job,$date, $distance_sum,$time_sum,$id_job){
 		$sql = "update job
 				set 
 				   Name_Job = '{$name_job}',
 				   Date = '{$date}',
 				   Distance_Sum = {$distance_sum},
 				   Time_Sum = {$time_sum}
-				where ID_Job = {$id}";
+				where ID_Job = {$id_job}";
 		DB::update($sql, []);
 	}
 	function up_time($distane_sum,$time_sum,$id_job){
@@ -38,12 +38,12 @@ class JobModel {
 				set 
 				Distance_Sum = {$distane_sum},
 				Time_Sum = {$time_sum}
-				where ID_Job = {$id_job}";
+				where ID_Job = {$id_job} ";
 		DB::update($sql, []);
 	}
 
-	function delete($id){
-		$sql = "delete from job where ID_Job = {$id}";
+	function delete($id_job){
+		$sql = "delete from job where ID_Job = {$id_job}";
 		DB::delete($sql, []);
 	}
 	
