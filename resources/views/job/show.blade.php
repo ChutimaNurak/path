@@ -24,7 +24,6 @@
 		height: 100%;
 		margin: 0;
 		padding: 0;
-		text-align: center;
 		}
 	#map {
 		height: 500px;
@@ -96,7 +95,6 @@
 <br>
 
 <!-- ปักหมุด Marker บน Google Map -->
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <div id="map"></div>
@@ -110,8 +108,9 @@
 		var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
 
 		var marker, info;
-
-		$.getJSON( "json.php", function( jsonObj ) {
+		// อ่านค่า Json แล้ว Loop ค่าเพื่อปักหมุดลงใน Map
+		$.getJSON( "json.php","id_job = 1", function( jsonObj ) {
+				console.log( jsonObj )
 					//*** loop
 					$.each(jsonObj, function(i, item){
 					marker = new google.maps.Marker({
