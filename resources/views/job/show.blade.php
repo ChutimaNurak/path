@@ -3,6 +3,9 @@
 
 @forelse($table_job as $row) 
 
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+
 <style>
 	h2{
 		text-align: center!important;
@@ -95,29 +98,45 @@
 <br>
 
 <!-- ปักหมุด Marker บน Google Map -->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <div id="map"></div>
 	<script>
 	function initMap() {
 		var mapOptions = {
 			center: {lat: 13.847860, lng: 100.604274},
-			zoom: 14,
+			zoom: 11,
 		}
 
 		var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
-
+		var directionsService = new google.maps.DirectionsService;
+		var directionsDisplay = new google.maps.DirectionsRenderer({
+    		draggable: true,
+    		map: mapOptions
+    		//panel: document.getElementById('right-panel')
+  			});
 		var marker, info;
+		var start,end;
+		var wayspoint = [];
 		// อ่านค่า Json แล้ว Loop ค่าเพื่อปักหมุดลงใน Map
-		$.getJSON( "json.php","id_job = 1", function( jsonObj ) {
-				console.log( jsonObj )
+		$.getJSON( "{{ url('/') }}/route/json/{{$row->ID_Job}}", function( jsonObj ) {
+				console.log( jsonObj );
+				for(var i=1;i<jsonObj.length-1;i++){
+					start = {lat: jsonObj[0].Latitude, lng: jsonObj[0].Longitude};
+					end = {lat: jsonObj[jsonObj.length - 1].Latitude, lng: jsonObj[jsonObj.length - 1].Longitude};
+					wayspoint.push({lat: jsonObj[i].Latitude, lng: jsonObj[i].Longitude});
+				}
+				console.log(start,end,wayspoint);
+			
 					//*** loop
 					$.each(jsonObj, function(i, item){
+					
 					marker = new google.maps.Marker({
-					position: new google.maps.LatLng(item.LAT, item.LNG),
+					position: new google.maps.LatLng(item.Latitude, item.Longitude),
 					map: maps,
 					title: item.LOC_NAME
 					});
+
+				// maps.setCenter(new google.maps.LatLng(item.Latitude,item.Longitude));
+				maps.setCenter({lat:item.Latitude,lng:item.Longitude});
 
 				info = new google.maps.InfoWindow();
 				
@@ -129,50 +148,33 @@
 					})(marker, i));
 				}); // loop
 			});
+		displayRoute(start, end, wayspoint, directionsService,
+         directionsDisplay);
+		};
+
+		function displayRoute(origin, destination, wayspoint, service, display) {
+		 	console.log(service);
 		}
+
+// 	function displayRoute(origin, destination, ,wayspoint,service, display) {
+//   service.route({
+//     origin: origin,
+//     destination: destination,
+//     waypoints: waypoints,
+//     travelMode: 'DRIVING',
+//     avoidTolls: true
+//   }, function(response, status) {
+//     if (status === 'OK') {
+//       display.setDirections(response);
+//     } else {
+//       alert('Could not display directions due to: ' + status);
+//     }
+//   });
+// }
+	
 	</script>
 
-
-
-<!-- <div id="map"></div>
-	<script type="text/javascript">
-		var locations = [
-								['วัดลาดปลาเค้า', 13.846876, 100.604481],
-								['หมู่บ้านอารียา', 13.847766, 100.605768],
-								['สปีดเวย์', 13.845235, 100.602711],
-								['สเต็ก ลุงหนวด',13.862970, 100.613834]
-							];
-		function initMap() {
-			var mapOptions = {
-				center: {lat: 13.847860, lng: 100.604274},
-				zoom: 18,
-				}
-			 
-			var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
-
-			var marker, i, info;
-			
-			for (i = 0; i < locations.length; i++) { 
-					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-						map: maps,
-						title: locations[i][0]
-					});
-				 
-					info = new google.maps.InfoWindow();
-
-				google.maps.event.addListener(marker, 'click', (function(marker, i) {
-						return function() {
-							info.setContent(locations[i][0]);
-							info.open(maps, marker);
-					}
-				})(marker, i));
-			}
-		}
-	</script> -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script>
-
-
 @empty 
 @endforelse
 @endsection

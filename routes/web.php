@@ -19,6 +19,14 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::get('/test2', function () {
+    return view('test2');
+});
+
 Route::resource('/customer','CustomerController');
 Route::get('/customer/{id}/pdf','CustomerController@downloadPDF');
 /*
@@ -38,3 +46,4 @@ Route::get('/job/{id}/pdf','JobController@downloadPDF');
 
 Route::resource('/route', 'RouteController');
 Route::get('/route/dis/{ID_Job}','RouteController@dis');
+Route::get('/route/json/{ID_Job}','RouteController@json');

@@ -131,7 +131,7 @@ class RouteController extends Controller{
             //ลบค่า number ตามตำแหน่งที่ $pos ใส่1เพราะต้องการลบแค่ตำแหน่งที่pos
             array_splice($number, $pos, 1);   
         }
-        print_r($minValue);    
+       // print_r($minValue);    
         //อัพเดทฐานข้ัอมูล
         $i = 1;
         //ลบตำแหน่งแรกออกจากminValue 0 คือต่ำแหน่ง 1คือ1ตัว แต่ถ้าไม่ใช่1ลบตั้งแต่1เป็นต้นไป
@@ -154,10 +154,6 @@ class RouteController extends Controller{
           return redirect("/job/{$id_job}");
     }
 
-    public function District2($x1,$x2,$y1,$y2){
-        $d=sqrt( (($x2-$x1)*($x2-$x1)) + (($y2-$y1)*($y2-$y1)) );
-        return $d;
-    }
     public function District($latitudeFrom, $latitudeTo, $longitudeFrom, $longitudeTo) {
         $earthRadius = 6371000;
         // convert from degrees to radians
@@ -172,7 +168,18 @@ class RouteController extends Controller{
 
         $angle = atan2(sqrt($a), $b);
       return ($angle * $earthRadius) / 1000;
-    }   
+    } 
+
+    public function District2($x1,$x2,$y1,$y2){
+        $d=sqrt( (($x2-$x1)*($x2-$x1)) + (($y2-$y1)*($y2-$y1)) );
+        return $d;
+    }
+
+    public function json($id_job){
+            $model = new RouteModel();        
+            $table_route = $model->select_la_lon($id_job);
+        return response()->json($table_route);
+    }  
 
 }  
     
