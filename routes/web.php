@@ -23,9 +23,15 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/test2', function () {
-    return view('test2');
+Route::get('/test3', function () {
+    return view('test3');
 });
+
+
+// Route::get('/excel', function () {
+//     return view('excel');
+// });
+Route::get('/excel/{id_job}','JobController@excel');
 
 Route::resource('/customer','CustomerController');
 Route::get('/customer/{id}/pdf','CustomerController@downloadPDF');
@@ -42,7 +48,8 @@ Route::delete('/customer/{id}', 'CustomerController@destroy');
 Route::resource('/position','PositionController');
 
 Route::resource('/job','JobController');
-Route::get('/job/{id}/pdf','JobController@downloadPDF');
+// Route::get('/job/{id}/pdf','JobController@downloadPDF');
+Route::get('/downloadpdf', 'JobController@downloadpdf');
 
 Route::resource('/route', 'RouteController');
 Route::get('/route/dis/{ID_Job}','RouteController@dis');

@@ -167,31 +167,31 @@ this array to grant expanded functionality to your applications.
          * Laravel Framework Service Providers...
         
  */
-        Barryvdh\DomPDF\ServiceProvider::class,
+    Barryvdh\DomPDF\ServiceProvider::class,
 
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
       
-  Illuminate\Bus\BusServiceProvider::class,
+        Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
      
-   Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
      
-   Illuminate\Database\DatabaseServiceProvider::class,
+        Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,
    
-     Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
     
-    Illuminate\Hashing\HashServiceProvider::class,
+        Illuminate\Hashing\HashServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
   
-      Illuminate\Pagination\PaginationServiceProvider::class,
+        Illuminate\Pagination\PaginationServiceProvider::class,
         Illuminate\Pipeline\PipelineServiceProvider::class,
      
-   Illuminate\Queue\QueueServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
 
@@ -199,7 +199,7 @@ this array to grant expanded functionality to your applications.
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         
-Illuminate\View\ViewServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -209,13 +209,15 @@ Illuminate\View\ViewServiceProvider::class,
          * Application Service Providers...
          */
        
- App\Providers\AppServiceProvider::class,
+     App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         
-App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+    App\Providers\EventServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
+    App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -278,6 +280,8 @@ App\Providers\EventServiceProvider::class,
       'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
+        'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
      ],
 
 ];
