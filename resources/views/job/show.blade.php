@@ -1,30 +1,28 @@
 @extends('theme.default')
 @section('content')
-
 @forelse($table_job as $row) 
-
 <style>
-	h2{
-		text-align: center!important;
-	}
-	table{
-		width: 100%;
-	}
-	html {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-	}
-	#map {
-		height: 500px;
-		width: 100%;
-	}
-	#right-panel {
+  	h2{
+  		  text-align: center!important;
+  	}
+  	table{
+  		  width: 100%;
+  	}  
+  	html {
+  		  height: 100%;
+  		  margin: 0;
+  		  padding: 0;
+  	}
+  	#map {
+  		  height: 500px;
+  		  width: 100%;
+  	}
+  	#right-panel {
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
         padding-left: 10px;
-      }
-	#right-panel select, #right-panel input {
+    }
+  	#right-panel select, #right-panel input {
         font-size: 15px;
     }
     #right-panel select {
@@ -35,11 +33,13 @@
     }
 </style>
 
+
 <!-- Export  -->
-  <a href="{{url('/')}}/job/{{$ID_Job}}/pdf" class="btn btn-warning pull-right hidden-print">Export to PDF </a>
-  <!-- <button onclick="window.print()" class="button button5 pull-right hidden-print" >พิมพ์รายงาน</button> -->
-	<a href="{{url('/')}}/excel/{{$row->ID_Job}}" class="btn btn-warning pull-right hidden-print">Export to Excel</a>
 <br>
+  <a href="{{url('/')}}/job/{{$ID_Job}}/pdf" class="btn pull-right hidden-print">Export to PDF </a>
+  <!-- <button onclick="window.print()" class="button button5 pull-right hidden-print" >พิมพ์รายงาน</button> -->
+	<a href="{{url('/')}}/excel/{{$row->ID_Job}}" class="btn pull-right hidden-print">Export to Excel</a>
+<br><br>
 
 	<div class="line"> 
 		<strong>รหัสรอบงาน : </strong> 
@@ -101,8 +101,8 @@
 	</table>
 
 <!-- หาเส้นทาง -->
-    <a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn-primary hidden-print">คำนวนเส้นทาง</a><br><br>
-    
+    <a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn-primary pull-right hidden-print">คำนวนเส้นทาง</a><br><br>
+
 <!-- Google Map -->
     <div id="map"></div>
     <div id="right-panel">
