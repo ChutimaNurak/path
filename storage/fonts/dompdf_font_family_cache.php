@@ -83,4 +83,7 @@
   'fontawesome' => array(
     'normal' => $fontDir . '\70c4f15545fd6f9b766f227098a84bea',
   ),
+  'thsarabunnew' => array(
+    'normal' => $fontDir . '\c9daa55fb8c78850fabeed86071921bc',
+  ),
 ) ?>

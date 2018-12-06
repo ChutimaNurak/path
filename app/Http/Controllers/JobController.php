@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 use App\JobModel;
 use App\RouteModel;
-use App\CustomerModel;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -36,21 +35,9 @@ class JobController extends Controller {
             $model_route = new RouteModel();     
             $table_route = $model_route->select_position_route_customer($id_job);
 
-            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
+            $data = ['table_job' => $table_job,'table_route' => $table_route,'ID_Job' => $id_job ]; 
 
         return view('job/show',$data); 
-    }
-
-    public function excel($id_job) {
-            $model = new JobModel();        
-            $table_job = $model->select_id($id_job);
-
-            $model_route = new RouteModel();     
-            $table_route = $model_route->select_position_route_customer($id_job);
-
-            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
-
-        return view('excel',$data); 
     }
     
     public function edit($id_job) {
@@ -60,7 +47,6 @@ class JobController extends Controller {
 
         return view('job/edit',$data); 
     }
-
     
     public function update(Request $request, $id_job) {
             $name_job = $request->input('Name_Job');
@@ -74,7 +60,7 @@ class JobController extends Controller {
         return redirect('/job'); 
     }
 
-    
+    //Detele
     public function destroy($id_job) {
            $model = new JobModel();        
            $model->delete($id_job);
@@ -82,24 +68,30 @@ class JobController extends Controller {
         return redirect('/job');
     }
 
-    public function downloadpdf ($id) {
-          $data = [1,2,3,4,5];
-          $pdf = PDF::loadView('test_pdf',$data);
-          return $pdf->stream('test.pdf'); //แบบนี้จะ stream มา preview
-          //return $pdf->download('test.pdf'); //แบบนี้จะดาวโหลดเลย
+    //Export Excel
+    public function excel($id_job) {
+            $model = new JobModel();        
+            $table_job = $model->select_id($id_job);
+
+            $model_route = new RouteModel();     
+            $table_route = $model_route->select_position_route_customer($id_job);
+
+            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
+
+        return view('excel',$data); 
     }
-    // public function downloadPDF($id) {
-    //         $model = new JobModel();        
-    //         $table_job = $model->select_id($id);
 
-    //         $model_route = new RouteModel();     
-    //         $table_route = $model_route->select_position_route($id);
+    //Export PDF
+    public function downloadpdf ($id_job) {
+            $model = new JobModel();        
+            $table_job = $model->select_id($id_job);
 
-    //         $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id]; 
+            $model_route = new RouteModel();     
+            $table_route = $model_route->select_position_route_customer($id_job);
 
-    //     // return view('job/show',$data); 
+            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
 
-    //     $pdf = PDF::loadView('job/show',$data);
-    //     return $pdf->stream('invoice.pdf');
-    // }
+            $pdf = PDF::loadView('pdf',$data);
+            return $pdf->stream('pdf');
+    }
 }

@@ -1,37 +1,4 @@
-<style>
-@font-face{
- font-family:  'THSarabunNew';
- font-style: normal;
- font-weight: normal;
- src: url("{{ asset('fonts/THSarabunNew.ttf') }}") format('truetype');
-}
-@font-face{
- font-family:  'THSarabunNew';
- font-style: normal;
- font-weight: normal;
- src: url("{{ asset('fonts/THSarabunNew Bold.ttf') }}") format('truetype');
-}
-@font-face{
- font-family:  'THSarabunNew';
- font-style: normal;
- font-weight: normal;
- src: url("{{ asset('fonts/THSarabunNew Italic.ttf') }}") format('truetype');
-}
-@font-face{
- font-family:  'THSarabunNew';
- font-style: normal;
- font-weight: normal;
- src: url("{{ asset('fonts/THSarabunNew BoldItalic.ttf') }}") format('truetype');
-}
-body{
- font-family: "THSarabunNew";
-}
-</style>
-<div>สวัสดีวันจันทร์</div>
-
-
-
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -140,4 +107,50 @@ body{
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&callback=initMap">
     </script>
   </body>
-</html> -->
+</html>
+
+
+
+<!-- 
+ <div id="map"></div>
+  <script>
+  function initMap() {
+    var mapOptions = {
+      center: {lat: 13.847860, lng: 100.604274},
+      zoom: 11,
+    }
+
+    var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
+
+    var marker, info;
+
+    // อ่านค่า Json แล้ว Loop ค่าเพื่อปักหมุดลงใน Map
+    $.getJSON( "{{ url('/') }}/route/json/{{$row->ID_Job}}", function( jsonObj ) {
+        console.log( jsonObj );
+        
+          //*** loop
+          $.each(jsonObj, function(i, item){
+          
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(item.Latitude, item.Longitude),
+            map: maps,
+            title: item.LOC_NAME
+          });
+        //ตั้งค่าmap ให้อยู่ใกล้เคียงต่ำแหน่งเริ่มแรก
+        // maps.setCenter(new google.maps.LatLng(item.Latitude,item.Longitude));
+        maps.setCenter({lat:item.Latitude,lng:item.Longitude});
+
+        info = new google.maps.InfoWindow();
+        
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            info.setContent(item.LOC_NAME);
+            info.open(maps, marker);
+            }
+          })(marker, i));
+        }); // loop
+      });
+    };
+  
+  </script> 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script> -->

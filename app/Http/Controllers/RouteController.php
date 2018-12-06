@@ -70,7 +70,7 @@ class RouteController extends Controller{
 
         return redirect("/job/{$id_job}"); 
     }
-
+    //Detele
     public function destroy(Request $request,$id_route){
             $model = new RouteModel();     
             $id_job = $request->input('ID_Job');     

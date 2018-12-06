@@ -11,30 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/home', function () {
     return view('home');
 });
 
+//Marker Animations With setTimeout()
 Route::get('/test', function () {
     return view('test');
 });
 
+//Algorithm
 Route::get('/test3', function () {
     return view('test3');
 });
 
 
-// Route::get('/excel', function () {
-//     return view('excel');
-// });
-Route::get('/excel/{id_job}','JobController@excel');
-
+//Customer
 Route::resource('/customer','CustomerController');
-Route::get('/customer/{id}/pdf','CustomerController@downloadPDF');
 /*
 Route::get('/customer', 'CustomerController@index');
 Route::get('/customer/create', 'CustomerController@create');
@@ -45,12 +38,19 @@ Route::put('/customer/{id}', 'CustomerController@update');
 Route::delete('/customer/{id}', 'CustomerController@destroy');
 */
 
+
+//Postion
 Route::resource('/position','PositionController');
 
-Route::resource('/job','JobController');
-// Route::get('/job/{id}/pdf','JobController@downloadPDF');
-Route::get('/downloadpdf', 'JobController@downloadpdf');
 
+//Job
+Route::resource('/job','JobController');
+
+Route::get('/job/{ID_Job}/pdf', 'JobController@downloadpdf');//PDF
+Route::get('/excel/{ID_Job}','JobController@excel');//excel
+
+
+//Route
 Route::resource('/route', 'RouteController');
 Route::get('/route/dis/{ID_Job}','RouteController@dis');
 Route::get('/route/json/{ID_Job}','RouteController@json');

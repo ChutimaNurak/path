@@ -9,7 +9,7 @@ class JobModel {
 	}
 
 	function select_id($id_job){
-		$sql = "select * from job where ID_Job = {$id_job} ";
+		$sql = "select * from job where ID_Job = {$id_job}";
 		return DB::select($sql, []);
 	}
 
@@ -33,6 +33,7 @@ class JobModel {
 				where ID_Job = {$id_job}";
 		DB::update($sql, []);
 	}
+	//อัพเวลา RouteController
 	function up_time($distane_sum,$time_sum,$id_job){
 		$sql = "update job
 				set 

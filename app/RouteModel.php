@@ -14,15 +14,15 @@ class RouteModel {
 		return DB::select($sql, []);
 	}
 	
-	//View ID_Job 
+	//View ID_Job  JobController
 	function select_position_route_customer($id_job){
 		$sql = "select * FROM customer 
 				INNER JOIN position ON customer.ID = position.ID 
 				INNER JOIN route ON route.ID_Position = position.ID_Position 
-                WHERE ID_Job =  {$id_job}";
+                WHERE ID_Job = {$id_job} order by sequence";
 		return DB::select($sql, []);
 	}
-	//View Latitude&Longitude
+	//View Latitude&Longitude  function jnos --> RoutController
 	function select_la_lon($id_job) {
 		$sql = "select position.Latitude, position.Longitude , route.ID_Route, position.ID_Position, job.ID_Job
 				FROM position 
@@ -32,10 +32,10 @@ class RouteModel {
 		return DB::select($sql,[]);
 	}
 
-	function select_id_job($id_job){
-		$sql = "select * from route where ID_Job = {$id_job}";
-		return DB::select($sql, []);
-	}
+	// function select_id_job($id_job){
+	// 	$sql = "select * from route where ID_Job = {$id_job}";
+	// 	return DB::select($sql, []);
+	// }
 
 	function select_search($q){
 		$sql = "select * from route where ID_Route like '%{$q}%'";
