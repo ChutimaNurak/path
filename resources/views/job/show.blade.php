@@ -38,8 +38,11 @@
 <br>
   <a href="{{url('/')}}/job/{{$ID_Job}}/pdf" class="btn pull-right hidden-print">Export to PDF </a>
   <!-- <button onclick="window.print()" class="button button5 pull-right hidden-print" >พิมพ์รายงาน</button> -->
-	<a href="{{url('/')}}/excel/{{$row->ID_Job}}" class="btn pull-right hidden-print">Export to Excel</a>
-<br><br>
+
+	<!-- <a href="{{url('/')}}/excel/{{$row->ID_Job}}" class="btn pull-right hidden-print">Export to Excel</a> -->
+<br>
+
+<h2>รอบงาน {{ $row->Name_Job }} </h2>
 
 	<div class="line"> 
 		<strong>รหัสรอบงาน : </strong> 
@@ -63,12 +66,13 @@
 	
 	<div class="line"> 
 		<a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}" class="btn btn-warning hidden-print">เพิ่มข้อมูลเส้นทาง </a>
-		<a href="{{ url('/') }}/job" class="btn btn-primary hidden-print ">back</a>
+		<a href="{{ url('/') }}/job" class="btn btn-primary hidden-print">back</a>
 	</div> 
 
-<br>
-<h2>รอบงาน {{ $row->Name_Job }} </h2>
-<br>
+<!-- หาเส้นทาง -->
+    <a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn btn-info pull-right hidden-print">คำนวนเส้นทาง</a>
+<br><br><br>
+
 	<table class="table">
 		<tr>
 			<th>ชื่อ - นามสกุล</th>
@@ -97,11 +101,11 @@
 				<button type="submit" class="btn btn-danger hidden-print">Delete</button> 
 				</form>
 		</tr>
+    <input type="hidden" name="Latitude" value="{{$row->Latitude}}">
+        <input type="hidden" name="Longitude" value="{{$row->Longitude}}">
 		@endforeach
 	</table>
-
-<!-- หาเส้นทาง -->
-    <a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn-primary pull-right hidden-print">คำนวนเส้นทาง</a><br><br>
+<br><br>
 
 <!-- Google Map -->
     <div id="map"></div>
@@ -110,6 +114,18 @@
     </div>
     <script>
       function initMap() {
+        var lat = document.getElementsByName('Latitude');
+        var lng = document.getElementsByName('Longitude');
+        var origin = [{lat: lat[0].value, lng: lng[0].value}];
+        var destination = {lat: lat[lat.length - 1].value, lng: lng[lng.length - 1].value};
+        var waypoints = [];
+        for(var i = 1 ;i<lat.length -1;i++) {
+          waypoints.push({
+            lat: lat[i].value,
+            lng: lng[i].value
+          })
+        }
+
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: {lat: 12.8821371, lng: 92.4377}  // ประเทศไทย
@@ -126,18 +142,19 @@
           computeTotalDistance(directionsDisplay.getDirections());
         });
 
-        // displayRoute('Perth, WA', 'Sydney, NSW', directionsService,directionsDisplay);
-        displayRoute(new google.maps.LatLng(14.1333725, 100.6092868),
-                     new google.maps.LatLng(13.9894503, 100.6146459),
-                      directionsService,
-                      directionsDisplay);
+        displayRoute(new google.maps.LatLng(lat[0].value, lng[0].value), //origin จุดเริ่มต้น
+                     new google.maps.LatLng(lat[lat.length -1].value, lng[lng.length-1].value), //destination จุดสินสุด
+                      directionsService, //service
+                      directionsDisplay, //display
+                      waypoints
+                    );
       }
       //เส้นทางที่เรียงลำดับแล้ว
-      function displayRoute(origin, destination, service, display) {
+      function displayRoute(origin, destination, service, display,waypoints) {
         service.route({
           origin: origin,
           destination: destination,
-          // waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
+          // จุดถดไป
           waypoints: [{location: new google.maps.LatLng(14.0824618, 100.6172948)}, 
                       {location: new google.maps.LatLng(14.0432203, 100.6156019)}],
           travelMode: 'DRIVING',

@@ -218,6 +218,9 @@ this array to grant expanded functionality to your applications.
 
     App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+
+    //Excal
+       // Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -282,6 +285,8 @@ this array to grant expanded functionality to your applications.
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        //Excel
+        //'Excel' => Maatwebsite\Excel\Facades\Excel::class,
      ],
 
 ];
