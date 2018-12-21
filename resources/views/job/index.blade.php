@@ -12,11 +12,13 @@
 
 <br>
 <!-- เพิ่มข้อมูลรอบงาน -->
-<a href="{{ url('/') }}/job/create" class="btn btn-warning pull-right">เพิ่มข้อมูลรอบงาน</a>
+<a href="{{ url('/') }}/job/create" class="btn btn-warning pull-right">
+	<i class="fa fa-plus "></i> รอบงาน
+</a>
 <br>
 
 <!-- หัวเรื่อง -->
-<h1>รายละเอียดข้อมูลรอบงาน</h1>
+<h1>ข้อมูลรอบงาน</h1>
 <br>
 
 <!-- ค้นหา -->
@@ -37,8 +39,8 @@
 		<th></th>
 		<th>ชื่อรอบงาน</th>
 		<th style="text-align: center!important;">ปี/เดือน/วัน และเวลา ที่เพิ่มรอบงาน</th>
-		<th style="text-align: center!important;">ระยะทางรวม (กิโลเมตร)</th>
-		<th style="text-align: center!important;">เวลารวม (ชั่วโมง)</th>
+		<th style="text-align: center!important;">ระยะทางรวม</th>
+		<th style="text-align: center!important;">เวลารวม </th>
 		<th></th>
 	</tr>
 	@foreach($table_job as $row)
@@ -47,15 +49,24 @@
 		<td></td>
 		<td>{{ $row->Name_Job }} </td>
 		<td style="text-align: center!important;">{{ $row->Date }}</td>
-		<td style="text-align: center!important;">{{ $row->Distance_Sum }}</td>
-		<td style="text-align: center!important;">{{ $row->Time_Sum }}</td>
+		<td style="text-align: center!important;">{{ $row->Distance_Sum }} กม.</td>
+		<td style="text-align: center!important;">{{ $row->Time_Sum }} นาที</td>
 		<td style="text-align: center!important;">
 			<form class="inline" action="{{ url('/') }}/job/{{ $row->ID_Job }}" method="POST"> 
 			{{ csrf_field() }} 
-			{{ method_field('DELETE') }} 						
-			<a href="{{ url('/') }}/job/{{ $row->ID_Job }}" class="btn btn-outline btn-primary">View</a>
-			<a href="{{ url('/') }}/job/{{ $row->ID_Job }}/edit" class="btn btn-outline btn-success">edit</a>
-			<button type="submit" class="btn btn-danger">Delete</button> 
+			{{ method_field('DELETE') }} 
+			<!-- but view -->						
+			<a href="{{ url('/') }}/job/{{ $row->ID_Job }}" class="btn btn-outline btn-primary">
+				<i class="fa fa-road "></i> ข้อมมูลรอบงาน
+			</a>
+			<!-- but edit -->
+			<a href="{{ url('/') }}/job/{{ $row->ID_Job }}/edit" class="btn btn-outline btn-success">
+				 <i class="fa fa-edit"></i>
+			</a>
+			<!-- but Detele -->
+			<button type="submit" class="btn btn-danger">
+				<i class="fa  fa-trash-o "></i>
+			</button> 
 		</form>
 	</tr>
 	</tr>

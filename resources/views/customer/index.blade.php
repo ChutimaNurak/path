@@ -12,7 +12,8 @@
 
 <br>
 <!-- เพิ่มข้อมูลลูกค้า -->
-<a href="{{ url('/') }}/customer/create" class="btn btn-warning pull-right">เพิ่มข้อมูลลูกค้า</a> 
+<a href="{{ url('/') }}/customer/create" class="btn btn-warning pull-right">
+	<i class="fa fa-plus "></i> ข้อมูลลูกค้า</a> 
 <br>
 
 <h1>รายละเอียดข้อมูลลูกค้า</h1>
@@ -47,11 +48,17 @@
 				<td>{{ $row->Email}} </td>
 				<td style="text-align: center!important">
 					<form class="inline" action="{{ url('/') }}/customer/{{ $row->ID }}" method="POST"> 
-					{{ csrf_field() }} 
-					{{ method_field('DELETE') }} 
-					<a href="{{ url('/') }}/customer/{{ $row->ID }}" class="btn btn-outline btn-primary">View</a>
-					<a href="{{ url('/') }}/customer/{{ $row->ID }}/edit" class="btn btn-outline btn-success">edit</a>
-					<button type="submit" class="btn btn-danger">Delete</button> 
+						{{ csrf_field() }} 
+						{{ method_field('DELETE') }} 
+						<!-- but view -->
+						<a href="{{ url('/') }}/customer/{{ $row->ID }}" class="btn btn-outline btn-primary">
+							<i class="fa  fa-thumb-tack "></i> ที่อยู่ลูกค้า
+						<!-- but edit -->
+						<a href="{{ url('/') }}/customer/{{ $row->ID }}/edit"class="btn btn-outline btn-success"><i class="fa fa-edit"></i></a>
+						<!-- but detele -->
+						<button type="submit" class="btn btn-danger">
+							<i class="fa  fa-trash-o "></i>
+						</button> 
 					</form>
 				</td>
 			</tr>

@@ -3,6 +3,10 @@ namespace App\Http\Controllers;
 use App\RouteModel;
 use App\JobModel;
 use App\PositionModel;
+use PDF;
+use DB;
+use Excel;
+//use Maatwebsite\Excel\Excel;
 use Illuminate\Http\Request;
 use \stdClass;
 
@@ -33,7 +37,7 @@ class RouteController extends Controller{
             $id_position = $request->input('ID_Position');
             $model = new RouteModel();
             $model->insert($id_job,$id_position);
-            
+            $this->dis($id_job); //เรียกใช้ฟังชั้นdis
         return redirect("/job/{$id_job}");
 
     }
@@ -111,18 +115,20 @@ class RouteController extends Controller{
                 //la lon ตำแหน่งถัดไป ตำแหน่งที่อยู่ในnumber
                 $x2 = $number[$j]->Latitude;
                 $y2 = $number[$j]->Longitude;
-                //เรียกฟังชั่นในmodelเดียวกัน
+
+                //เรียกฟังชั่นคำนวนระยะทาง District
                 $d = $this->District($x1,$x2,$y1,$y2);
                 //เงือนไข ตำแหน่งตัวสุดท้ายของminValue เปรียบเทีบค่าระยะทางกับ ตำแหน่งใน number
-                if( $d < $min ) 
-                {
-                    $min = $d;
-                    $pos = $j;        
-                }
+                    if( $d < $min ) 
+                    {
+                        $min = $d;
+                        $pos = $j;        
+                    }
             }
             //print_r($number[$pos]);
             //ฝังd
             $number[$pos]->d = $d;
+            //tเวลา
             $t=$d*1.2;
             $number[$pos]->t = $t; 
             //ค่า $number[i] ที่ดีที่สุดไปเก็บไว้ใน $minValue[j] 
@@ -135,7 +141,9 @@ class RouteController extends Controller{
         $i = 1;
         //ลบตำแหน่งแรกออกจากminValue 0 คือต่ำแหน่ง 1คือ1ตัว แต่ถ้าไม่ใช่1ลบตั้งแต่1เป็นต้นไป
         array_splice($minValue, 0, 1);
+        //ระยะเวลารวม
         $time_sum = 0;
+        //ระยะทางรวม
         $dis_sum = 0; 
         foreach($minValue as $row){
 
@@ -148,14 +156,15 @@ class RouteController extends Controller{
             $model->update($row->ID_Job, $row->ID_Position, $i, $row->d, $row->t, $row->ID_Route);
             $i++;
          }
+         //print_r("TEST");
          $model_job = new JobModel();
          $model_job->up_time($dis_sum,$time_sum,$id_job);
           return redirect("/job/{$id_job}");
     }
 
+//ฟังก์ชั่นคำนวณ ระยะทาง
     public function District($latitudeFrom, $latitudeTo, $longitudeFrom, $longitudeTo) {
         $earthRadius = 6371000;
-        // convert from degrees to radians
         $latFrom = deg2rad($latitudeFrom);
         $lonFrom = deg2rad($longitudeFrom);
         $latTo = deg2rad($latitudeTo);
@@ -174,12 +183,38 @@ class RouteController extends Controller{
         return $d;
     }
 
-    public function json($id_job){
-            $model = new RouteModel();        
-            $table_route = $model->select_la_lon($id_job);
-        return response()->json($table_route);
-    }  
+//Export Excel
+    public function excal($id_job){
+            $model = new JobModel();        
+            $table_job = $model->select_id($id_job);
 
+            $model_route = new RouteModel();     
+            $table_route = $model_route->select_position_route_customer($id_job);
+
+            //$data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
+
+        return Excel::download((array)$table_route,"excal.xlsx");
+    }
+
+//Export PDF
+    public function downloadpdf ($id_job) {
+            $model = new JobModel();        
+            $table_job = $model->select_id($id_job);
+
+            $model_route = new RouteModel();     
+            $table_route = $model_route->select_position_route_customer($id_job);
+
+            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
+
+            $pdf = PDF::loadView('pdf',$data);
+            return $pdf->stream('pdf');
+    }
+
+    // public function json($id_job){
+    //         $model = new RouteModel();        
+    //         $table_route = $model->select_la_lon($id_job);
+    //     return response()->json($table_route);
+    // }  
 }  
     
    

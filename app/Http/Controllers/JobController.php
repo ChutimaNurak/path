@@ -2,9 +2,6 @@
 namespace App\Http\Controllers;
 use App\JobModel;
 use App\RouteModel;
-use PDF;
-use DB;
-use Excel;
 use Illuminate\Http\Request;
 
 class JobController extends Controller {
@@ -62,45 +59,10 @@ class JobController extends Controller {
         return redirect('/job'); 
     }
 
-    //Detele
     public function destroy($id_job) {
            $model = new JobModel();        
            $model->delete($id_job);
 
         return redirect('/job');
-    }
-
-    //Export Excel
-
-    public function index2(){
-        $customer_data = DB::tabel('Customer')->get();
-        return view('excel')->with('customer_data',$customer_data);
-    }
-
-
-    public function excel($id_job) {
-            $model = new JobModel();        
-            $table_job = $model->select_id($id_job);
-
-            $model_route = new RouteModel();     
-            $table_route = $model_route->select_position_route_customer($id_job);
-
-            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
-
-        return view('excel',$data); 
-    }
-
-    //Export PDF
-    public function downloadpdf ($id_job) {
-            $model = new JobModel();        
-            $table_job = $model->select_id($id_job);
-
-            $model_route = new RouteModel();     
-            $table_route = $model_route->select_position_route_customer($id_job);
-
-            $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
-
-            $pdf = PDF::loadView('pdf',$data);
-            return $pdf->stream('pdf');
     }
 }

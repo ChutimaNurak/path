@@ -13,7 +13,10 @@ class RouteModel {
 		$sql = "select * from route where ID_Route = {$id_route}";
 		return DB::select($sql, []);
 	}
-	
+	// function select_routebyjob($id_job) {
+	// 	$sql = "select id_route from route where ID_Job = {$id_job}";
+	// 	return DB::select($sql,[]);
+	// }
 	//View ID_Job  JobController
 	function select_position_route_customer($id_job){
 		$sql = "select * FROM customer 
@@ -31,11 +34,6 @@ class RouteModel {
 				WHERE job.ID_Job = {$id_job}";
 		return DB::select($sql,[]);
 	}
-
-	// function select_id_job($id_job){
-	// 	$sql = "select * from route where ID_Job = {$id_job}";
-	// 	return DB::select($sql, []);
-	// }
 
 	function select_search($q){
 		$sql = "select * from route where ID_Route like '%{$q}%'";
@@ -56,7 +54,6 @@ class RouteModel {
 				District     = {$district},
 				Time 		 = {$time}
 			where ID_Route = {$id_route}";
-			// echo $sql;
 		DB::update($sql, []);
 	}
 	
@@ -64,5 +61,4 @@ class RouteModel {
 		$sql = "delete from route where ID_Route = {$id_route}";
 		DB::delete($sql, []);
 	}
-
 }

@@ -220,7 +220,7 @@ this array to grant expanded functionality to your applications.
         Barryvdh\DomPDF\ServiceProvider::class,
 
     //Excal
-       // Maatwebsite\Excel\ExcelServiceProvider::class,
+       Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -286,7 +286,7 @@ this array to grant expanded functionality to your applications.
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         //Excel
-        //'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
      ],
 
 ];

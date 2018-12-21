@@ -35,27 +35,8 @@
     }
 </style>
 
-  @forelse($table_job as $row) 
-      <div class="line"> 
-          <span>รหัสรอบงาน : </span> 
-          <span>{{ $row->ID_Job }}</span> 
-      </div> 
-
-      <div class="line"> 
-          <span>ปี/เดือน/วัน และเวลา ที่เพิ่มรอบงาน : </span> 
-          <span>{{ $row->Date }}</span> 
-      </div> 
-
-      <div class="line"> 
-          <span>ระยะทางรวม(กิโลเมตร) : </span> 
-          <span>{{ $row->Distance_Sum }}</span> 
-      </div> 
-
-      <div class="line"> 
-          <span>ระยะเวลารวม(นาที) : </span> 
-          <span>{{ $row->Time_Sum }}</span> 
-      </div> 
-<p style="text-align: center!important;font-size:32px;">รอบงาน {{ $row->Name_Job }} </p>
+@forelse($table_job as $row)   
+  <p style="text-align: center!important;font-size:32px;">รอบงาน {{ $row->Name_Job }} </p>
     <table>
         <tr>
             <td style="text-align: center!important;">ลำดับที่</td>
@@ -72,11 +53,22 @@
             <td id="dis" style="text-align: center!important;" >{{ $row->District}} </td>
             <td style="text-align: center!important;">{{ $row->Time}}</td>
         </tr>
-    @endforeach
-  </table>
+      @endforeach
+    </table>
+@empty 
+@endforelse
+<br>
+@forelse($table_job as $row) 
+      <div class="line" style="text-align: right!important;" style="color: rgb();"> 
+          <span>ระยะทางรวม : {{ $row->Distance_Sum }} กม.</span> 
+      </div> 
 
-
- <div id="map"></div>
+      <div class="line" style="text-align: right!important;"> 
+          <span>ระยะเวลารวม : {{ $row->Time_Sum }} นาที</span> 
+      </div> 
+@empty 
+@endforelse
+<!-- <div id="map"></div>
   <script>
   function initMap() {
     var mapOptions = {
@@ -117,6 +109,4 @@
     };
   
   </script> 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script>
-@empty 
-@endforelse
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script> -->

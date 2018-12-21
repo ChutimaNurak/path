@@ -29,11 +29,12 @@
 		<span>{{ $row->Email }}</span> 
 	</div> 
 	<div class="line"> 
-			<a href="{{ url('/') }}/position/create?ID={{ $row->ID }}" class="btn btn-warning"> เพิ่มข้อมูลที่อยู่ลูกค้า </a>
+			<a href="{{ url('/') }}/position/create?ID={{ $row->ID }}" class="btn btn-warning"> 
+				<i class="fa fa-plus "></i> ที่อยู่ลูกค้า </a>
 			<a href="{{ url('/') }}/customer" class="btn btn-primary">back</a>
 	</div> 
 
-<h2>ข้อมูลที่อยู่ของ {{ $row->Name }} </h2>
+<h2>ที่อยู่ของ {{ $row->Name }} </h2>
 <br>
 
 <!-- ตาราง -->
@@ -65,11 +66,16 @@
 		<td style="text-align: center!important;">{{ $row->Longitude }}</td>
 		<td style="text-align: center!important;">
 			<form class="inline" action="{{ url('/') }}/position/{{ $row->ID_Position }}?ID={{ $row->ID }}" method="POST"> 
-			{{ csrf_field() }} 
-			{{ method_field('DELETE') }} 
-			<a href="{{ url('/') }}/position/{{ $row->ID_Position }}/edit"class="btn btn-outline btn-success">edit</a>
-			<button type="submit" class="btn btn-danger">Delete</button> 
-			
+				{{ csrf_field() }} 
+				{{ method_field('DELETE') }} 
+				<!--but edit -->
+				<a href="{{ url('/') }}/position/{{ $row->ID_Position }}/edit"class="btn btn-outline btn-success">
+					<i class="fa fa-edit"></i>
+				</a>
+				<!-- but detele -->
+				<button type="submit" class="btn btn-danger">
+					<i class="fa  fa-trash-o "></i>
+				</button> 
 			</form>
 		</td>
 	</tr>

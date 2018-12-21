@@ -83,4 +83,5 @@ class PositionController extends Controller {
 
         return redirect("/customer/{$id}");
     }
+   
 }

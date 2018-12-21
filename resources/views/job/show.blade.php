@@ -1,6 +1,6 @@
 @extends('theme.default')
 @section('content')
-@forelse($table_job as $row) 
+
 <style>
   	h2{
   		  text-align: center!important;
@@ -34,19 +34,26 @@
 </style>
 
 
-<!-- Export  -->
+
 <br>
-  <a href="{{url('/')}}/job/{{$ID_Job}}/pdf" class="btn pull-right hidden-print">Export to PDF </a>
+<!-- Export PDF  -->
+  <a href="{{url('/')}}/job/{{$ID_Job}}/pdf" class="btn pull-right hidden-print">
+    <i class="fa fa-cloud-download "></i>  Export to PDF 
+  </a>
   <!-- <button onclick="window.print()" class="button button5 pull-right hidden-print" >พิมพ์รายงาน</button> -->
 
-	<!-- <a href="{{url('/')}}/excel/{{$row->ID_Job}}" class="btn pull-right hidden-print">Export to Excel</a> -->
-<br>
-
+<!-- Export Excal  -->
+ 	<a href="{{url('/')}}/job/{{$ID_Job}}/excel" class="btn pull-right hidden-print">
+    <i class="fa fa-cloud-download "></i>  Export to Excel
+  </a>
+<br> 
+@forelse($table_job as $row) 
 <h2>รอบงาน {{ $row->Name_Job }} </h2>
 
 	<div class="line"> 
 		<strong>รหัสรอบงาน : </strong> 
-		<span>{{ $row->ID_Job }}</span> 
+		<span>{{ $row->ID_Job }}</span>
+    <input type="hidden" name="id_job" value="{{$row->ID_Job}}" id="id_job"> 
 	</div> 
 
 	<div class="line"> 
@@ -55,50 +62,62 @@
 	</div> 
 
 	<div class="line"> 
-		<strong>ระยะทางรวม (กิโลเมตร): </strong> 
-		<span>{{ $row->Distance_Sum }}</span> 
+		<strong>ระยะทางรวม : </strong> 
+		<span>{{ $row->Distance_Sum }} กิโลเมตร</span> 
 	</div> 
 
 	<div class="line"> 
-		<strong>ระยะเวลารวม (นาที): </strong> 
-		<span>{{ $row->Time_Sum }}</span> 
+		<strong>ระยะเวลารวม : </strong> 
+		<span>{{ $row->Time_Sum }} นาที</span> 
 	</div> 
 	
 	<div class="line"> 
-		<a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}" class="btn btn-warning hidden-print">เพิ่มข้อมูลเส้นทาง </a>
-		<a href="{{ url('/') }}/job" class="btn btn-primary hidden-print">back</a>
+    <!-- but add route -->
+		<a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}" class="btn btn-warning hidden-print">
+      <i class="fa fa-plus "></i> เส้นทาง
+    </a>
+    <!-- back -->
+		<a href="{{ url('/') }}/job" class="btn btn-primary hidden-print">Back
+    </a>
 	</div> 
 
 <!-- หาเส้นทาง -->
-    <a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn btn-info pull-right hidden-print">คำนวนเส้นทาง</a>
-<br><br><br>
+    <!-- <a href="{{ url('/') }}/route/dis/{{$row->ID_Job}}" class="btn btn btn-info pull-right hidden-print">คำนวนเส้นทาง</a> -->
+<br><br><br> 
 
 	<table class="table">
 		<tr>
-			<th>ชื่อ - นามสกุล</th>
-			<th style="text-align: center!important;">ตำแหน่ง</th>
+      <th style="text-align: center!important;">ลำดับที่</th>
+			<th >ชื่อ - นามสกุล</th>
+			<th >ตำแหน่ง</th>
 			<th >ละติจูด</th>
 			<th >ลองจิจูด</th>
-			<th style="text-align: center!important;">ลำดับที่</th>
-			<th style="text-align: center!important;">ระยะทาง(กิโลเมตร)</th>
-			<th style="text-align: center!important;">เวลา(นาที)</th>
+			<th style="text-align: center!important;">ระยะทาง</th>
+			<th style="text-align: center!important;">เวลา</th>
 			<th></th>
 		</tr>
 		@foreach($table_route as $row)
+    
 		<tr>
+      <td style="text-align: center!important;">{{ $row->Sequence}} </td>
 			<td>{{ $row->Name }}</td>
 			<td>{{ $row->House_number }} ม.{{ $row->Village }} ต.{{$row->Subdistrict}} อ.{{$row->City}} จ.{{ $row->Province }} </td>
-			<td style="text-align: center!important;">{{ $row->Latitude }} </td>
-			<td style="text-align: center!important;">{{ $row->Longitude }} </td>
-			<td style="text-align: center!important;">{{ $row->Sequence}} </td>
-			<td id="dis" style="text-align: center!important;" >{{ $row->District}} </td>
-			<td style="text-align: center!important;">{{ $row->Time}}</td>
+			<td >{{ $row->Latitude }} </td>
+			<td >{{ $row->Longitude }} </td>
+			<td id="dis" style="text-align: center!important;" >{{ $row->District}} กม.</td>
+			<td style="text-align: center!important;">{{ $row->Time}} นาที</td>
 			<td style="text-align: center!important;">
 				<form class="inline" action="{{ url('/') }}/route/{{ $row->ID_Route }}?ID_Job={{$ID_Job}}" method="POST"> 
 				{{ csrf_field() }} 
 				{{ method_field('DELETE') }} 
-				<a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit" class="btn btn-outline btn-success hidden-print">edit</a>
-				<button type="submit" class="btn btn-danger hidden-print">Delete</button> 
+        <!--but edit -->
+				<a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit" class="btn btn-outline btn-success hidden-print">
+          <i class="fa fa-edit"></i>
+        </a>
+				<!--but delete -->
+        <button type="submit" class="btn btn-danger hidden-print">
+          <i class="fa  fa-trash-o "></i>
+        </button> 
 				</form>
 		</tr>
     <input type="hidden" name="Latitude" value="{{$row->Latitude}}">
@@ -116,15 +135,14 @@
       function initMap() {
         var lat = document.getElementsByName('Latitude');
         var lng = document.getElementsByName('Longitude');
-        var origin = [{lat: lat[0].value, lng: lng[0].value}];
-        var destination = {lat: lat[lat.length - 1].value, lng: lng[lng.length - 1].value};
+        var origin = {location: new google.maps.LatLng(14.133469,100.616013)}; //ม.วไล
+        var destination = {lat: lat[lat.length - 1].value, lng: lng[lng.length - 1].value}; //จุดสุดท้าย
         var waypoints = [];
-        for(var i = 1 ;i<lat.length -1;i++) {
-          waypoints.push({
-            lat: lat[i].value,
-            lng: lng[i].value
-          })
+        // console.log(waypoints);
+        for(var i = 0 ;i<lat.length -1;i++) {
+          waypoints.push({location: new google.maps.LatLng(lat[i].value, lng[i].value)});
         }
+        // console.log("NEW waypoints", waypoints);
 
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
@@ -142,11 +160,12 @@
           computeTotalDistance(directionsDisplay.getDirections());
         });
 
-        displayRoute(new google.maps.LatLng(lat[0].value, lng[0].value), //origin จุดเริ่มต้น
-                     new google.maps.LatLng(lat[lat.length -1].value, lng[lng.length-1].value), //destination จุดสินสุด
+        displayRoute(new google.maps.LatLng(14.133331, 100.611465), //origin จุดเริ่มต้น
+                    //destination จุดสินสุด
+                     new google.maps.LatLng(lat[lat.length -1].value, lng[lng.length-1].value), 
                       directionsService, //service
                       directionsDisplay, //display
-                      waypoints
+                      waypoints //จุดถัดไป
                     );
       }
       //เส้นทางที่เรียงลำดับแล้ว
@@ -154,9 +173,7 @@
         service.route({
           origin: origin,
           destination: destination,
-          // จุดถดไป
-          waypoints: [{location: new google.maps.LatLng(14.0824618, 100.6172948)}, 
-                      {location: new google.maps.LatLng(14.0432203, 100.6156019)}],
+          waypoints: waypoints,
           travelMode: 'DRIVING',
           avoidTolls: true
         }, function(response, status) {
@@ -170,18 +187,89 @@
 
       //Total Distance
       function computeTotalDistance(result) {
+        var route_data = @json($table_route); 
         var total = 0;
         var myroute = result.routes[0];
         for (var i = 0; i < myroute.legs.length; i++) {
-          total += myroute.legs[i].distance.value;
+          //d ระยะทาง กม.
+          d = myroute.legs[i].distance.value;
+          total += d;
+          // console.log('ระยะทาง',d/1000);
+          //t ระยะเวลา นาที
+          t = myroute.legs[i].duration.value;
+          // console.log('ระยะเวลา',t/60);
+
+          // console.log('รหัสรอบงาน',route_data[i].ID_Route);
+
+          $.ajax({
+           type: "POST",  //ชนิด
+           url: "{{ url('/') }}/test/"+route_data[i].ID_Route, //action 
+           data: {
+                    //name:value
+                    "District": d/1000,
+                    "Time": t/60,
+                    "_method": "PUT",
+                    "_token":"{{ csrf_token() }}",
+                 },
+           success: function(msg){ //ทำงานเสร็จจะทำอะไรต่อ
+               }
+         });
+
         }
         total = total / 1000;
         document.getElementById('total').innerHTML = total + ' km';
+        // console.log('',result);
+        // console.log('',route_data);
       }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&callback=initMap">
     </script>
+
+<!-- 
+  <div id="map"></div>
+    <script>
+    function initMap() {
+      var mapOptions = {
+        center: {lat: 13.847860, lng: 100.604274},
+        zoom: 11,
+      }
+
+    var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
+
+    var marker, info;
+
+    // อ่านค่า Json แล้ว Loop ค่าเพื่อปักหมุดลงใน Map
+    $.getJSON( "{{ url('/') }}/route/json/{{$row->ID_Job}}", function( jsonObj ) {
+        console.log( jsonObj );
+        
+          //*** loop
+          $.each(jsonObj, function(i, item){
+          
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(item.Latitude, item.Longitude),
+            map: maps,
+            title: item.LOC_NAME
+          });
+        //ตั้งค่าmap ให้อยู่ใกล้เคียงต่ำแหน่งเริ่มแรก
+        // maps.setCenter(new google.maps.LatLng(item.Latitude,item.Longitude));
+        maps.setCenter({lat:item.Latitude,lng:item.Longitude});
+
+        info = new google.maps.InfoWindow();
+        
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            info.setContent(item.LOC_NAME);
+            info.open(maps, marker);
+            }
+          })(marker, i));
+        }); // loop
+      });
+    };
+  
+  </script> 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script> -->
 @empty 
 @endforelse
+
 @endsection

@@ -15,15 +15,8 @@ Route::get('/home', function () {
     return view('home');
 });
 
-//Marker Animations With setTimeout()
-Route::get('/test', function () {
-    return view('test');
-});
-
-//Algorithm
-Route::get('/test3', function () {
-    return view('test3');
-});
+//up route
+ Route::resource('/test','ExcelController');
 
 
 //Customer
@@ -45,13 +38,11 @@ Route::resource('/position','PositionController');
 
 //Job
 Route::resource('/job','JobController');
-//PDF
-Route::get('/job/{ID_Job}/pdf', 'JobController@downloadpdf');
-//excel
-// Route::get('/excel','JobController@index2');
 
 
 //Route
 Route::resource('/route', 'RouteController');
-Route::get('/route/dis/{ID_Job}','RouteController@dis');
-Route::get('/route/json/{ID_Job}','RouteController@json');
+//PDF
+Route::get('/job/{ID_Job}/pdf', 'RouteController@downloadpdf');
+//excel
+Route::get('/job/{ID_Job}/excel','RouteController@excal');
