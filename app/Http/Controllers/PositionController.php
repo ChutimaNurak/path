@@ -6,15 +6,17 @@ use Illuminate\Http\Request;
 class PositionController extends Controller {
  
     public function index(Request $request) {
+
             $model = new PositionModel();
             $q = $request->input('q');        
-            $table_position = $model->select_search($q);
+            $table_position = $model->select_search($q); //search Zip_code
             $data = ['table_position' => $table_position,'q' => $q ];     
 
         return view('position/index',$data); 
     }
 
     public function create(Request $request) {
+
             $id = $request->input('ID');
             $data =['ID' => $id];
 
@@ -23,6 +25,7 @@ class PositionController extends Controller {
 
 
     public function store(Request $request) {
+
             $id = $request->input('ID');
             $house_number = $request->input('House_number');
             $village = $request->input('Village');
@@ -42,6 +45,7 @@ class PositionController extends Controller {
     }
    
     public function show($id_position) {
+
             $model = new PositionModel();        
             $table_position = $model->select_id($id_position);       
             $data = ['table_position' => $table_position]; 
@@ -50,6 +54,7 @@ class PositionController extends Controller {
     }
     
     public function edit($id_position) {
+
             $model = new PositionModel();        
             $table_position = $model->select_id($id_position);        
             $data = ['table_position' => $table_position];   
@@ -58,6 +63,7 @@ class PositionController extends Controller {
     }
     
     public function update(Request $request, $id_position){
+
             $id = $request->input('ID');        
             $house_number = $request->input('House_number');        
             $village = $request->input('Village');        
@@ -77,6 +83,7 @@ class PositionController extends Controller {
 
     
     public function destroy(Request $request, $id_position) {
+        
            $model = new PositionModel();        
            $model->delete($id_position);
            $id = $request->input('ID');

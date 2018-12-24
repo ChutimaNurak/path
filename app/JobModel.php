@@ -13,6 +13,7 @@ class JobModel {
 		return DB::select($sql, []);
 	}
 
+	//search Name_Job
 	function select_search($q){
 		$sql = "select * from job where Name_Job like '%{$q}%'";
 		return DB::select($sql, []);
@@ -33,7 +34,13 @@ class JobModel {
 				where ID_Job = {$id_job}";
 		DB::update($sql, []);
 	}
-	//อัพเวลา RouteController
+
+	function delete($id_job){
+		$sql = "delete from job where ID_Job = {$id_job}";
+		DB::delete($sql, []);
+	}
+
+	//อัพเวลา RouteController function dis
 	function up_time($distane_sum,$time_sum,$id_job){
 		$sql = "update job
 				set 
@@ -42,10 +49,4 @@ class JobModel {
 				where ID_Job = {$id_job} ";
 		DB::update($sql, []);
 	}
-
-	function delete($id_job){
-		$sql = "delete from job where ID_Job = {$id_job}";
-		DB::delete($sql, []);
-	}
-	
 }

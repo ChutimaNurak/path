@@ -8,11 +8,12 @@ class CustomerModel {
 		return DB::select($sql, []);
 	}
 
+	//เลือกโชว์เฉพาะ ID (show.blade.php CustomerController)
 	function select_id($id_customer){
 		$sql = "select * from customer where ID = {$id_customer}";
 		return DB::select($sql, []);
 	}
-
+	//search name
 	function select_search($q){
 		$sql = "select * from customer where Name like '%{$q}%'";
 		return DB::select($sql, []);

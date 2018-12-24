@@ -1,129 +1,15 @@
-@extends('theme.default')
-@section('content')
-
-<style>
-  	h2{
-  		  text-align: center!important;
-  	}
-  	table{
-  		  width: 100%;
-  	}  
-  	html {
-  		  height: 100%;
-  		  margin: 0;
-  		  padding: 0;
-  	}
-  	#map {
-  		  height: 500px;
-  		  width: 100%;
-  	}
-/*  	#right-panel {
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-    }
-  	#right-panel select, #right-panel input {
-        font-size: 15px;
-    }
-    #right-panel select {
-        width: 100%;
-    }
-    #right-panel i {
-        font-size: 12px;
-    }*/
-</style> <br>
-
-<!-- Export PDF  -->
-    <a href="{{url('/')}}/job/{{$ID_Job}}/pdf" class="btn pull-right hidden-print">
-      <i class="fa fa-cloud-download "></i>  Export to PDF 
-    </a>
-<!--   <button onclick="window.print()" class="button button5 pull-right hidden-print" >พิมพ์รายงาน</button> -->
-
-<!-- datd job -->
-@forelse($table_job as $row) 
-<h2>รอบงาน {{ $row->Name_Job }} </h2>
-
-	<div class="line"> 
-		<strong>รหัสรอบงาน : </strong> 
-		<span>{{ $row->ID_Job }}</span>
-    <input type="hidden" name="id_job" value="{{$row->ID_Job}}" id="id_job"> 
-	</div> 
-
-	<div class="line"> 
-		<strong>ปี/เดือน/วัน และเวลา ที่เพิ่มรอบงาน: </strong> 
-		<span>{{ $row->Date }}</span> 
-	</div> 
-
-	<div class="line"> 
-		<strong>ระยะทางรวม : </strong> 
-		<span>{{ $row->Distance_Sum }} กิโลเมตร</span> 
-	</div> 
-
-	<div class="line"> 
-		<strong>ระยะเวลารวม : </strong> 
-		<span>{{ $row->Time_Sum }} นาที</span> 
-	</div> 
-
-	
-	<div class="line"> 
-    <!-- but add route -->
-		<a href="{{ url('/') }}/route/create?ID_Job={{$ID_Job}}" class="btn btn-warning hidden-print">
-        <i class="fa fa-plus "></i> เส้นทาง</a>
-    <!-- but back -->
-		<a href="{{ url('/') }}/job" class="btn btn-primary hidden-print">Back</a>
-	</div> <br><br><br> 
-
-  <!-- tabel route -->
-	<table class="table">
-		<tr>
-        <th style="text-align: center!important;">ลำดับที่</th>
-  			<th >ชื่อ - นามสกุล</th>
-  			<th >ตำแหน่ง</th>
-  			<th >ละติจูด</th>
-  			<th >ลองจิจูด</th>
-  			<th style="text-align: center!important;">ระยะทาง</th>
-  			<th style="text-align: center!important;">ระยะเวลา</th>
-  			<th ></th>
-		</tr>
-		@foreach($table_route as $row)
-    
-		<tr>
-        <td style="text-align: center!important;">{{ $row->Sequence}} </td>
-  			<td>{{ $row->Name }}</td>
-  			<td>{{ $row->House_number }} ม.{{ $row->Village }} ต.{{$row->Subdistrict}} อ.{{$row->City}} จ.{{ $row->Province }} </td>
-  			<td >{{ $row->Latitude }} </td>
-  			<td >{{ $row->Longitude }} </td>
-  			<td id="dis" style="text-align: center!important;" >{{ $row->District}} กม.</td>
-  			<td style="text-align: center!important;">{{ $row->Time}} นาที</td>
-  			<td style="text-align: center!important;">
-      				<form class="inline" action="{{ url('/') }}/route/{{ $row->ID_Route }}?ID_Job={{$ID_Job}}" method="POST"> 
-          				{{ csrf_field() }} 
-          				{{ method_field('DELETE') }} 
-                  <!--but edit -->
-          				<a href="{{ url('/') }}/route/{{ $row->ID_Route }}/edit" class="btn btn-outline btn-success hidden-print">
-                      <i class="fa fa-edit"></i></a>
-                  <!--but delete -->
-                  <button type="submit" class="btn btn-danger hidden-print">
-                      <i class="fa  fa-trash-o "></i>
-                  </button> 
-      				</form>
-		</tr>
-      <input type="hidden" name="Latitude" value="{{$row->Latitude}}">
-        <input type="hidden" name="Longitude" value="{{$row->Longitude}}">
-		@endforeach
-	</table><br><br>
-
 <!-- Google Map -->
     <div id="map"></div>
-<!-- <div id="right-panel">
-      <p>Total Distance: <span id="total"></span></p>
-    </div>  -->
+<!-- <div id="right-panel"> -->
+      <!-- <p>Total Distance: <span id="total"></span></p> -->
+    </div> 
     <script>
       function initMap() {
         var lat = document.getElementsByName('Latitude');
         var lng = document.getElementsByName('Longitude');
         var origin = {location: new google.maps.LatLng(14.133469,100.616013)}; //จุดเริ่มต้น ม.วไล
-        var destination = {lat: lat[lat.length - 1].value, lng: lng[lng.length - 1].value}; //จุดสุดท้าย
+        var destination = {lat: lat[lat.length - 1].value, lng: lng[lng.length - 1].value}; 
+        //จุดสุดท้าย
         var waypoints = []; //จุดถัดไป
         // console.log(waypoints);
         for(var i = 0 ;i<lat.length -1;i++) {
@@ -202,9 +88,10 @@
            //       }
            // });
         }
-        // total = total / 1000;
-        // document.getElementById('total').innerHTML = total + ' km';/**/
-        // console.log('',result.routes[0].legs);
+        total = total / 1000;
+        document.getElementById('total').innerHTML = total + ' km';
+        // console.log('',result);
+        // console.log('',route_data);
       }
     </script>
 
@@ -255,7 +142,3 @@
   
   </script> 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script> -->
-@empty 
-@endforelse
-
-@endsection

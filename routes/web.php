@@ -45,4 +45,4 @@ Route::resource('/route', 'RouteController');
 //PDF
 Route::get('/job/{ID_Job}/pdf', 'RouteController@downloadpdf');
 //excel
-Route::get('/job/{ID_Job}/excel','RouteController@excal');
+// Route::get('/job/{ID_Job}/excel','RouteController@excel');

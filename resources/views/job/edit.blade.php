@@ -23,7 +23,7 @@
 		<br>
 			<div class="line"> 
 				<strong>ปี/เดือน/วัน และเวลา : </strong> 
-				<input class="form-control" type="text" name="Date"  value="{{ $row->Date }}"> 
+				<input class="form-control" type="text" name="Date"  value="{{ $row->Date }}" readonly> 
 			</div> 
 		<br>
 			<div class="line"> 

@@ -3,18 +3,6 @@ namespace App;
 use Illuminate\Support\Facades\DB;
 class PositionModel {
 
-	//CONCAT Position
-	function select_all() {
-		$sql = "select ID_Position, CONCAT('จ.',Province,', ','อ.',City,', ',Name) AS Name_Position FROM position INNER JOIN customer ON position.ID = customer.ID Order by Province";
-		return DB::select($sql, []);
-	}
-
-	//เลือกโชว์ตำแหน่งเฉพาะ ID
-	function select_id_customer($id_customer){
-			$sql = "select * from Position where ID = {$id_customer}";
-		return DB::select($sql, []);
-	}
-
 	function select() {
 			$sql = "select * from position";
 		return DB::select($sql, []);
@@ -59,5 +47,17 @@ class PositionModel {
 	function delete($id_position){
 		$sql = "delete from position where ID_Position = {$id_position}";
 		DB::delete($sql, []);
+	}
+
+		//CONCAT Position  (create.blade.php RouteController)
+	function select_all() {
+		$sql = "select ID_Position, CONCAT('จ.',Province,', ','อ.',City,', ',Name) AS Name_Position FROM position INNER JOIN customer ON position.ID = customer.ID Order by Province";
+		return DB::select($sql, []);
+	}
+
+	//เลือกโชว์ position เฉพาะของ ID (show.blade.php CustomerController)
+	function select_id_customer($id_customer){
+			$sql = "select * from Position where ID = {$id_customer}";
+		return DB::select($sql, []);
 	}
 }

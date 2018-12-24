@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller {
     public function index(Request $request) {
+
             $model = new JobModel();
-            // search Name_Job
             $q = $request->input('q');        
-            $table_job = $model->select_search($q);
+            $table_job = $model->select_search($q);  // search Name_Job
             $data = ['table_job' => $table_job,'q' => $q ];        
 
         return view('job/index',$data); 
@@ -20,6 +20,7 @@ class JobController extends Controller {
     }
     
     public function store(Request $request) {
+
             $name_job = $request->input('Name_Job');
             $model = new JobModel();
             $model->insert($name_job);
@@ -28,6 +29,7 @@ class JobController extends Controller {
     }
    
     public function show($id_job) {
+
             $model = new JobModel();        
             $table_job = $model->select_id($id_job);
 
@@ -39,7 +41,9 @@ class JobController extends Controller {
         return view('job/show',$data); 
     }
     
+    //โชว์เฉพาะ ID 
     public function edit($id_job) {
+
             $model = new JobModel();        
             $table_job = $model->select_id($id_job);        
             $data = ['table_job' => $table_job]; 
@@ -48,6 +52,7 @@ class JobController extends Controller {
     }
     
     public function update(Request $request, $id_job) {
+
             $name_job = $request->input('Name_Job');
             $date = $request->input('Date');        
             $distance_sum = $request->input('Distance_Sum');  
@@ -60,6 +65,7 @@ class JobController extends Controller {
     }
 
     public function destroy($id_job) {
+        
            $model = new JobModel();        
            $model->delete($id_job);
 
