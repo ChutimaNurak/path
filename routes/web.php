@@ -44,5 +44,11 @@ Route::resource('/job','JobController');
 Route::resource('/route', 'RouteController');
 //PDF
 Route::get('/job/{ID_Job}/pdf', 'RouteController@downloadpdf');
-//excel
-// Route::get('/job/{ID_Job}/excel','RouteController@excel');
+
+
+// Route::resource('/jobA','JobAController');
+
+// //Route
+// Route::resource('/routeA', 'RouteAController');
+// //PDF
+// Route::get('/jobA/{ID_JobA}/pdf', 'RouteAController@downloadpdf');

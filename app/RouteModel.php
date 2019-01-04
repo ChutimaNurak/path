@@ -37,6 +37,20 @@ class RouteModel {
 			where ID_Route = {$id_route}";
 		DB::update($sql, []);
 	}
+
+	function update_old($id_job, $id_position, $sequence, $district, $time,$districtold,$timeold,$id_route){
+		$sql = "update route 
+			set 
+				ID_Job 	     	= {$id_job},
+				ID_Position  	= {$id_position}, 
+				Sequence     	= {$sequence},
+				District     	= {$district},
+				Time		 	= {$time},
+				Districtold     = {$districtold},
+				Timeold 		= {$timeold}
+			where ID_Route = {$id_route}";
+		DB::update($sql, []);
+	}
 	
 	function delete($id_route){
 		$sql = "delete from route where ID_Route = {$id_route}";

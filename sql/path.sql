@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2018 at 09:07 PM
+-- Generation Time: Jan 04, 2019 at 03:29 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -40,16 +40,16 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`ID`, `Name`, `Telephone`, `Email`) VALUES
-(1, 'ชุติมา นุรักษ์', '026-5665665', 'yjuyhpr@gmail.com'),
-(2, 'สมใจ อาสา', '025-6895565', 'ihgnvpr@gmail.com'),
-(3, 'สามิน อินพุต', '035-9824652', 'oskmfoljer@gmail.com'),
-(4, 'มานี มีบุญ', '097-5464366', 'ihgnvpr@gmail.com'),
-(5, 'มา มีบุญ', '098-5361270', 'ihgnvpr@gmail.com'),
-(6, 'มานิดา นุ่นแก้ว', '098-7654253', 'ihgnvpr@gmail.com'),
-(7, 'สายใจ ทิพย์งาม', '082-4561238', 'ihgnvpr@gmail.com'),
-(8, 'นามี ใจดี', '098-5361275', 'ihgnvpr@gmail.com'),
-(9, 'มานี อาสา', '098-7541230', 'ihgnvpr@gmail.com'),
-(10, 'ชาตรี ไหมพรหม', '084-6521635', 'nsnnnlkcf@gmail.com');
+(1, 'บุญสิตา ธรรมคณา', '093-8453458', 'num@gmail.com'),
+(2, 'นรวิชญ์ จันแก้ว', '098-4352356', 'na@gmail.com'),
+(3, 'นัทธมน ใหม่นุ้ย', '084-4458493', 'nat@gmail.com'),
+(4, 'จุฑามศ ทับเมือง', '092-3238979', 'an@gmail.com'),
+(5, 'ชุติมา นุรักษ์', '099-5239602', 'nan@gmail.com'),
+(6, 'ศุภลักษณ์ มุกสิ', '098-7898757', 'ooam@gmail.com'),
+(7, 'ศุกลปัก ดวงอาจ', '096-3847938', 'par@gmail.com'),
+(8, 'จารุวรรณ สาระบุตร', '098-2678769', 'nin@gmail.com'),
+(9, 'ศุภลักษณ์ ภูอุทา', '098-3748920', 'Jun@gmail.com'),
+(10, 'ศิริรัต เชื่อวงศ์', '087-9876567', 'mook@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -70,9 +70,7 @@ CREATE TABLE `job` (
 --
 
 INSERT INTO `job` (`ID_Job`, `Date`, `Distance_Sum`, `Time_Sum`, `Name_Job`) VALUES
-(1, '2015-10-16 11:45:27', 0, 0, 'ใต้'),
-(2, '2016-10-16 11:45:27', 0, 0, 'อีสาร'),
-(23, '2018-10-20 01:09:31', 0, 0, '0');
+(25, '2019-01-04 20:47:03', 210, 252, 'นวนคร-ปะตูน้ำพระอิน-วังน้อย');
 
 -- --------------------------------------------------------
 
@@ -85,7 +83,7 @@ CREATE TABLE `position` (
   `ID` int(10) NOT NULL COMMENT 'รหัสลูกค้า',
   `House_number` varchar(5) NOT NULL COMMENT 'บ้านเลขที่',
   `Village` varchar(5) NOT NULL COMMENT 'หมู่บ้าน',
-  `District` varchar(30) NOT NULL COMMENT 'ตำบล',
+  `Subdistrict` varchar(30) NOT NULL COMMENT 'ตำบล',
   `City` varchar(30) NOT NULL COMMENT 'อำเภอ',
   `Province` varchar(30) NOT NULL COMMENT 'จังหวัด',
   `Zip_code` varchar(5) NOT NULL COMMENT 'รหัสไปรษณีย์',
@@ -97,18 +95,18 @@ CREATE TABLE `position` (
 -- Dumping data for table `position`
 --
 
-INSERT INTO `position` (`ID_Position`, `ID`, `House_number`, `Village`, `District`, `City`, `Province`, `Zip_code`, `Latitude`, `Longitude`) VALUES
-(1, 1, '301', '8', 'คลองชะอุ่น', 'พนม', 'สุราษฎร์ธานี', '84250', 0, 0),
-(2, 1, '4', '7', 'เชียงรากน้อย', 'บางประอิน', 'พระนครศรึอยุธยา', '13180', 0, 0),
-(3, 3, '9/85', '4', 'เชียงรากน้อย', 'บางประอิน', 'พระนครศรีอยุธยา', '13180', 0, 0),
-(4, 2, '66', '8', 'เชียงรากน้อย', 'บางประอิน', 'พระนครศรีอยุธยา', '13180', 0, 0),
-(5, 5, '99', '4', 'เชียงรากน้อย', 'บางประอิน', 'พระนครศรีอยุธยา', '13180', 0, 0),
-(6, 6, '50', '5', 'คลองหลวง', 'คลองหลวง', 'ปุมธานี', '12120', 0, 0),
-(7, 7, '65', '8', 'เชียงรากน้อย', 'บางประอิน', 'พระนครศรีอยุธยา', '13180', 0, 0),
-(8, 8, '9/85', '4', 'เชียงรากน้อย', 'บางประอิน', 'พระนครศรีอยุธยา', '13180', 0, 0),
-(9, 9, '72', '3', 'คลองหลวง', 'คลองหลวง', 'ปุมธานี', '12120', 0, 0),
-(10, 10, '44', '2', 'เชียงรากน้อย', 'บางประอิน', 'พระนครศรีอยุธยา', '13180', 0, 0),
-(11, 1, '32', '5', 'คลองชะอุ่น', 'พนม', 'สุราษฎร์ธานี', '84250', 12.8135289, 99.98659550000002);
+INSERT INTO `position` (`ID_Position`, `ID`, `House_number`, `Village`, `Subdistrict`, `City`, `Province`, `Zip_code`, `Latitude`, `Longitude`) VALUES
+(1, 3, '533', '8', 'สนับทึบ', 'วังน้อย', 'พระนครศรีอยุธยา', '13170', 14.2904443, 100.81858280000006),
+(2, 4, '55', '4', 'ลำไทร', 'วังน้อย', 'พระนครศรีอยุธยา', '13180', 14.2262517, 100.72729920000006),
+(3, 8, '532', '1', 'หนองปรือ', 'บางพลี', 'สมุทรปราการ', '10540', 13.6899991, 100.75011240000003),
+(4, 6, '30', '3', 'บวรนิเวศ', 'พระนคร', 'กรุงเทพมหานคร', '10200', 13.7603002, 100.49981700000001),
+(5, 9, '35', '5', 'บึงยี่โถ', 'ธัญบุรี', 'ปทุมธานี', '1213', 14.0079175, 100.70852809999997),
+(6, 10, '116', '20', 'คลองห้า', 'คลองหลวง', 'ปทุมธานี', '12120', 14.0452275, 100.71046799999999),
+(7, 1, '79', '1', 'ลำไทร', 'วังน้อย', 'พระนครศรีอยุธยา', '13170', 13.6742676, 101.06290390000004),
+(8, 7, '1/40', '15', 'คลองสอง', 'คลองหลวง', 'ปทุมธานี', '12110', 14.0693729, 100.65582059999997),
+(9, 5, '56', '13', 'ตลาดยอด', 'พระนคร', 'กรุงเทพมหานคร', '10200', 13.7596276, 100.49797639999997),
+(10, 2, '333', '15', 'ลำไทร', 'วังน้อย', 'พระนครศรีอยุธยา', '13170', 14.2326314, 100.71964980000007),
+(13, 4, '532', '5', 'สามวาตะวันตก', 'คลองสามวา', 'กรุงเทพมหานคร', '10510', 13.8654912, 100.70341009999993);
 
 -- --------------------------------------------------------
 
@@ -120,9 +118,9 @@ CREATE TABLE `route` (
   `ID_Route` int(10) NOT NULL COMMENT 'รหัสเส้นทาง',
   `ID_Position` int(10) NOT NULL COMMENT 'รหัสตำแหน่ง',
   `Sequence` int(10) NOT NULL DEFAULT '0' COMMENT 'ลำดับที่',
-  `District` int(10) NOT NULL DEFAULT '0' COMMENT 'ระยะทาง (กิโล)',
+  `District` int(11) NOT NULL DEFAULT '0' COMMENT 'ระยะทาง (กิโล)',
   `ID_Job` int(10) NOT NULL COMMENT 'รหัสรอบงาน',
-  `Time` int(10) NOT NULL DEFAULT '0' COMMENT 'ระยะเวลารวม (ชั่วโมง)'
+  `Time` int(11) NOT NULL DEFAULT '0' COMMENT 'ระยะเวลา (นาที)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -130,15 +128,12 @@ CREATE TABLE `route` (
 --
 
 INSERT INTO `route` (`ID_Route`, `ID_Position`, `Sequence`, `District`, `ID_Job`, `Time`) VALUES
-(1, 1, 588, 0, 4, 0),
-(2, 10, 5, 0, 4, 0),
-(3, 11, 0, 0, 4, 0),
-(4, 9, 0, 0, 1, 0),
-(5, 8, 0, 0, 1, 0),
-(6, 5, 0, 0, 1, 0),
-(7, 8, 0, 0, 2, 0),
-(8, 2, 0, 0, 1, 0),
-(10, 3, 0, 0, 8, 0);
+(255, 3, 5, 25, 25, 30),
+(256, 8, 1, 43, 25, 52),
+(257, 6, 2, 38, 25, 46),
+(258, 5, 3, 39, 25, 47),
+(259, 13, 4, 36, 25, 43),
+(260, 9, 6, 28, 25, 34);
 
 --
 -- Indexes for dumped tables
@@ -176,25 +171,25 @@ ALTER TABLE `route`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสลูกค้า', AUTO_INCREMENT=12;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสลูกค้า', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `ID_Job` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรอบงาน', AUTO_INCREMENT=24;
+  MODIFY `ID_Job` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรอบงาน', AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `ID_Position` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสตำแหน่ง', AUTO_INCREMENT=14;
+  MODIFY `ID_Position` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสตำแหน่ง', AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `route`
 --
 ALTER TABLE `route`
-  MODIFY `ID_Route` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสเส้นทาง', AUTO_INCREMENT=11;
+  MODIFY `ID_Route` int(10) NOT NULL AUTO_INCREMENT COMMENT 'รหัสเส้นทาง', AUTO_INCREMENT=261;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
