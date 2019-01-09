@@ -7,7 +7,7 @@
 -- Generation Time: Jan 07, 2019 at 08:32 AM
 -- =======
 -- Generation Time: Jan 04, 2019 at 03:29 PM
--- >>>>>>> 22c32a0b59353d21cd92816e8a9a174df1721f7e:sql/path.sql
+>>>>>>> 22c32a0b59353d21cd92816e8a9a174df1721f7e:sql/path.sql
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
