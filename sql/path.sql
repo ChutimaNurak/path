@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- <<<<<<< HEAD:sql/path.sql
+<<<<<<< HEAD:sql/path.sql
 -- Generation Time: Jan 07, 2019 at 08:32 AM
--- =======
+=======
 -- Generation Time: Jan 04, 2019 at 03:29 PM
 >>>>>>> 22c32a0b59353d21cd92816e8a9a174df1721f7e:sql/path.sql
 -- Server version: 10.1.32-MariaDB
