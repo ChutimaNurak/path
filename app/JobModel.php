@@ -34,6 +34,7 @@ class JobModel {
 				where ID_Job = {$id_job}";
 		DB::update($sql, []);
 	}
+	
 
 	function delete($id_job){
 		$sql = "delete from job where ID_Job = {$id_job}";

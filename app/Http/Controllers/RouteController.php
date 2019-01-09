@@ -5,8 +5,6 @@ use App\JobModel;
 use App\PositionModel;
 use PDF;
 use DB;
-use Excel;
-//use Maatwebsite\Excel\Excel;
 use Illuminate\Http\Request;
 use \stdClass;
 
@@ -208,7 +206,8 @@ class RouteController extends Controller{
         $latTo = deg2rad($latitudeTo);      //x2  
         $lonTo = deg2rad($longitudeTo);     //y2
         $lonDelta = $lonTo - $lonFrom;
-        $a = pow(cos($latTo) * sin($lonDelta), 2) + pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+        $a = pow(cos($latTo) * sin($lonDelta), 2) + pow(cos($latFrom) * sin($latTo) - sin($latFrom) * 
+            cos($latTo) * cos($lonDelta), 2);
         $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
 
         $angle = atan2(sqrt($a), $b);
@@ -225,21 +224,6 @@ class RouteController extends Controller{
             $table_route = $model->select_la_lon($id_job);
         return response()->json($table_route);
     }  
-
-    //Export Excel
-    // public function excel($id_job){
-    //         $model = new JobModel();        
-    //         $table_job = $model->select_id($id_job);
-
-    //         $model_route = new RouteModel();     
-    //         $table_route = $model_route->select_position_route_customer($id_job);
-
-    //         $data = ['table_job' => $table_job,'table_route' => $table_route, 'ID_Job' => $id_job]; 
-
-    //          return Excel::download($data ,"excel.xlsx");
-
-    //}
-
 }  
     
    

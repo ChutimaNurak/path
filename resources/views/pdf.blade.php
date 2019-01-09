@@ -31,15 +31,17 @@
       font-size: 19px;
     }
     div{
-       font-size: 18px;
+       font-size: 21px;
+        color: #FF6600;
+        text-align: right!important;
     }
 </style>
 @forelse($table_job as $row) 
-      <div class="line"> 
+      <div class="line" > 
           <span>ระยะทางรวม : {{ $row->Distance_Sum }} กม.</span> 
       </div> 
 
-      <div class="line"> 
+      <div class="line" > 
           <span>ระยะเวลารวม : {{ $row->Time_Sum }} นาที</span> 
       </div> 
 @empty 
@@ -68,45 +70,3 @@
 @empty 
 @endforelse
 <br>
-<!-- <div id="map"></div>
-  <script>
-  function initMap() {
-    var mapOptions = {
-      center: {lat: 13.847860, lng: 100.604274},
-      zoom: 11,
-    }
-
-    var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
-
-    var marker, info;
-
-    // อ่านค่า Json แล้ว Loop ค่าเพื่อปักหมุดลงใน Map
-    $.getJSON( "{{ url('/') }}/route/json/{{$row->ID_Job}}", function( jsonObj ) {
-        console.log( jsonObj );
-        
-          //*** loop
-          $.each(jsonObj, function(i, item){
-          
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(item.Latitude, item.Longitude),
-            map: maps,
-            title: item.LOC_NAME
-          });
-        //ตั้งค่าmap ให้อยู่ใกล้เคียงต่ำแหน่งเริ่มแรก
-        // maps.setCenter(new google.maps.LatLng(item.Latitude,item.Longitude));
-        maps.setCenter({lat:item.Latitude,lng:item.Longitude});
-
-        info = new google.maps.InfoWindow();
-        
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            info.setContent(item.LOC_NAME);
-            info.open(maps, marker);
-            }
-          })(marker, i));
-        }); // loop
-      });
-    };
-  
-  </script> 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script> -->

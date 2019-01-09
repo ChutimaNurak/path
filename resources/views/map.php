@@ -1,7 +1,7 @@
 <!-- Google Map -->
     <div id="map"></div>
-<!-- <div id="right-panel"> -->
-      <!-- <p>Total Distance: <span id="total"></span></p> -->
+<div id="right-panel">
+      <p>Total Distance: <span id="total"></span></p>
     </div> 
     <script>
       function initMap() {
@@ -68,25 +68,25 @@
             d = myroute.legs[i].distance.value;
             total += d;
             // console.log('ระยะทาง',d/1000);
-            //t ระยะเวลา นาที
-            // t = myroute.legs[i].duration.value;
+            t ระยะเวลา นาที
+            t = myroute.legs[i].duration.value;
             // console.log('ระยะเวลา',t/60);
 
             // console.log('รหัสรอบงาน',route_data[i].ID_Route);
 
-           //  $.ajax({
-           //   type: "POST",  //ชนิด
-           //   url: "{{ url('/') }}/test/"+route_data[i].ID_Route, //action 
-           //   data: {
-           //            //name:value
-           //            "District": d/1000,
-           //            "Time": t/60,
-           //            "_method": "PUT",
-           //            "_token":"{{ csrf_token() }}",
-           //         },
-           //   success: function(msg){ //ทำงานเสร็จจะทำอะไรต่อ
-           //       }
-           // });
+            $.ajax({
+             type: "POST",  //ชนิด
+             url: "{{ url('/') }}/test/"+route_data[i].ID_Route, //action 
+             data: {
+                      //name:value
+                      "District": d/1000,
+                      "Time": t/60,
+                      "_method": "PUT",
+                      "_token":"{{ csrf_token() }}",
+                   },
+             success: function(msg){ //ทำงานเสร็จจะทำอะไรต่อ
+                 }
+           });
         }
         total = total / 1000;
         document.getElementById('total').innerHTML = total + ' km';

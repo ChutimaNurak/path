@@ -51,7 +51,7 @@ class PositionModel {
 
 		//CONCAT Position  (create.blade.php RouteController)
 	function select_all() {
-		$sql = "select ID_Position, CONCAT('จ.',Province,', ','อ.',City,', ',Name) AS Name_Position FROM position INNER JOIN customer ON position.ID = customer.ID Order by Province";
+		$sql = "select ID_Position, CONCAT('จ.',Province,', ','อ.',City,', ','ต.',Subdistrict,', ',Name) AS Name_Position FROM position INNER JOIN customer ON position.ID = customer.ID Order by Province";
 		return DB::select($sql, []);
 	}
 

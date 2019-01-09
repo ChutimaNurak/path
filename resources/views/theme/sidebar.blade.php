@@ -12,9 +12,9 @@
                 </div>
             </li> -->
             <li>
-                <img src="{{url('/')}}/img/2.jpg"/>
+                <img src="{{url('/')}}/img/2.png"/>
             </li>
-            <div style="font-size: 18px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;นางสาวชุติมา  นุรักษ์ </div>
+           <!--  <div style="font-size: 18px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;นางสาวชุติมา  นุรักษ์ </div> -->
             <br>
             <!-- ลูกค้า -->
             <li>

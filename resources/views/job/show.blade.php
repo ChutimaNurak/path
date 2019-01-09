@@ -16,28 +16,13 @@
   	#map {
   		  height: 500px;
   		  width: 100%;
-  	}
-/*  	#right-panel {
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
     }
-  	#right-panel select, #right-panel input {
-        font-size: 15px;
-    }
-    #right-panel select {
-        width: 100%;
-    }
-    #right-panel i {
-        font-size: 12px;
-    }*/
 </style> <br>
 
 <!-- Export PDF  -->
     <a href="{{url('/')}}/job/{{$ID_Job}}/pdf" class="btn pull-right hidden-print">
       <i class="fa fa-cloud-download "></i>  Export to PDF 
     </a>
-<!--   <button onclick="window.print()" class="button button5 pull-right hidden-print" >พิมพ์รายงาน</button> -->
 
 <!-- datd job -->
 @forelse($table_job as $row) 
@@ -83,7 +68,7 @@
   			<th >ลองจิจูด</th>
   			<th style="text-align: center!important;">ระยะทาง</th>
   			<th style="text-align: center!important;">ระยะเวลา</th>
-  			<th ></th>
+  		  	<th ></th>
 		</tr>
 		@foreach($table_route as $row)
     
@@ -115,9 +100,6 @@
 
 <!-- Google Map -->
     <div id="map"></div>
-<!-- <div id="right-panel">
-      <p>Total Distance: <span id="total"></span></p>
-    </div>  -->
     <script>
       function initMap() {
         var lat = document.getElementsByName('Latitude');
@@ -140,7 +122,6 @@
         var directionsDisplay = new google.maps.DirectionsRenderer({
                                     draggable: true,
                                     map: map,
-                                    // panel: document.getElementById('right-panel')
                                   });
 
         directionsDisplay.addListener('directions_changed', function() {
@@ -174,36 +155,43 @@
 
       //ระยะทาง
       function computeTotalDistance(result) {
-        // var route_data = @json($table_route); 
+        var route_data = @json($table_route); 
         var total = 0;
+        var duration = 0;
         var myroute = result.routes[0];
           for (var i = 0; i < myroute.legs.length; i++) {
             //d ระยะทาง กม.
             d = myroute.legs[i].distance.value;
             total += d;
+            t = myroute.legs[i].duration.value;
+            duration += t;    
+
             // console.log('ระยะทาง',d/1000);
             //t ระยะเวลา นาที
-            // t = myroute.legs[i].duration.value;
-            // console.log('ระยะเวลา',t/60);
+            console.log('ระยะเวลา',t/60);
 
-            // console.log('รหัสรอบงาน',route_data[i].ID_Route);
+            console.log('รหัสรอบงาน',route_data[i].ID_Route);
 
-           //  $.ajax({
-           //   type: "POST",  //ชนิด
-           //   url: "{{ url('/') }}/test/"+route_data[i].ID_Route, //action 
-           //   data: {
-           //            //name:value
-           //            "District": d/1000,
-           //            "Time": t/60,
-           //            "_method": "PUT",
-           //            "_token":"{{ csrf_token() }}",
-           //         },
-           //   success: function(msg){ //ทำงานเสร็จจะทำอะไรต่อ
-           //       }
-           // });
+            $.ajax({
+             type: "POST",  //ชนิด
+             url: "{{ url('/') }}/test/"+route_data[i].ID_Route, //action 
+             data: {
+                      //name:value
+                      "District": d/1000,
+                      "Time": t/60,
+                      "District_Sum": total,
+                      "Time_Sum": duration,
+                      "_method": "PUT",
+                      "_token":"{{ csrf_token() }}",
+                   },
+             success: function(msg){ //ทำงานเสร็จจะทำอะไรต่อ
+                 }
+           });
         }
-        // total = total / 1000;
-        // document.getElementById('total').innerHTML = total + ' km';/**/
+
+        total = total / 1000;
+        duration = duration/60;
+        document.getElementById('total').innerHTML = total + ' km';/**/
         // console.log('',result.routes[0].legs);
       }
     </script>
@@ -212,49 +200,6 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&callback=initMap">
     </script>
 
-<!-- 
-  <div id="map"></div>
-    <script>
-    function initMap() {
-      var mapOptions = {
-        center: {lat: 13.847860, lng: 100.604274},
-        zoom: 11,
-      }
-
-    var maps = new google.maps.Map(document.getElementById("map"),mapOptions);
-
-    var marker, info;
-
-    // อ่านค่า Json แล้ว Loop ค่าเพื่อปักหมุดลงใน Map
-    $.getJSON( "{{ url('/') }}/route/json/{{$row->ID_Job}}", function( jsonObj ) {
-        console.log( jsonObj );
-        
-          //*** loop
-          $.each(jsonObj, function(i, item){
-          
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(item.Latitude, item.Longitude),
-            map: maps,
-            title: item.LOC_NAME
-          });
-        //ตั้งค่าmap ให้อยู่ใกล้เคียงต่ำแหน่งเริ่มแรก
-        // maps.setCenter(new google.maps.LatLng(item.Latitude,item.Longitude));
-        maps.setCenter({lat:item.Latitude,lng:item.Longitude});
-
-        info = new google.maps.InfoWindow();
-        
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            info.setContent(item.LOC_NAME);
-            info.open(maps, marker);
-            }
-          })(marker, i));
-        }); // loop
-      });
-    };
-  
-  </script> 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6EpDuzLcc5fhxZfr30n4eNoHOQQGLlTY&libraries=places&callback=initMap"async defer></script> -->
 @empty 
 @endforelse
 
